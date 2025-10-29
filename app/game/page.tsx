@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { useGame } from "@/src/context/GameContext";
 import ContentDisplay from "@/src/components/ContentDisplay";
-import backgroundImage from "@/src/assets/bg_dim.png";
 
 export default function GamePage() {
   const router = useRouter();
@@ -27,7 +25,6 @@ export default function GamePage() {
   const [selectedSide, setSelectedSide] = useState<"left" | "right" | null>(null);
 
   useEffect(() => {
-    // Check if we have questions loaded
     if (!category || questions.length === 0) {
       router.push("/category");
       return;
@@ -40,7 +37,6 @@ export default function GamePage() {
   }, [category, questions, hasStarted, startGame, router]);
 
   useEffect(() => {
-    // Check if game is finished
     if (isGameFinished && hasStarted) {
       setTimeout(() => {
         router.push("/results");
@@ -75,7 +71,6 @@ export default function GamePage() {
       playIncorrectSound();
     }
 
-    // Auto-advance after 2 seconds
     setTimeout(() => {
       setShowFeedback(false);
       setSelectedSide(null);
@@ -85,15 +80,10 @@ export default function GamePage() {
 
   if (!currentQuestion) {
     return (
-      <div className="relative h-screen w-full flex items-center justify-center">
-        <Image
-          src={backgroundImage}
-          alt="Background"
-          fill
-          quality={100}
-          className="z-[-1] object-cover"
-        />
-        <div className="text-white font-peaberry text-xl sm:text-2xl">Loading...</div>
+      <div className="min-h-screen pond-gradient flex items-center justify-center">
+        <div className="nes-container is-dark">
+          <p className="text-white text-sm sm:text-base">Loading...</p>
+        </div>
       </div>
     );
   }
@@ -106,116 +96,109 @@ export default function GamePage() {
     : currentQuestion.aiContent;
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col">
-      <Image
-        src={backgroundImage}
-        alt="Background"
-        fill
-        quality={100}
-        className="z-[-1] object-cover"
-      />
-
+    <div className="min-h-screen pond-gradient flex flex-col p-2 sm:p-3 md:p-4">
+      
       {/* Top Bar */}
-      <div className="relative z-10 pt-3 sm:pt-4 md:pt-6 px-3 sm:px-4 md:px-8">
-        <div className="flex flex-wrap justify-between items-center gap-2 sm:gap-3 max-w-7xl mx-auto">
-          <div className="text-white font-peaberry text-sm sm:text-lg md:text-2xl">
-            Q {currentQuestionIndex + 1}/10
-          </div>
-          <div className="text-white font-peaberry text-sm sm:text-lg md:text-2xl">
-            Score: {score}
-          </div>
-          <div className="text-white font-peaberry text-xs sm:text-base md:text-xl bg-[#6D845A] px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-lg">
-            {category?.toUpperCase()}
+      <div className="mb-2 sm:mb-3 md:mb-4">
+        <div className="nes-container is-dark">
+          <div className="flex flex-wrap justify-between items-center gap-2 text-[10px] sm:text-xs md:text-sm">
+            <span>Q {currentQuestionIndex + 1}/10</span>
+            <span>Score: {score}</span>
+            <span className="bg-[#6D845A] px-2 py-1 rounded">
+              {category?.toUpperCase()}
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Question Description */}
-      <div className="relative z-10 pt-3 sm:pt-4 md:pt-6 text-center px-4">
-        <h2 className="text-white font-peaberry text-lg sm:text-xl md:text-2xl lg:text-3xl mb-1 sm:mb-2">
+      {/* Question */}
+      <div className="nes-container is-rounded pond-theme mb-2 sm:mb-3 md:mb-4">
+        <p className="text-center text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2">
           {currentQuestion.description}
-        </h2>
-        <p className="text-white font-peaberry text-xs sm:text-sm md:text-base lg:text-lg opacity-80">
+        </p>
+        <p className="text-center text-[10px] sm:text-xs opacity-80">
           Click on the human-created content
         </p>
       </div>
 
-      {/* Content Display Area - Responsive Grid */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
-        <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-          
-          {/* Left Panel (or Top on mobile) */}
-          <div className="relative w-full">
-            <div className="relative h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px] bg-[#6D845A] bg-opacity-30 border-2 sm:border-3 md:border-4 border-[#6D845A] rounded-lg overflow-hidden">
+      {/* Content Display Area */}
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-2 sm:mb-3">
+        
+        {/* Left/Top Panel */}
+        <div className="flex flex-col">
+          <div className="nes-container pond-theme flex-1 mb-2 sm:mb-3 overflow-hidden">
+            <div className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
               <ContentDisplay
                 type={currentQuestion.category}
                 contentPath={leftContent}
                 position="left"
               />
             </div>
-            <button
-              onClick={() => handleChoice("left")}
-              disabled={showFeedback}
-              className={`mt-3 sm:mt-4 w-full py-2 sm:py-3 md:py-4 font-peaberry text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg transition-all duration-200 touch-manipulation ${
-                showFeedback && selectedSide === "left"
-                  ? lastAnswerCorrect
-                    ? "bg-green-600 text-white"
-                    : "bg-red-600 text-white"
-                  : "bg-[#6D845A] hover:bg-[#526443] active:bg-[#526443] text-white hover:scale-105 active:scale-95"
-              } ${showFeedback ? "cursor-not-allowed" : "cursor-pointer"}`}
-            >
-              {showFeedback && selectedSide === "left"
-                ? lastAnswerCorrect
-                  ? "✓ Correct!"
-                  : "✗ Wrong"
-                : <>
-                    <span className="hidden lg:inline">← Choose Left</span>
-                    <span className="lg:hidden">↑ Choose Top</span>
-                  </>
-              }
-            </button>
           </div>
+          <button
+            onClick={() => handleChoice("left")}
+            disabled={showFeedback}
+            className={`nes-btn text-xs sm:text-sm ${
+              showFeedback && selectedSide === "left"
+                ? lastAnswerCorrect
+                  ? "is-success"
+                  : "is-error"
+                : "is-primary"
+            }`}
+          >
+            {showFeedback && selectedSide === "left"
+              ? lastAnswerCorrect
+                ? "✓ Correct!"
+                : "✗ Wrong"
+              : <>
+                  <span className="hidden lg:inline">← Choose Left</span>
+                  <span className="lg:hidden">↑ Choose This</span>
+                </>
+            }
+          </button>
+        </div>
 
-          {/* Right Panel (or Bottom on mobile) */}
-          <div className="relative w-full">
-            <div className="relative h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px] bg-[#6D845A] bg-opacity-30 border-2 sm:border-3 md:border-4 border-[#6D845A] rounded-lg overflow-hidden">
+        {/* Right/Bottom Panel */}
+        <div className="flex flex-col">
+          <div className="nes-container pond-theme flex-1 mb-2 sm:mb-3 overflow-hidden">
+            <div className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
               <ContentDisplay
                 type={currentQuestion.category}
                 contentPath={rightContent}
                 position="right"
               />
             </div>
-            <button
-              onClick={() => handleChoice("right")}
-              disabled={showFeedback}
-              className={`mt-3 sm:mt-4 w-full py-2 sm:py-3 md:py-4 font-peaberry text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg transition-all duration-200 touch-manipulation ${
-                showFeedback && selectedSide === "right"
-                  ? lastAnswerCorrect
-                    ? "bg-green-600 text-white"
-                    : "bg-red-600 text-white"
-                  : "bg-[#6D845A] hover:bg-[#526443] active:bg-[#526443] text-white hover:scale-105 active:scale-95"
-              } ${showFeedback ? "cursor-not-allowed" : "cursor-pointer"}`}
-            >
-              {showFeedback && selectedSide === "right"
-                ? lastAnswerCorrect
-                  ? "✓ Correct!"
-                  : "✗ Wrong"
-                : <>
-                    <span className="hidden lg:inline">Choose Right →</span>
-                    <span className="lg:hidden">↓ Choose Bottom</span>
-                  </>
-              }
-            </button>
           </div>
+          <button
+            onClick={() => handleChoice("right")}
+            disabled={showFeedback}
+            className={`nes-btn text-xs sm:text-sm ${
+              showFeedback && selectedSide === "right"
+                ? lastAnswerCorrect
+                  ? "is-success"
+                  : "is-error"
+                : "is-primary"
+            }`}
+          >
+            {showFeedback && selectedSide === "right"
+              ? lastAnswerCorrect
+                ? "✓ Correct!"
+                : "✗ Wrong"
+              : <>
+                  <span className="hidden lg:inline">Choose Right →</span>
+                  <span className="lg:hidden">↓ Choose This</span>
+                </>
+            }
+          </button>
         </div>
       </div>
 
       {/* Feedback Overlay */}
       {showFeedback && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
-          <div className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-peaberry animate-bounce ${
+        <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none bg-black bg-opacity-30">
+          <div className={`text-6xl sm:text-7xl md:text-8xl ${
             lastAnswerCorrect ? "text-green-400" : "text-red-400"
-          }`}>
+          } animate-bounce`}>
             {lastAnswerCorrect ? "✓" : "✗"}
           </div>
         </div>

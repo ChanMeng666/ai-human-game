@@ -1,10 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import backgroundImage from "@/src/assets/bg_dim.png";
-import windowSquare from "@/src/assets/window_square.png";
 import { useGame } from "@/src/context/GameContext";
 import questionsData from "@/src/data/questions.json";
 
@@ -34,68 +31,75 @@ export default function CategorySelection() {
   };
 
   const categories = [
-    { name: "text", label: "📝 Text", description: "Articles, poems, stories" },
-    { name: "images", label: "🖼️ Images", description: "Art, photos, designs" },
-    { name: "audio", label: "🎵 Audio", description: "Music, voices, sounds" },
-    { name: "videos", label: "🎬 Videos", description: "Clips, animations, films" },
+    { 
+      name: "text", 
+      icon: "📝", 
+      label: "Text", 
+      description: "Articles, poems, stories" 
+    },
+    { 
+      name: "images", 
+      icon: "🖼️", 
+      label: "Images", 
+      description: "Art, photos, designs" 
+    },
+    { 
+      name: "audio", 
+      icon: "🎵", 
+      label: "Audio", 
+      description: "Music, voices, sounds" 
+    },
+    { 
+      name: "videos", 
+      icon: "🎬", 
+      label: "Videos", 
+      description: "Clips, animations, films" 
+    },
   ];
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 md:p-8">
-      <Image 
-        src={backgroundImage} 
-        alt="Background" 
-        fill 
-        quality={100} 
-        className="z-[-1] object-cover" 
-        priority
-      />
-
-      <div className="relative w-full max-w-[95%] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl">
-        <div className="text-center mb-6 sm:mb-8 md:mb-12">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-peaberry mb-2 sm:mb-3 md:mb-4">
-            Choose Your Category
-          </h1>
-          <p className="text-white text-sm sm:text-base md:text-lg lg:text-xl font-peaberry px-4">
-            Select what type of content you want to test
-          </p>
+    <div className="min-h-screen pond-gradient flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8">
+      <div className="w-full max-w-[95%] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
+        
+        {/* Title Section */}
+        <div className="text-center mb-4 sm:mb-6 md:mb-8">
+          <div className="nes-container is-dark with-title mb-4 sm:mb-6">
+            <p className="title text-xs sm:text-sm md:text-base">Choose Your Category</p>
+            <p className="text-white text-[10px] sm:text-xs md:text-sm opacity-90 py-3 sm:py-4 px-2 sm:px-4">
+              Select what type of content you want to test
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-6 sm:mb-8">
+        {/* Categories Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-4 sm:mb-6 md:mb-8">
           {categories.map((category) => (
-            <button
-              key={category.name}
-              onClick={() => handleCategorySelect(category.name)}
-              className="relative group touch-manipulation"
-            >
-              <div className="relative">
-                <Image
-                  src={windowSquare}
-                  alt={`${category.label} Category`}
-                  width={300}
-                  height={300}
-                  className="w-full hover:scale-105 active:scale-95 transition-transform duration-200"
-                  quality={100}
-                />
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-5 md:p-6">
-                  <p className="text-3xl sm:text-4xl md:text-5xl mb-1 sm:mb-2 font-peaberry text-white">
-                    {category.label.split(" ")[0]}
-                  </p>
-                  <p className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2 font-peaberry text-white">
-                    {category.label.split(" ")[1]}
-                  </p>
-                  <p className="text-xs sm:text-sm md:text-base font-peaberry text-white opacity-80">
-                    {category.description}
-                  </p>
+            <div key={category.name} className="nes-container is-rounded pond-theme">
+              <div className="text-center py-4 sm:py-5 md:py-6">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3">
+                  {category.icon}
                 </div>
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-2 sm:mb-3">
+                  {category.label}
+                </h3>
+                <p className="text-[10px] sm:text-xs md:text-sm opacity-80 mb-3 sm:mb-4">
+                  {category.description}
+                </p>
+                <button
+                  onClick={() => handleCategorySelect(category.name)}
+                  className="nes-btn is-primary text-xs sm:text-sm"
+                >
+                  Select
+                </button>
               </div>
-            </button>
+            </div>
           ))}
         </div>
 
+        {/* Back Button */}
         <div className="text-center">
           <Link href="/">
-            <button className="px-6 sm:px-8 py-2 sm:py-3 bg-[#6D845A] hover:bg-[#526443] active:bg-[#526443] text-white font-peaberry text-base sm:text-lg md:text-xl rounded-lg transition-colors touch-manipulation">
+            <button className="nes-btn text-xs sm:text-sm">
               ← Back to Home
             </button>
           </Link>
@@ -104,4 +108,3 @@ export default function CategorySelection() {
     </div>
   );
 }
-

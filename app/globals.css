@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,35 +19,115 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-@font-face {
-  font-family: 'PeaberryBase';
-  src: url('../src/assets/PeaberryBase.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
+/* 响应式字体大小 */
+@media (max-width: 640px) {
+  body {
+    font-size: 12px;
+  }
 }
 
+@media (min-width: 641px) and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* NES.css 主题自定义 - 池塘主题颜色 */
+.nes-btn.is-primary {
+  background-color: #6D845A !important;
+}
+
+.nes-btn.is-primary:hover {
+  background-color: #526443 !important;
+}
+
+.nes-btn.is-success {
+  background-color: #6D845A !important;
+}
+
+.nes-btn.is-success:hover {
+  background-color: #526443 !important;
+}
+
+.nes-container.pond-theme {
+  background-color: rgba(200, 183, 140, 0.3);
+  border-color: #6D845A;
+}
+
+.nes-container.is-dark {
+  background-color: #3e4224;
+  color: white;
+  border-color: #6D845A;
+}
+
+/* 自定义进度条颜色 */
+.nes-progress.is-success::-webkit-progress-value {
+  background-color: #6D845A;
+}
+
+.nes-progress.is-success::-moz-progress-bar {
+  background-color: #6D845A;
+}
+
+/* 自定义滚动条 */
 ::-webkit-scrollbar {
   width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #c8b78c; /* Light beige to match the background */
-  border: 2px solid #6D845A; /* Darker greenish border */
+  background: #c8b78c;
+  border: 2px solid #6D845A;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6D845A; /* Dark green to match the window borders */
-  border: 2px solid #3e4224; /* Even darker border for contrast */
+  background: #6D845A;
+  border: 2px solid #3e4224;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #526443; /* Slightly darker green on hover */
+  background: #526443;
 }
 
 .scrollable-container {
-  padding-right: 20px; /* Adds space between text and scrollbar */
+  padding-right: 20px;
+}
+
+/* 背景渐变 */
+.pond-gradient {
+  background: linear-gradient(to bottom, #8FB996, #6D845A);
+}
+
+/* 响应式文字大小辅助类 */
+.text-responsive-sm {
+  font-size: 0.75rem;
+}
+
+.text-responsive-base {
+  font-size: 1rem;
+}
+
+.text-responsive-lg {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .text-responsive-sm { font-size: 0.625rem; }
+  .text-responsive-base { font-size: 0.75rem; }
+  .text-responsive-lg { font-size: 1rem; }
+}
+
+/* 动画 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
 }
