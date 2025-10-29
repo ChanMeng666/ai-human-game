@@ -74,6 +74,26 @@ export default function CategorySelection() {
     return category ? `${category.score}/${category.totalQuestions}` : null;
   };
 
+  const maxPossibleScore = 40;
+  const overallPercentage = maxPossibleScore > 0 ? (totalScore / maxPossibleScore) * 100 : 0;
+
+  const getPerformanceBadge = (score: number, totalQuestions: number) => {
+    const percent = (score / totalQuestions) * 100;
+    if (percent === 100) return { emoji: "🏆", label: "Perfect", color: "bg-yellow-500" };
+    if (percent >= 80) return { emoji: "⭐", label: "Excellent", color: "bg-green-500" };
+    if (percent >= 50) return { emoji: "👍", label: "Good", color: "bg-blue-500" };
+    return { emoji: "🌱", label: "Try Again", color: "bg-gray-500" };
+  };
+
+  const getRecommendedCategory = () => {
+    if (completedCategories.length === 0) return "text";
+    const categoryOrder = ["text", "images", "audio", "videos"];
+    const completedNames = completedCategories.map(c => c.category);
+    return categoryOrder.find(cat => !completedNames.includes(cat)) || categoryOrder[0];
+  };
+
+  const recommendedCategory = getRecommendedCategory();
+
   return (
     <div className="min-h-screen pond-gradient flex flex-col p-3 sm:p-4 md:p-6 lg:p-8">
       <Navigation showBackButton={true} showProgress={true} />
@@ -90,24 +110,43 @@ export default function CategorySelection() {
             </p>
           </div>
 
-          {/* Progress Bar */}
+          {/* Enhanced Progress Card */}
           {completedCategories.length > 0 && (
-            <div className="nes-container pond-theme mb-4 sm:mb-6">
+            <div className="nes-container is-dark mb-4 sm:mb-6 animate-fade-in">
               <div className="text-center">
-                <p className="text-xs sm:text-sm md:text-base mb-2 font-bold">
-                  <i className="nes-icon trophy is-small"></i> Progress: {completedCategories.length}/4 Categories
+                <p className="text-white text-sm sm:text-base md:text-lg mb-2 font-bold">
+                  🎯 Your Progress
                 </p>
-                <p className="text-xs sm:text-sm mb-2">
-                  Total Score: <span className="font-bold">{totalScore}/{completedCategories.length * 10}</span>
-                </p>
+                <div className="text-3xl sm:text-4xl font-bold text-white mb-3">
+                  {totalScore}/{maxPossibleScore}
+                </div>
+                <progress 
+                  className="nes-progress is-success w-full mb-3" 
+                  value={overallPercentage} 
+                  max="100"
+                ></progress>
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mb-3">
+                  <p className="text-white text-xs sm:text-sm">
+                    <i className="nes-icon trophy is-small"></i> {completedCategories.length}/4 Categories • {overallPercentage.toFixed(1)}% Complete
+                  </p>
+                </div>
                 <button
                   onClick={handleViewSummary}
-                  className="nes-btn is-success text-[10px] sm:text-xs flex items-center justify-center gap-2 mx-auto"
+                  className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto hover:scale-105 transition-transform"
                 >
                   <i className="nes-icon star is-small"></i>
-                  <span>View Summary</span>
+                  <span>View Detailed Summary</span>
                 </button>
               </div>
+            </div>
+          )}
+
+          {/* Recommended Category (for users with progress) */}
+          {completedCategories.length > 0 && completedCategories.length < 4 && (
+            <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6 animate-slide-in-up">
+              <p className="text-xs sm:text-sm text-center">
+                <i className="nes-icon star is-small"></i> Recommended: Try <strong className="uppercase">{recommendedCategory}</strong> next!
+              </p>
             </div>
           )}
         </div>
@@ -117,13 +156,29 @@ export default function CategorySelection() {
           {categories.map((category) => {
             const isCompleted = isCategoryCompleted(category.name);
             const score = getCategoryScore(category.name);
+            const isRecommended = category.name === recommendedCategory && !isCompleted;
+            const categoryData = completedCategories.find(c => c.category === category.name);
+            const badge = categoryData ? getPerformanceBadge(categoryData.score, categoryData.totalQuestions) : null;
+            const percentage = categoryData ? (categoryData.score / categoryData.totalQuestions) * 100 : 0;
             
             return (
-              <div key={category.name} className={`nes-container is-rounded ${isCompleted ? 'is-success' : 'pond-theme'}`}>
+              <div 
+                key={category.name} 
+                className={`nes-container is-rounded ${
+                  isCompleted ? 'is-success' : isRecommended ? 'is-warning' : 'pond-theme'
+                } ${isCompleted ? 'animate-pulse-slow' : ''} relative`}
+              >
                 <div className="text-center py-4 sm:py-5 md:py-6 relative">
-                  {isCompleted && (
-                    <div className="absolute top-2 right-2">
-                      <i className="nes-icon check is-small"></i>
+                  {isRecommended && (
+                    <div className="absolute top-2 left-2 right-2 text-center">
+                      <span className="text-[8px] sm:text-[10px] font-bold bg-yellow-500 text-black px-2 py-1 rounded">
+                        ⭐ RECOMMENDED
+                      </span>
+                    </div>
+                  )}
+                  {isCompleted && badge && (
+                    <div className="absolute top-2 right-2 flex items-center gap-1">
+                      <span className="text-lg sm:text-xl">{badge.emoji}</span>
                     </div>
                   )}
                   <div className="mb-3 sm:mb-4 flex justify-center">
@@ -135,17 +190,32 @@ export default function CategorySelection() {
                   <p className="text-[10px] sm:text-xs md:text-sm opacity-80 mb-3 sm:mb-4">
                     {category.description}
                   </p>
-                  {isCompleted && score && (
-                    <p className="text-xs sm:text-sm font-bold mb-2 text-green-600">
-                      Score: {score}
-                    </p>
+                  {isCompleted && score && badge && (
+                    <div className="mb-3">
+                      <p className="text-sm sm:text-base font-bold mb-1">
+                        Score: {score}
+                      </p>
+                      <progress 
+                        className={`nes-progress w-full ${
+                          percentage >= 80 ? 'is-success' : 
+                          percentage >= 50 ? 'is-warning' : 
+                          'is-error'
+                        }`}
+                        value={percentage} 
+                        max="100"
+                        style={{ height: '16px' }}
+                      ></progress>
+                      <p className="text-[10px] sm:text-xs opacity-70 mt-1">{badge.label} ({percentage.toFixed(0)}%)</p>
+                    </div>
                   )}
                   <button
                     onClick={() => handleCategorySelect(category.name)}
-                    className={`nes-btn ${isCompleted ? 'is-warning' : 'is-primary'} text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto`}
+                    className={`nes-btn ${
+                      isCompleted ? 'is-warning' : isRecommended ? 'is-success' : 'is-primary'
+                    } text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto hover:scale-105 transition-transform`}
                   >
                     <i className={`nes-icon ${isCompleted ? 'redo' : 'caret-right'} is-small`}></i>
-                    <span>{isCompleted ? 'Retry' : 'Select'}</span>
+                    <span>{isCompleted ? 'Retry' : 'Start'}</span>
                   </button>
                 </div>
               </div>

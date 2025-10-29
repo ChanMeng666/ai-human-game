@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
 import Navigation from "@/src/components/Navigation";
 import AchievementToast, { AchievementType } from "@/src/components/AchievementToast";
+import questionsData from "@/src/data/questions.json";
 
 export default function ResultsPage() {
   const router = useRouter();
@@ -17,6 +18,9 @@ export default function ResultsPage() {
     resetGame, 
     resetAll,
     saveCurrentCategory,
+    setCategory,
+    setQuestions,
+    startGame,
     soundEnabled
   } = useGame();
   const [fishSize, setFishSize] = useState<"small" | "medium" | "large">("small");
@@ -96,10 +100,51 @@ export default function ResultsPage() {
     }, 300);
   };
 
+  const handleRetryCurrentCategory = () => {
+    playBubbleSound();
+    if (category) {
+      const categoryQuestions = questionsData.filter(
+        (q) => q.category === category
+      );
+      setQuestions(categoryQuestions);
+      startGame();
+      setTimeout(() => {
+        router.push("/game");
+      }, 300);
+    }
+  };
+
+  const handleTrySpecificCategory = (categoryName: string) => {
+    playBubbleSound();
+    setCategory(categoryName);
+    const categoryQuestions = questionsData.filter(
+      (q) => q.category === categoryName
+    );
+    setQuestions(categoryQuestions);
+    setTimeout(() => {
+      router.push("/game");
+    }, 300);
+  };
+
   const allCategories = ["text", "images", "audio", "videos"];
   const completedCategoryNames = completedCategories.map(c => c.category);
   const remainingCategories = allCategories.filter(c => !completedCategoryNames.includes(c));
   const hasMoreCategories = remainingCategories.length > 0;
+
+  // Get suggested next category based on current performance
+  const getSuggestedCategory = () => {
+    if (remainingCategories.length === 0) {
+      // All completed, suggest lowest scoring category
+      const lowestScoring = [...completedCategories].sort((a, b) => 
+        (a.score / a.totalQuestions) - (b.score / b.totalQuestions)
+      )[0];
+      return lowestScoring?.category || category;
+    }
+    // Return first remaining category
+    return remainingCategories[0];
+  };
+
+  const suggestedCategory = getSuggestedCategory();
 
   const getFishEmoji = () => {
     if (fishSize === "large") return "🐋";
@@ -215,43 +260,88 @@ export default function ResultsPage() {
           </div>
         </div>
 
+        {/* Contextual Suggestions */}
+        {score < 8 && (
+          <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6 animate-slide-in-up">
+            <p className="text-xs sm:text-sm text-center">
+              <i className="nes-icon redo is-small"></i> Want to improve? Try <strong className="uppercase">{category}</strong> again!
+            </p>
+          </div>
+        )}
+        {hasMoreCategories && score >= 8 && suggestedCategory && (
+          <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6 animate-slide-in-up">
+            <p className="text-xs sm:text-sm text-center">
+              <i className="nes-icon star is-small"></i> Great job! Ready for <strong className="uppercase">{suggestedCategory}</strong>?
+            </p>
+          </div>
+        )}
+
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 md:gap-4">
+        <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
           {hasMoreCategories ? (
-            <>
+            <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3">
+              <button
+                onClick={handleContinue}
+                className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0 hover:scale-105 transition-transform"
+              >
+                <i className="nes-icon caret-right is-small"></i>
+                <span>Next Category</span>
+              </button>
+              {suggestedCategory && suggestedCategory !== category && (
+                <button
+                  onClick={() => handleTrySpecificCategory(suggestedCategory)}
+                  className="nes-btn is-primary text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0 hover:scale-105 transition-transform"
+                >
+                  <i className="nes-icon star is-small"></i>
+                  <span>Try {suggestedCategory.charAt(0).toUpperCase() + suggestedCategory.slice(1)}</span>
+                </button>
+              )}
+            </div>
+          ) : (
+            <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3">
+              <button
+                onClick={handleViewSummary}
+                className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0 hover:scale-105 transition-transform"
+              >
+                <i className="nes-icon trophy is-small"></i>
+                <span>View Final Summary</span>
+              </button>
               <button
                 onClick={handleContinue}
                 className="nes-btn is-primary text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
               >
                 <i className="nes-icon caret-right is-small"></i>
-                <span>Next Category</span>
+                <span>Practice More</span>
               </button>
-              {completedCategories.length > 0 && (
-                <button
-                  onClick={handleViewSummary}
-                  className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
-                >
-                  <i className="nes-icon star is-small"></i>
-                  <span>View Summary</span>
-                </button>
-              )}
-            </>
-          ) : (
-            <button
-              onClick={handleViewSummary}
-              className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
-            >
-              <i className="nes-icon trophy is-small"></i>
-              <span>View Final Summary</span>
-            </button>
+            </div>
           )}
-          <button
-            onClick={handleGoHome}
-            className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
-          >
-            <i className="nes-icon user is-small"></i>
-            <span>Home</span>
-          </button>
+          
+          {/* Secondary Actions */}
+          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3">
+            <button
+              onClick={handleRetryCurrentCategory}
+              className="nes-btn is-warning text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
+            >
+              <i className="nes-icon redo is-small"></i>
+              <span>Retry {category?.charAt(0).toUpperCase()}{category?.slice(1)}</span>
+            </button>
+            {completedCategories.length > 0 && (
+              <button
+                onClick={handleViewSummary}
+                className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
+              >
+                <i className="nes-icon star is-small"></i>
+                <span>View Summary</span>
+              </button>
+            )}
+            <button
+              onClick={handleGoHome}
+              className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
+            >
+              <i className="nes-icon user is-small"></i>
+              <span>Home</span>
+            </button>
+          </div>
         </div>
       </div>
       </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
+import Navigation from "@/src/components/Navigation";
 
 export default function TutorialPage() {
   const router = useRouter();
@@ -23,8 +24,11 @@ export default function TutorialPage() {
   };
 
   return (
-    <div className="min-h-screen pond-gradient flex flex-col items-center py-4 sm:py-6 px-3 sm:px-4">
-      <div className="w-full max-w-[95%] sm:max-w-2xl md:max-w-3xl">
+    <div className="min-h-screen pond-gradient flex flex-col py-4 sm:py-6 px-3 sm:px-4">
+      <Navigation showBackButton={true} showProgress={false} />
+      
+      <div className="flex-1 flex items-center justify-center">
+        <div className="w-full max-w-[95%] sm:max-w-2xl md:max-w-3xl">
         
         {/* Header */}
         <div className="nes-container is-dark with-title mb-4 sm:mb-6">
@@ -225,22 +229,23 @@ export default function TutorialPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+        <div className="flex flex-col gap-3 sm:gap-4 justify-center">
           <button
             onClick={handleStartGame}
-            className="nes-btn is-primary text-xs sm:text-sm md:text-base flex items-center justify-center gap-2"
+            className="nes-btn is-success text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 py-4 hover:scale-105 transition-transform animate-pulse-slow"
           >
-            <i className="nes-icon play is-small"></i>
-            <span>Start Game</span>
+            <i className="nes-icon play is-medium"></i>
+            <span>Start Playing Now!</span>
           </button>
           <Link href="/">
-            <button className="nes-btn text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 w-full">
-              <i className="nes-icon caret-left is-small"></i>
+            <button className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 w-full">
+              <i className="nes-icon user is-small"></i>
               <span>Back to Home</span>
             </button>
           </Link>
         </div>
 
+        </div>
       </div>
     </div>
   );

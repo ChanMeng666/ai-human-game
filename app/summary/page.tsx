@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
 import Navigation from "@/src/components/Navigation";
+import questionsData from "@/src/data/questions.json";
 
 export default function SummaryPage() {
   const router = useRouter();
@@ -11,6 +12,8 @@ export default function SummaryPage() {
     completedCategories, 
     totalScore,
     resetAll,
+    setCategory,
+    setQuestions,
     soundEnabled
   } = useGame();
   const [overallPerformance, setOverallPerformance] = useState<"beginner" | "intermediate" | "advanced" | "master">("beginner");
@@ -55,6 +58,18 @@ export default function SummaryPage() {
     resetAll();
     setTimeout(() => {
       router.push("/");
+    }, 300);
+  };
+
+  const handleRetryCategory = (categoryName: string) => {
+    playBubbleSound();
+    setCategory(categoryName);
+    const categoryQuestions = questionsData.filter(
+      (q) => q.category === categoryName
+    );
+    setQuestions(categoryQuestions);
+    setTimeout(() => {
+      router.push("/game");
     }, 300);
   };
 
@@ -148,20 +163,24 @@ export default function SummaryPage() {
           <div className="space-y-2 sm:space-y-3">
             {completedCategories.map((categoryData) => {
               const categoryPercentage = (categoryData.score / categoryData.totalQuestions) * 100;
+              const badge = categoryPercentage === 100 ? "🏆" : categoryPercentage >= 80 ? "⭐" : categoryPercentage >= 50 ? "👍" : "🌱";
               return (
                 <div
                   key={categoryData.category}
                   className="nes-container is-rounded"
                 >
-                  <div className="flex items-center justify-between gap-3 mb-2">
-                    <div className="flex items-center gap-2 flex-1">
-                      <i className={`nes-icon ${getCategoryIcon(categoryData.category)} is-small`}></i>
-                      <span className="text-xs sm:text-sm md:text-base font-bold uppercase">
+                  <div className="flex items-center justify-between gap-2 sm:gap-3 mb-2">
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <i className={`nes-icon ${getCategoryIcon(categoryData.category)} is-small flex-shrink-0`}></i>
+                      <span className="text-xs sm:text-sm md:text-base font-bold uppercase truncate">
                         {categoryData.category}
                       </span>
                     </div>
-                    <div className="text-sm sm:text-base md:text-lg font-bold">
-                      {categoryData.score}/{categoryData.totalQuestions}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <span className="text-base sm:text-lg">{badge}</span>
+                      <span className="text-sm sm:text-base md:text-lg font-bold">
+                        {categoryData.score}/{categoryData.totalQuestions}
+                      </span>
                     </div>
                   </div>
                   <progress 
@@ -173,9 +192,18 @@ export default function SummaryPage() {
                     value={categoryPercentage} 
                     max="100"
                   ></progress>
-                  <p className="text-[9px] sm:text-[10px] md:text-xs opacity-70 text-right mt-1">
-                    {categoryPercentage.toFixed(0)}%
-                  </p>
+                  <div className="flex justify-between items-center mt-2">
+                    <p className="text-[9px] sm:text-[10px] md:text-xs opacity-70">
+                      {categoryPercentage.toFixed(0)}% Accuracy
+                    </p>
+                    <button
+                      onClick={() => handleRetryCategory(categoryData.category)}
+                      className="nes-btn is-warning text-[9px] sm:text-[10px] md:text-xs py-1 px-2 flex items-center gap-1 hover:scale-105 transition-transform"
+                    >
+                      <i className="nes-icon redo is-small"></i>
+                      <span className="hidden sm:inline">Retry</span>
+                    </button>
+                  </div>
                 </div>
               );
             })}
@@ -198,22 +226,41 @@ export default function SummaryPage() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 md:gap-4">
-          {hasMoreCategories && (
-            <button
-              onClick={handleContinue}
-              className="nes-btn is-primary text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
-            >
-              <i className="nes-icon caret-right is-small"></i>
-              <span>Continue Challenge</span>
-            </button>
+          {hasMoreCategories ? (
+            <>
+              <button
+                onClick={handleContinue}
+                className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0 hover:scale-105 transition-transform"
+              >
+                <i className="nes-icon caret-right is-small"></i>
+                <span>Continue Challenge</span>
+              </button>
+              <button
+                onClick={handleRestartAll}
+                className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
+              >
+                <i className="nes-icon redo is-small"></i>
+                <span>Reset All Progress</span>
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleContinue}
+                className="nes-btn is-primary text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0 hover:scale-105 transition-transform"
+              >
+                <i className="nes-icon caret-right is-small"></i>
+                <span>Practice More</span>
+              </button>
+              <button
+                onClick={handleRestartAll}
+                className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
+              >
+                <i className="nes-icon redo is-small"></i>
+                <span>Start Fresh</span>
+              </button>
+            </>
           )}
-          <button
-            onClick={handleRestartAll}
-            className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
-          >
-            <i className="nes-icon redo is-small"></i>
-            <span>Start Over</span>
-          </button>
         </div>
 
         {/* Completion Message */}
