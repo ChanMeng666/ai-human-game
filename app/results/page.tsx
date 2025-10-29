@@ -53,10 +53,10 @@ export default function ResultsPage() {
   };
 
   const getPerformanceMessage = () => {
-    if (score === 10) return "Perfect! You're an AI detection expert! 🏆";
-    if (score >= 8) return "Excellent! You have a great eye! 🌟";
-    if (score >= 5) return "Good job! Keep practicing! 👍";
-    return "Nice try! This is harder than it looks! 💪";
+    if (score === 10) return { text: "Perfect! You're an AI detection expert!", icon: "trophy" };
+    if (score >= 8) return { text: "Excellent! You have a great eye!", icon: "star" };
+    if (score >= 5) return { text: "Good job! Keep practicing!", icon: "thumbs-up" };
+    return { text: "Nice try! This is harder than it looks!", icon: "heart" };
   };
 
   const percentage = (score / 10) * 100;
@@ -87,9 +87,10 @@ export default function ResultsPage() {
               max="100"
             ></progress>
             
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6 px-2 sm:px-4 leading-relaxed">
-              {getPerformanceMessage()}
-            </p>
+            <div className="text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6 px-2 sm:px-4 leading-relaxed flex items-center justify-center gap-2">
+              <i className={`nes-icon ${getPerformanceMessage().icon} is-small`}></i>
+              <span>{getPerformanceMessage().text}</span>
+            </div>
             
             {/* Fish Display */}
             <div className="text-5xl sm:text-6xl md:text-7xl mb-2 float-animation">
@@ -127,8 +128,8 @@ export default function ResultsPage() {
                         Correct: <strong>{answer.humanPosition.toUpperCase()}</strong>
                       </p>
                     </div>
-                    <div className="text-xl sm:text-2xl flex-shrink-0">
-                      {answer.correct ? "✓" : "✗"}
+                    <div className="flex-shrink-0 flex items-center">
+                      <i className={`nes-icon ${answer.correct ? "check" : "times"} is-small`}></i>
                     </div>
                   </div>
                 </div>
@@ -141,15 +142,17 @@ export default function ResultsPage() {
         <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 md:gap-4">
           <button
             onClick={handlePlayAgain}
-            className="nes-btn is-primary text-xs sm:text-sm"
+            className="nes-btn is-primary text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
           >
-            🔄 Play Again
+            <i className="nes-icon play is-small"></i>
+            <span>Play Again</span>
           </button>
           <button
             onClick={handleGoHome}
-            className="nes-btn text-xs sm:text-sm"
+            className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
           >
-            🏠 Home
+            <i className="nes-icon user is-small"></i>
+            <span>Home</span>
           </button>
         </div>
       </div>

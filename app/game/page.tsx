@@ -138,7 +138,7 @@ export default function GamePage() {
           <button
             onClick={() => handleChoice("left")}
             disabled={showFeedback}
-            className={`nes-btn text-xs sm:text-sm ${
+            className={`nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 ${
               showFeedback && selectedSide === "left"
                 ? lastAnswerCorrect
                   ? "is-success"
@@ -148,11 +148,17 @@ export default function GamePage() {
           >
             {showFeedback && selectedSide === "left"
               ? lastAnswerCorrect
-                ? "✓ Correct!"
-                : "✗ Wrong"
+                ? <><i className="nes-icon check is-small"></i><span>Correct!</span></>
+                : <><i className="nes-icon times is-small"></i><span>Wrong</span></>
               : <>
-                  <span className="hidden lg:inline">← Choose Left</span>
-                  <span className="lg:hidden">↑ Choose This</span>
+                  <span className="hidden lg:inline flex items-center gap-2">
+                    <i className="nes-icon caret-left is-small"></i>
+                    <span>Choose Left</span>
+                  </span>
+                  <span className="lg:hidden flex items-center gap-2">
+                    <i className="nes-icon caret-up is-small"></i>
+                    <span>Choose This</span>
+                  </span>
                 </>
             }
           </button>
@@ -172,7 +178,7 @@ export default function GamePage() {
           <button
             onClick={() => handleChoice("right")}
             disabled={showFeedback}
-            className={`nes-btn text-xs sm:text-sm ${
+            className={`nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 ${
               showFeedback && selectedSide === "right"
                 ? lastAnswerCorrect
                   ? "is-success"
@@ -182,11 +188,17 @@ export default function GamePage() {
           >
             {showFeedback && selectedSide === "right"
               ? lastAnswerCorrect
-                ? "✓ Correct!"
-                : "✗ Wrong"
+                ? <><i className="nes-icon check is-small"></i><span>Correct!</span></>
+                : <><i className="nes-icon times is-small"></i><span>Wrong</span></>
               : <>
-                  <span className="hidden lg:inline">Choose Right →</span>
-                  <span className="lg:hidden">↓ Choose This</span>
+                  <span className="hidden lg:inline flex items-center gap-2">
+                    <span>Choose Right</span>
+                    <i className="nes-icon caret-right is-small"></i>
+                  </span>
+                  <span className="lg:hidden flex items-center gap-2">
+                    <i className="nes-icon caret-down is-small"></i>
+                    <span>Choose This</span>
+                  </span>
                 </>
             }
           </button>
@@ -196,10 +208,10 @@ export default function GamePage() {
       {/* Feedback Overlay */}
       {showFeedback && (
         <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none bg-black bg-opacity-30">
-          <div className={`text-6xl sm:text-7xl md:text-8xl ${
+          <div className={`${
             lastAnswerCorrect ? "text-green-400" : "text-red-400"
-          } animate-bounce`}>
-            {lastAnswerCorrect ? "✓" : "✗"}
+          } animate-bounce flex items-center justify-center`}>
+            <i className={`nes-icon ${lastAnswerCorrect ? "check" : "times"}`} style={{ fontSize: "4rem" }}></i>
           </div>
         </div>
       )}

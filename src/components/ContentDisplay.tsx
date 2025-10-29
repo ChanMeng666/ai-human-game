@@ -38,7 +38,7 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
   if (loading) {
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <div className="text-white font-peaberry text-base sm:text-lg md:text-xl">Loading...</div>
+        <div className="text-white font-pixel-display text-base sm:text-lg md:text-xl">Loading...</div>
       </div>
     );
   }
@@ -46,8 +46,10 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
   if (error && type === "text") {
     return (
       <div className="w-full h-full flex items-center justify-center p-3 sm:p-4">
-        <div className="text-white font-peaberry text-center">
-          <p className="text-base sm:text-lg mb-2">📄</p>
+        <div className="text-white font-pixel-display text-center">
+          <div className="flex justify-center mb-2">
+            <i className="nes-icon file is-medium"></i>
+          </div>
           <p className="text-xs sm:text-sm">{error}</p>
           <p className="text-[10px] sm:text-xs mt-2 opacity-70 break-all">{contentPath}</p>
         </div>
@@ -59,7 +61,7 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
     case "text":
       return (
         <div className="w-full h-full overflow-y-auto scrollable-container p-3 sm:p-4 md:p-5 lg:p-6 bg-[#c8b78c] bg-opacity-30 rounded">
-          <p className="text-white font-peaberry text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed whitespace-pre-wrap break-words">
+          <p className="text-white font-pixel-content text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed whitespace-pre-wrap break-words">
             {textContent || "Sample text content will appear here."}
           </p>
         </div>
@@ -81,8 +83,10 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
                 const container = target.parentElement;
                 if (container) {
                   container.innerHTML = `
-                    <div class="flex flex-col items-center justify-center h-full text-white font-peaberry text-center px-2">
-                      <p class="text-2xl sm:text-3xl md:text-4xl mb-2">🖼️</p>
+                    <div class="flex flex-col items-center justify-center h-full text-white font-pixel-display text-center px-2">
+                      <div class="flex justify-center mb-2">
+                        <i class="nes-icon star is-large"></i>
+                      </div>
                       <p class="text-xs sm:text-sm md:text-base">Image not found</p>
                       <p class="text-[10px] sm:text-xs mt-2 opacity-70 break-all">${contentPath}</p>
                     </div>
@@ -98,7 +102,9 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
       return (
         <div className="w-full h-full flex items-center justify-center p-3 sm:p-4 md:p-6">
           <div className="flex flex-col items-center space-y-3 sm:space-y-4 w-full max-w-md">
-            <div className="text-4xl sm:text-5xl md:text-6xl">🎵</div>
+            <div className="flex justify-center">
+              <i className="nes-icon heart is-large"></i>
+            </div>
             <audio
               controls
               className="w-full max-w-full"
@@ -111,7 +117,7 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
               <source src={contentPath} type="audio/wav" />
               Your browser does not support the audio element.
             </audio>
-            <p className="text-white font-peaberry text-xs sm:text-sm opacity-70">
+            <p className="text-white font-pixel-display text-xs sm:text-sm opacity-70">
               {position === "left" ? "Option A" : "Option B"}
             </p>
           </div>
@@ -131,8 +137,10 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
               const container = target.parentElement;
               if (container) {
                 container.innerHTML = `
-                  <div class="flex flex-col items-center justify-center h-full text-white font-peaberry text-center px-2">
-                    <p class="text-2xl sm:text-3xl md:text-4xl mb-2">🎬</p>
+                  <div class="flex flex-col items-center justify-center h-full text-white font-pixel-display text-center px-2">
+                    <div class="flex justify-center mb-2">
+                      <i class="nes-icon trophy is-large"></i>
+                    </div>
                     <p class="text-xs sm:text-sm md:text-base">Video not found</p>
                     <p class="text-[10px] sm:text-xs mt-2 opacity-70 break-all">${contentPath}</p>
                   </div>
@@ -150,7 +158,7 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
     default:
       return (
         <div className="w-full h-full flex items-center justify-center">
-          <p className="text-white font-peaberry text-sm sm:text-base">Unknown content type</p>
+          <p className="text-white font-pixel-display text-sm sm:text-base">Unknown content type</p>
         </div>
       );
   }

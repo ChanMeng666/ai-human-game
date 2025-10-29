@@ -33,25 +33,25 @@ export default function CategorySelection() {
   const categories = [
     { 
       name: "text", 
-      icon: "📝", 
+      iconClass: "file", 
       label: "Text", 
       description: "Articles, poems, stories" 
     },
     { 
       name: "images", 
-      icon: "🖼️", 
+      iconClass: "star", 
       label: "Images", 
       description: "Art, photos, designs" 
     },
     { 
       name: "audio", 
-      icon: "🎵", 
+      iconClass: "heart", 
       label: "Audio", 
       description: "Music, voices, sounds" 
     },
     { 
       name: "videos", 
-      icon: "🎬", 
+      iconClass: "trophy", 
       label: "Videos", 
       description: "Clips, animations, films" 
     },
@@ -76,8 +76,8 @@ export default function CategorySelection() {
           {categories.map((category) => (
             <div key={category.name} className="nes-container is-rounded pond-theme">
               <div className="text-center py-4 sm:py-5 md:py-6">
-                <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3">
-                  {category.icon}
+                <div className="mb-3 sm:mb-4 flex justify-center">
+                  <i className={`nes-icon ${category.iconClass} is-large`}></i>
                 </div>
                 <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-2 sm:mb-3">
                   {category.label}
@@ -87,9 +87,10 @@ export default function CategorySelection() {
                 </p>
                 <button
                   onClick={() => handleCategorySelect(category.name)}
-                  className="nes-btn is-primary text-xs sm:text-sm"
+                  className="nes-btn is-primary text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto"
                 >
-                  Select
+                  <i className="nes-icon caret-right is-small"></i>
+                  <span>Select</span>
                 </button>
               </div>
             </div>
@@ -99,8 +100,9 @@ export default function CategorySelection() {
         {/* Back Button */}
         <div className="text-center">
           <Link href="/">
-            <button className="nes-btn text-xs sm:text-sm">
-              ← Back to Home
+            <button className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto">
+              <i className="nes-icon caret-left is-small"></i>
+              <span>Back to Home</span>
             </button>
           </Link>
         </div>
