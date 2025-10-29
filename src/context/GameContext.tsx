@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 export interface Question {
   id: number;
@@ -35,6 +35,17 @@ interface GameState {
   isGameFinished: boolean;
   completedCategories: CategoryScore[];
   totalScore: number;
+  soundEnabled: boolean;
+}
+
+interface SavedProgress {
+  completedCategories: CategoryScore[];
+  totalScore: number;
+  currentCategory: string | null;
+  currentQuestionIndex: number;
+  currentScore: number;
+  userAnswers: UserAnswer[];
+  lastUpdated: number;
 }
 
 interface GameContextType extends GameState {
@@ -47,6 +58,13 @@ interface GameContextType extends GameState {
   resetAll: () => void;
   saveCurrentCategory: () => void;
   getCurrentQuestion: () => Question | null;
+  soundEnabled: boolean;
+  toggleSound: () => void;
+  saveToLocalStorage: () => void;
+  loadFromLocalStorage: () => SavedProgress | null;
+  clearSavedProgress: () => void;
+  hasSavedProgress: () => boolean;
+  restoreProgress: (progress: SavedProgress) => void;
 }
 
 const initialState: GameState = {
@@ -59,6 +77,7 @@ const initialState: GameState = {
   isGameFinished: false,
   completedCategories: [],
   totalScore: 0,
+  soundEnabled: true,
 };
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -73,6 +92,100 @@ export const useGame = () => {
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [gameState, setGameState] = useState<GameState>(initialState);
+
+  // LocalStorage keys
+  const STORAGE_KEY_PROGRESS = "aiHumanGame_progress";
+  const STORAGE_KEY_SOUND = "aiHumanGame_soundEnabled";
+
+  // 初始化时从LocalStorage加载音效设置
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedSound = localStorage.getItem(STORAGE_KEY_SOUND);
+      if (savedSound !== null) {
+        setGameState((prev) => ({ ...prev, soundEnabled: savedSound === "true" }));
+      }
+    }
+  }, []);
+
+  // LocalStorage 功能
+  const saveToLocalStorage = () => {
+    if (typeof window === "undefined") return;
+
+    const progress: SavedProgress = {
+      completedCategories: gameState.completedCategories,
+      totalScore: gameState.totalScore,
+      currentCategory: gameState.category,
+      currentQuestionIndex: gameState.currentQuestionIndex,
+      currentScore: gameState.score,
+      userAnswers: gameState.userAnswers,
+      lastUpdated: Date.now(),
+    };
+
+    try {
+      localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(progress));
+    } catch (error) {
+      console.error("Failed to save progress:", error);
+    }
+  };
+
+  const loadFromLocalStorage = (): SavedProgress | null => {
+    if (typeof window === "undefined") return null;
+
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_PROGRESS);
+      if (!saved) return null;
+
+      const progress: SavedProgress = JSON.parse(saved);
+      
+      // 验证数据有效性（过期时间：7天）
+      const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000;
+      if (Date.now() - progress.lastUpdated > sevenDaysInMs) {
+        clearSavedProgress();
+        return null;
+      }
+
+      return progress;
+    } catch (error) {
+      console.error("Failed to load progress:", error);
+      return null;
+    }
+  };
+
+  const clearSavedProgress = () => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.removeItem(STORAGE_KEY_PROGRESS);
+    } catch (error) {
+      console.error("Failed to clear progress:", error);
+    }
+  };
+
+  const hasSavedProgress = (): boolean => {
+    return loadFromLocalStorage() !== null;
+  };
+
+  const restoreProgress = (progress: SavedProgress) => {
+    setGameState((prev) => ({
+      ...prev,
+      completedCategories: progress.completedCategories,
+      totalScore: progress.totalScore,
+      category: progress.currentCategory,
+      currentQuestionIndex: progress.currentQuestionIndex,
+      score: progress.currentScore,
+      userAnswers: progress.userAnswers,
+    }));
+  };
+
+  // 音效控制
+  const toggleSound = () => {
+    setGameState((prev) => {
+      const newSoundEnabled = !prev.soundEnabled;
+      if (typeof window !== "undefined") {
+        localStorage.setItem(STORAGE_KEY_SOUND, String(newSoundEnabled));
+      }
+      return { ...prev, soundEnabled: newSoundEnabled };
+    });
+  };
 
   const setCategory = (category: string) => {
     setGameState((prev) => ({ ...prev, category }));
@@ -111,6 +224,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       userAnswers: [...prev.userAnswers, userAnswer],
       score: isCorrect ? prev.score + 1 : prev.score,
     }));
+
+    // 自动保存进度
+    setTimeout(() => saveToLocalStorage(), 100);
 
     return isCorrect;
   };
@@ -176,6 +292,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         totalScore: prev.totalScore + scoreDiff,
       };
     });
+
+    // 保存进度到LocalStorage
+    setTimeout(() => saveToLocalStorage(), 100);
   };
 
   const getCurrentQuestion = (): Question | null => {
@@ -195,6 +314,13 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         resetAll,
         saveCurrentCategory,
         getCurrentQuestion,
+        soundEnabled: gameState.soundEnabled,
+        toggleSound,
+        saveToLocalStorage,
+        loadFromLocalStorage,
+        clearSavedProgress,
+        hasSavedProgress,
+        restoreProgress,
       }}
     >
       {children}

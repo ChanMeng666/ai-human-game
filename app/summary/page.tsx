@@ -3,13 +3,15 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
+import Navigation from "@/src/components/Navigation";
 
 export default function SummaryPage() {
   const router = useRouter();
   const { 
     completedCategories, 
     totalScore,
-    resetAll 
+    resetAll,
+    soundEnabled
   } = useGame();
   const [overallPerformance, setOverallPerformance] = useState<"beginner" | "intermediate" | "advanced" | "master">("beginner");
 
@@ -35,8 +37,10 @@ export default function SummaryPage() {
   }, [completedCategories, totalScore, router]);
 
   const playBubbleSound = () => {
-    const bubbleAudio = new Audio("/audio/bubble.wav");
-    bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
+    if (soundEnabled) {
+      const bubbleAudio = new Audio("/audio/bubble.wav");
+      bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
+    }
   };
 
   const handleContinue = () => {
@@ -90,8 +94,11 @@ export default function SummaryPage() {
   };
 
   return (
-    <div className="min-h-screen pond-gradient flex flex-col items-center py-3 sm:py-4 md:py-6 px-2 sm:px-3 md:px-4">
-      <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
+    <div className="min-h-screen pond-gradient flex flex-col py-3 sm:py-4 md:py-6 px-2 sm:px-3 md:px-4">
+      <Navigation showBackButton={true} showProgress={true} />
+      
+      <div className="flex-1 flex flex-col items-center">
+        <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
         
         {/* Title */}
         <div className="nes-container is-dark with-title mb-3 sm:mb-4 md:mb-6">
@@ -217,6 +224,7 @@ export default function SummaryPage() {
             </p>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

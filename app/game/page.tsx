@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
 import ContentDisplay from "@/src/components/ContentDisplay";
+import Navigation from "@/src/components/Navigation";
+import ExitConfirmDialog from "@/src/components/ExitConfirmDialog";
+import HintBubble from "@/src/components/HintBubble";
+import { useKeyboardNavigation } from "@/src/hooks/useKeyboardNavigation";
 
 export default function GamePage() {
   const router = useRouter();
@@ -17,12 +21,14 @@ export default function GamePage() {
     nextQuestion,
     getCurrentQuestion,
     isGameFinished,
+    soundEnabled,
   } = useGame();
 
   const [hasStarted, setHasStarted] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState(false);
   const [selectedSide, setSelectedSide] = useState<"left" | "right" | null>(null);
+  const [showExitDialog, setShowExitDialog] = useState(false);
 
   useEffect(() => {
     if (!category || questions.length === 0) {
@@ -47,15 +53,40 @@ export default function GamePage() {
   const currentQuestion = getCurrentQuestion();
 
   const playCorrectSound = () => {
-    const correctAudio = new Audio("/audio/correct.wav");
-    correctAudio.play().catch((e) => console.log("Audio play failed:", e));
+    if (soundEnabled) {
+      const correctAudio = new Audio("/audio/correct.wav");
+      correctAudio.play().catch((e) => console.log("Audio play failed:", e));
+    }
   };
 
   const playIncorrectSound = () => {
-    const incorrectAudio = new Audio("/audio/incorrect.wav");
-    incorrectAudio.volume = 0.3;
-    incorrectAudio.play().catch((e) => console.log("Audio play failed:", e));
+    if (soundEnabled) {
+      const incorrectAudio = new Audio("/audio/incorrect.wav");
+      incorrectAudio.volume = 0.3;
+      incorrectAudio.play().catch((e) => console.log("Audio play failed:", e));
+    }
   };
+
+  const handleExitRequest = () => {
+    setShowExitDialog(true);
+  };
+
+  const handleExitConfirm = () => {
+    setShowExitDialog(false);
+    router.push("/category");
+  };
+
+  const handleExitCancel = () => {
+    setShowExitDialog(false);
+  };
+
+  // 键盘导航
+  useKeyboardNavigation({
+    onLeft: () => !showFeedback && handleChoice("left"),
+    onRight: () => !showFeedback && handleChoice("right"),
+    onEscape: handleExitRequest,
+    enabled: !showExitDialog,
+  });
 
   const handleChoice = (choice: "left" | "right") => {
     if (showFeedback || !currentQuestion) return;
@@ -97,6 +128,21 @@ export default function GamePage() {
 
   return (
     <div className="min-h-screen pond-gradient flex flex-col p-2 sm:p-3 md:p-4">
+      <Navigation 
+        showBackButton={false} 
+        showExitButton={true} 
+        onExit={handleExitRequest} 
+      />
+      
+      <ExitConfirmDialog 
+        show={showExitDialog}
+        onConfirm={handleExitConfirm}
+        onCancel={handleExitCancel}
+      />
+
+      {category && (
+        <HintBubble questionIndex={currentQuestionIndex} category={category} />
+      )}
       
       {/* Top Bar */}
       <div className="mb-2 sm:mb-3 md:mb-4">

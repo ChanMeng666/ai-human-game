@@ -3,15 +3,18 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
+import Navigation from "@/src/components/Navigation";
 import questionsData from "@/src/data/questions.json";
 
 export default function CategorySelection() {
   const router = useRouter();
-  const { setCategory, setQuestions, completedCategories, totalScore } = useGame();
+  const { setCategory, setQuestions, completedCategories, totalScore, soundEnabled } = useGame();
 
   const playBubbleSound = () => {
-    const bubbleAudio = new Audio("/audio/bubble.wav");
-    bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
+    if (soundEnabled) {
+      const bubbleAudio = new Audio("/audio/bubble.wav");
+      bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
+    }
   };
 
   const handleCategorySelect = (categoryName: string) => {
@@ -72,11 +75,14 @@ export default function CategorySelection() {
   };
 
   return (
-    <div className="min-h-screen pond-gradient flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8">
-      <div className="w-full max-w-[95%] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
-        
-        {/* Title Section */}
-        <div className="text-center mb-4 sm:mb-6 md:mb-8">
+    <div className="min-h-screen pond-gradient flex flex-col p-3 sm:p-4 md:p-6 lg:p-8">
+      <Navigation showBackButton={true} showProgress={true} />
+      
+      <div className="flex-1 flex items-center justify-center">
+        <div className="w-full max-w-[95%] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
+          
+          {/* Title Section */}
+          <div className="text-center mb-4 sm:mb-6 md:mb-8">
           <div className="nes-container is-dark with-title mb-4 sm:mb-6">
             <p className="title text-xs sm:text-sm md:text-base">Choose Your Category</p>
             <p className="text-white text-[10px] sm:text-xs md:text-sm opacity-90 py-3 sm:py-4 px-2 sm:px-4">
@@ -147,14 +153,6 @@ export default function CategorySelection() {
           })}
         </div>
 
-        {/* Back Button */}
-        <div className="text-center">
-          <Link href="/">
-            <button className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto">
-              <i className="nes-icon caret-left is-small"></i>
-              <span>Back to Home</span>
-            </button>
-          </Link>
         </div>
       </div>
     </div>

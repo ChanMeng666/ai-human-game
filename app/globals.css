@@ -324,3 +324,337 @@ img,
 .pixel-fade-in {
   animation: pixelFadeIn 0.3s ease-out;
 }
+
+/* 淡入淡出动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-fade-out {
+  animation: fadeOut 0.3s ease-in-out;
+}
+
+/* 滑入动画 */
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.animate-slide-in-down {
+  animation: slideInDown 0.3s ease-out;
+}
+
+/* 页面切换动画 */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.3s ease-out;
+}
+
+.page-exit {
+  animation: pageExit 0.3s ease-in;
+}
+
+/* 加载动画 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 弹跳动画 */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* 抖动动画 */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Toast通知动画 */
+@keyframes toastSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.toast-slide-in {
+  animation: toastSlideIn 0.3s ease-out;
+}
+
+.toast-slide-out {
+  animation: toastSlideOut 0.3s ease-in;
+}
+
+/* ============================================
+   移动端优化
+   ============================================ */
+
+/* 触摸目标优化 - 确保按钮至少44x44px */
+@media (max-width: 768px) {
+  .nes-btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1rem;
+  }
+
+  .nes-btn.is-small {
+    min-height: 40px;
+    min-width: 40px;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* 移动端间距优化 */
+@media (max-width: 640px) {
+  .nes-container {
+    padding: 0.75rem;
+  }
+
+  .nes-container.with-title {
+    padding-top: 2rem;
+  }
+
+  /* 减少移动端的间距 */
+  .space-y-3 > * + * {
+    margin-top: 0.5rem;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 0.75rem;
+  }
+
+  .gap-3 {
+    gap: 0.5rem;
+  }
+
+  .gap-4 {
+    gap: 0.75rem;
+  }
+}
+
+/* 触摸反馈 */
+@media (hover: none) and (pointer: coarse) {
+  .nes-btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+
+  a:active,
+  button:active {
+    opacity: 0.7;
+  }
+}
+
+/* 防止移动端文本选择 */
+.nes-btn,
+.nes-container.is-dark,
+button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+/* 移动端全屏优化 */
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  /* 优化移动端输入框 */
+  input,
+  textarea {
+    font-size: 16px; /* 防止iOS自动缩放 */
+  }
+}
+
+/* 横屏优化 */
+@media (max-width: 896px) and (orientation: landscape) {
+  .min-h-screen {
+    min-height: 100vh;
+  }
+
+  /* 减少纵向间距 */
+  .py-4,
+  .py-6 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .mb-4,
+  .mb-6 {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* 改进滚动体验 */
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* 移动端对话框优化 */
+@media (max-width: 640px) {
+  .nes-dialog {
+    max-width: 90vw;
+  }
+}
+
+/* 优化移动端图标大小 */
+@media (max-width: 640px) {
+  .nes-icon {
+    transform: scale(0.9);
+  }
+
+  .nes-icon.is-large {
+    transform: scale(1.2);
+  }
+}
+
+/* 确保移动端内容不溢出 */
+@media (max-width: 640px) {
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 移动端安全区域适配 (iOS刘海屏等) */
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}

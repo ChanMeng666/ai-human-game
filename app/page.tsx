@@ -1,15 +1,75 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useGame } from "@/src/context/GameContext";
+import ProgressRestoreModal from "@/src/components/ProgressRestoreModal";
+import FirstTimeGuide from "@/src/components/FirstTimeGuide";
 
 export default function Home() {
+  const router = useRouter();
+  const {
+    loadFromLocalStorage,
+    restoreProgress,
+    clearSavedProgress,
+    completedCategories,
+    totalScore,
+    soundEnabled,
+  } = useGame();
+  const [showRestoreModal, setShowRestoreModal] = useState(false);
+  const [hasSavedProgress, setHasSavedProgress] = useState(false);
+
+  useEffect(() => {
+    const savedProgress = loadFromLocalStorage();
+    setHasSavedProgress(savedProgress !== null);
+  }, [loadFromLocalStorage]);
+
   const playBubbleSound = () => {
-    const bubbleAudio = new Audio("/audio/bubble.wav");
-    bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
+    if (soundEnabled) {
+      const bubbleAudio = new Audio("/audio/bubble.wav");
+      bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
+    }
+  };
+
+  const handleContinueGame = () => {
+    const savedProgress = loadFromLocalStorage();
+    if (savedProgress) {
+      restoreProgress(savedProgress);
+      playBubbleSound();
+      setTimeout(() => {
+        router.push("/category");
+      }, 300);
+    }
+  };
+
+  const handleNewGame = () => {
+    playBubbleSound();
+    clearSavedProgress();
+    setHasSavedProgress(false);
+    setTimeout(() => {
+      router.push("/category");
+    }, 300);
+  };
+
+  const handleTutorial = () => {
+    playBubbleSound();
+    setTimeout(() => {
+      router.push("/tutorial");
+    }, 300);
   };
 
   return (
     <div className="min-h-screen pond-gradient flex items-center justify-center p-4 sm:p-6">
+      <FirstTimeGuide />
+      
+      {showRestoreModal && (
+        <ProgressRestoreModal
+          onContinue={handleContinueGame}
+          onNewGame={handleNewGame}
+        />
+      )}
+
       <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl">
         {/* Main Container */}
         <div className="nes-container is-dark with-title">
@@ -30,17 +90,58 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Play Button */}
-          <div className="text-center mb-4 sm:mb-6">
-            <Link href="/category">
-              <button 
-                className="nes-btn is-success text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 mx-auto"
-                onClick={playBubbleSound}
+          {/* Progress Info (if exists) */}
+          {hasSavedProgress && (
+            <div className="nes-container is-rounded is-success mb-4 sm:mb-6">
+              <div className="text-center py-2">
+                <p className="text-xs sm:text-sm mb-2">
+                  <i className="nes-icon trophy is-small"></i>{" "}
+                  你有未完成的游戏！
+                </p>
+                <p className="text-[10px] sm:text-xs opacity-80">
+                  已完成 {completedCategories.length}/4 分类
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Action Buttons */}
+          <div className="text-center mb-4 sm:mb-6 space-y-3">
+            {hasSavedProgress ? (
+              <>
+                <button
+                  onClick={handleContinueGame}
+                  className="nes-btn is-primary text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 mx-auto w-full sm:w-auto"
+                >
+                  <i className="nes-icon caret-right is-small"></i>
+                  <span>继续游戏</span>
+                </button>
+                <button
+                  onClick={handleNewGame}
+                  className="nes-btn text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 mx-auto w-full sm:w-auto"
+                >
+                  <i className="nes-icon redo is-small"></i>
+                  <span>开始新游戏</span>
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={handleNewGame}
+                className="nes-btn is-success text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 mx-auto w-full sm:w-auto"
               >
                 <i className="nes-icon play is-small"></i>
                 <span>Start Game</span>
               </button>
-            </Link>
+            )}
+            
+            {/* Tutorial Button */}
+            <button
+              onClick={handleTutorial}
+              className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto w-full sm:w-auto"
+            >
+              <i className="nes-icon question is-small"></i>
+              <span>如何玩</span>
+            </button>
           </div>
 
           {/* Info Box */}

@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
+import Navigation from "@/src/components/Navigation";
+import AchievementToast, { AchievementType } from "@/src/components/AchievementToast";
 
 export default function ResultsPage() {
   const router = useRouter();
@@ -14,11 +16,13 @@ export default function ResultsPage() {
     completedCategories,
     resetGame, 
     resetAll,
-    saveCurrentCategory
+    saveCurrentCategory,
+    soundEnabled
   } = useGame();
   const [fishSize, setFishSize] = useState<"small" | "medium" | "large">("small");
 
   const [saved, setSaved] = useState(false);
+  const [achievement, setAchievement] = useState<AchievementType | null>(null);
 
   useEffect(() => {
     if (questions.length === 0) {
@@ -30,6 +34,26 @@ export default function ResultsPage() {
     if (!saved && category) {
       saveCurrentCategory();
       setSaved(true);
+      
+      // 检查成就
+      const newCompletedCount = completedCategories.length + 1;
+      
+      // 满分成就
+      if (score === 10) {
+        setTimeout(() => setAchievement("perfect_score"), 500);
+      }
+      // 首次完成成就
+      else if (newCompletedCount === 1) {
+        setTimeout(() => setAchievement("first_category"), 500);
+      }
+      // 半程成就
+      else if (newCompletedCount === 2) {
+        setTimeout(() => setAchievement("half_way"), 500);
+      }
+      // 全部完成成就
+      else if (newCompletedCount === 4) {
+        setTimeout(() => setAchievement("all_categories"), 500);
+      }
     }
 
     // Determine fish size based on score
@@ -40,11 +64,13 @@ export default function ResultsPage() {
     } else {
       setFishSize("small");
     }
-  }, [score, questions, router, category, saveCurrentCategory, saved]);
+  }, [score, questions, router, category, saveCurrentCategory, saved, completedCategories.length]);
 
   const playBubbleSound = () => {
-    const bubbleAudio = new Audio("/audio/bubble.wav");
-    bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
+    if (soundEnabled) {
+      const bubbleAudio = new Audio("/audio/bubble.wav");
+      bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
+    }
   };
 
   const handleContinue = () => {
@@ -91,8 +117,16 @@ export default function ResultsPage() {
   const percentage = (score / 10) * 100;
 
   return (
-    <div className="min-h-screen pond-gradient flex flex-col items-center py-3 sm:py-4 md:py-6 px-2 sm:px-3 md:px-4">
-      <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
+    <div className="min-h-screen pond-gradient flex flex-col py-3 sm:py-4 md:py-6 px-2 sm:px-3 md:px-4">
+      <Navigation showBackButton={false} showProgress={true} />
+      
+      <AchievementToast 
+        type={achievement} 
+        onClose={() => setAchievement(null)} 
+      />
+      
+      <div className="flex-1 flex flex-col items-center">
+        <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
         
         {/* Title */}
         <div className="nes-container is-dark with-title mb-3 sm:mb-4 md:mb-6">
@@ -219,6 +253,7 @@ export default function ResultsPage() {
             <span>Home</span>
           </button>
         </div>
+      </div>
       </div>
     </div>
   );
