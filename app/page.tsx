@@ -165,58 +165,44 @@ export default function Home() {
 
         {/* Developer Attribution */}
         <div className="nes-container is-rounded pond-theme mt-4 sm:mt-6 p-3 sm:p-4">
-          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-            {/* Developer Logo */}
-            <div className="flex-shrink-0">
-              <img 
-                src="/chan_logo.svg" 
-                alt="Chan Meng Logo" 
-                className="w-12 h-12 sm:w-14 sm:h-14 hover:scale-110 transition-transform"
-              />
-            </div>
+          <div className="text-center sm:text-left">
+            <p className="text-[10px] sm:text-xs font-bold mb-1">
+              Crafted by Chan Meng
+            </p>
+            <p className="text-[9px] sm:text-[10px] opacity-80 mb-2">
+              Need a custom web solution? Let&apos;s build something amazing together!
+            </p>
             
-            {/* Developer Info */}
-            <div className="flex-1 text-center sm:text-left">
-              <p className="text-[10px] sm:text-xs font-bold mb-1">
-                Crafted by Chan Meng
-              </p>
-              <p className="text-[9px] sm:text-[10px] opacity-80 mb-2">
-                Need a custom web solution? Let&apos;s build something amazing together!
-              </p>
-              
-              {/* Contact Links */}
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-[9px] sm:text-[10px]">
-                <a 
-                  href="mailto:chanmeng.dev@gmail.com" 
-                  className="hover:text-blue-600 transition-colors flex items-center gap-1"
-                  title="Contact via Email"
-                >
-                  <i className="nes-icon gmail is-small"></i>
-                  <span className="hidden sm:inline">Email</span>
-                </a>
-                <span className="hidden sm:inline opacity-50">•</span>
-                <a 
-                  href="https://github.com/ChanMeng666" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:text-blue-600 transition-colors flex items-center gap-1"
-                  title="View Portfolio"
-                >
-                  <i className="nes-icon github is-small"></i>
-                  <span className="hidden sm:inline">Portfolio</span>
-                </a>
-                <span className="hidden sm:inline opacity-50">•</span>
-                <a 
-                  href="https://github.com/ChanMeng666/ai-human-game" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:text-blue-600 transition-colors flex items-center gap-1"
-                  title="View Project Source"
-                >
-                  <i className="nes-icon github is-small"></i>
-                  <span className="hidden sm:inline">Source</span>
-                </a>
-              </div>
+            {/* Contact Links */}
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 text-xs sm:text-sm">
+              <a 
+                href="mailto:chanmeng.dev@gmail.com" 
+                className="font-bold text-blue-600 hover:text-blue-800 hover:underline transition-all flex items-center gap-1 px-2 py-1 bg-white bg-opacity-50 rounded"
+                title="Contact via Email"
+              >
+                <i className="nes-icon gmail is-small"></i>
+                <span>Email</span>
+              </a>
+              <a 
+                href="https://github.com/ChanMeng666" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-bold text-blue-600 hover:text-blue-800 hover:underline transition-all flex items-center gap-1 px-2 py-1 bg-white bg-opacity-50 rounded"
+                title="View Portfolio"
+              >
+                <i className="nes-icon github is-small"></i>
+                <span>Portfolio</span>
+              </a>
+              <a 
+                href="https://github.com/ChanMeng666/ai-human-game" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-bold text-blue-600 hover:text-blue-800 hover:underline transition-all flex items-center gap-1 px-2 py-1 bg-white bg-opacity-50 rounded"
+                title="View Project Source"
+              >
+                <i className="nes-icon github is-small"></i>
+                <span>Source</span>
+              </a>
             </div>
           </div>
         </div>
