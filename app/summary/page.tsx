@@ -73,12 +73,12 @@ export default function SummaryPage() {
     }, 300);
   };
 
-  const getPerformanceEmoji = () => {
+  const getPerformanceIcon = () => {
     switch (overallPerformance) {
-      case "master": return "🏆";
-      case "advanced": return "⭐";
-      case "intermediate": return "👍";
-      default: return "🌱";
+      case "master": return "trophy";
+      case "advanced": return "star";
+      case "intermediate": return "thumbs-up";
+      default: return "heart";
     }
   };
 
@@ -126,8 +126,8 @@ export default function SummaryPage() {
         {/* Total Score Display */}
         <div className="nes-container pond-theme mb-3 sm:mb-4 md:mb-6">
           <div className="text-center py-4 sm:py-6">
-            <div className="text-5xl sm:text-6xl md:text-7xl mb-3 sm:mb-4">
-              {getPerformanceEmoji()}
+            <div className="mb-3 sm:mb-4 flex justify-center">
+              <i className={`nes-icon ${getPerformanceIcon()} size-2x`}></i>
             </div>
             
             <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 font-bold">
@@ -163,7 +163,7 @@ export default function SummaryPage() {
           <div className="space-y-2 sm:space-y-3">
             {completedCategories.map((categoryData) => {
               const categoryPercentage = (categoryData.score / categoryData.totalQuestions) * 100;
-              const badge = categoryPercentage === 100 ? "🏆" : categoryPercentage >= 80 ? "⭐" : categoryPercentage >= 50 ? "👍" : "🌱";
+              const badgeIcon = categoryPercentage === 100 ? "trophy" : categoryPercentage >= 80 ? "star" : categoryPercentage >= 50 ? "thumbs-up" : "heart";
               return (
                 <div
                   key={categoryData.category}
@@ -177,7 +177,7 @@ export default function SummaryPage() {
                       </span>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
-                      <span className="text-base sm:text-lg">{badge}</span>
+                      <i className={`nes-icon ${badgeIcon} is-small`}></i>
                       <span className="text-sm sm:text-base md:text-lg font-bold">
                         {categoryData.score}/{categoryData.totalQuestions}
                       </span>
@@ -266,8 +266,10 @@ export default function SummaryPage() {
         {/* Completion Message */}
         {!hasMoreCategories && (
           <div className="mt-4 sm:mt-6 nes-container is-rounded is-dark text-center">
-            <p className="text-white text-xs sm:text-sm md:text-base py-2 sm:py-3">
-              🎉 Congratulations! You've completed all categories! 🎉
+            <p className="text-white text-xs sm:text-sm md:text-base py-2 sm:py-3 flex items-center justify-center gap-2">
+              <i className="nes-icon star is-small"></i>
+              <span>Congratulations! You&apos;ve completed all categories!</span>
+              <i className="nes-icon star is-small"></i>
             </p>
           </div>
         )}

@@ -12,7 +12,7 @@ interface Achievement {
   type: AchievementType;
   title: string;
   description: string;
-  emoji: string;
+  icon: string;
 }
 
 const achievements: Record<AchievementType, Achievement> = {
@@ -20,25 +20,25 @@ const achievements: Record<AchievementType, Achievement> = {
     type: "first_category",
     title: "First Victory!",
     description: "Completed your first category",
-    emoji: "🎯",
+    icon: "check-circle",
   },
   perfect_score: {
     type: "perfect_score",
     title: "Perfect Score!",
     description: "Scored 10/10",
-    emoji: "🏆",
+    icon: "trophy",
   },
   all_categories: {
     type: "all_categories",
     title: "Master Player!",
     description: "Completed all 4 categories",
-    emoji: "👑",
+    icon: "trophy",
   },
   half_way: {
     type: "half_way",
     title: "Halfway Hero!",
     description: "Completed 2 categories",
-    emoji: "⭐",
+    icon: "star",
   },
 };
 
@@ -100,8 +100,8 @@ export default function AchievementToast({
         
         <div className="flex items-start gap-3 pr-6 p-3 rounded" style={{ backgroundColor: '#e6f7e6', opacity: 1 }}>
           {/* Icon */}
-          <div className="text-3xl sm:text-4xl flex-shrink-0 animate-bounce">
-            {achievement.emoji}
+          <div className="flex-shrink-0 animate-bounce flex items-center justify-center">
+            <i className={`nes-icon ${achievement.icon} is-large`}></i>
           </div>
 
           {/* Content */}

@@ -50,10 +50,10 @@ export default function QuickStatsModal({ show, onClose }: QuickStatsModalProps)
 
   const getPerformanceBadge = (score: number, total: number) => {
     const percent = (score / total) * 100;
-    if (percent === 100) return { emoji: "🏆", label: "Perfect", color: "text-yellow-500" };
-    if (percent >= 80) return { emoji: "⭐", label: "Great", color: "text-green-500" };
-    if (percent >= 50) return { emoji: "👍", label: "Good", color: "text-blue-500" };
-    return { emoji: "🌱", label: "Try Again", color: "text-gray-500" };
+    if (percent === 100) return { icon: "trophy", label: "Perfect", color: "text-yellow-500" };
+    if (percent >= 80) return { icon: "star", label: "Great", color: "text-green-500" };
+    if (percent >= 50) return { icon: "thumbs-up", label: "Good", color: "text-blue-500" };
+    return { icon: "heart", label: "Try Again", color: "text-gray-500" };
   };
 
   return (
@@ -102,7 +102,7 @@ export default function QuickStatsModal({ show, onClose }: QuickStatsModalProps)
                         </span>
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0">
-                        <span className={`text-lg ${badge.color}`}>{badge.emoji}</span>
+                        <i className={`nes-icon ${badge.icon} is-small ${badge.color}`}></i>
                         <span className="text-sm font-bold">
                           {category.score}/{category.totalQuestions}
                         </span>

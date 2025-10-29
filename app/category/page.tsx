@@ -79,10 +79,10 @@ export default function CategorySelection() {
 
   const getPerformanceBadge = (score: number, totalQuestions: number) => {
     const percent = (score / totalQuestions) * 100;
-    if (percent === 100) return { emoji: "🏆", label: "Perfect", color: "bg-yellow-500" };
-    if (percent >= 80) return { emoji: "⭐", label: "Excellent", color: "bg-green-500" };
-    if (percent >= 50) return { emoji: "👍", label: "Good", color: "bg-blue-500" };
-    return { emoji: "🌱", label: "Try Again", color: "bg-gray-500" };
+    if (percent === 100) return { icon: "trophy", label: "Perfect", color: "bg-yellow-500" };
+    if (percent >= 80) return { icon: "star", label: "Excellent", color: "bg-green-500" };
+    if (percent >= 50) return { icon: "thumbs-up", label: "Good", color: "bg-blue-500" };
+    return { icon: "heart", label: "Try Again", color: "bg-gray-500" };
   };
 
   const getRecommendedCategory = () => {
@@ -114,8 +114,9 @@ export default function CategorySelection() {
           {completedCategories.length > 0 && (
             <div className="nes-container is-dark mb-4 sm:mb-6 animate-fade-in">
               <div className="text-center">
-                <p className="text-white text-sm sm:text-base md:text-lg mb-2 font-bold">
-                  🎯 Your Progress
+                <p className="text-white text-sm sm:text-base md:text-lg mb-2 font-bold flex items-center justify-center gap-2">
+                  <i className="nes-icon check-circle is-small"></i>
+                  <span>Your Progress</span>
                 </p>
                 <div className="text-3xl sm:text-4xl font-bold text-white mb-3">
                   {totalScore}/{maxPossibleScore}
@@ -171,14 +172,15 @@ export default function CategorySelection() {
                 <div className="text-center py-4 sm:py-5 md:py-6 relative">
                   {isRecommended && (
                     <div className="absolute top-2 left-2 right-2 text-center">
-                      <span className="text-[8px] sm:text-[10px] font-bold bg-yellow-500 text-black px-2 py-1 rounded">
-                        ⭐ RECOMMENDED
+                      <span className="text-[8px] sm:text-[10px] font-bold bg-yellow-500 text-black px-2 py-1 rounded flex items-center justify-center gap-1">
+                        <i className="nes-icon star is-small" style={{ transform: "scale(0.6)" }}></i>
+                        <span>RECOMMENDED</span>
                       </span>
                     </div>
                   )}
                   {isCompleted && badge && (
                     <div className="absolute top-2 right-2 flex items-center gap-1">
-                      <span className="text-lg sm:text-xl">{badge.emoji}</span>
+                      <i className={`nes-icon ${badge.icon} is-small`}></i>
                     </div>
                   )}
                   <div className="mb-3 sm:mb-4 flex justify-center">

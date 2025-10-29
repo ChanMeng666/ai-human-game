@@ -21,7 +21,9 @@ export default function ExitConfirmDialog({
         <div className="p-4 sm:p-6" style={{ backgroundColor: '#1f1e44', opacity: 1 }}>
           {/* Icon */}
           <div className="text-center mb-4">
-            <div className="text-4xl sm:text-5xl mb-3">⚠️</div>
+            <div className="mb-3 flex justify-center">
+              <i className="nes-icon exclamation-triangle is-large"></i>
+            </div>
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
               Are you sure you want to exit?
             </h2>

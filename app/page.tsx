@@ -77,8 +77,10 @@ export default function Home() {
           
           {/* Game Title */}
           <div className="text-center py-6 sm:py-8 md:py-10">
-            <div className="text-5xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 float-animation">
-              🤖 vs 👤
+            <div className="text-5xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 float-animation flex items-center justify-center gap-3 sm:gap-4">
+              <i className="nes-icon cog is-large"></i>
+              <span>vs</span>
+              <i className="nes-icon user is-large"></i>
             </div>
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 sm:mb-6">
               Guessing Game
@@ -162,8 +164,9 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-4 sm:mt-6 text-white text-[10px] sm:text-xs opacity-70">
-          Built with Next.js & NES.css 🎮
+        <div className="text-center mt-4 sm:mt-6 text-white text-[10px] sm:text-xs opacity-70 flex items-center justify-center gap-2">
+          <span>Built with Next.js & NES.css</span>
+          <i className="nes-icon snes is-small"></i>
         </div>
       </div>
     </div>

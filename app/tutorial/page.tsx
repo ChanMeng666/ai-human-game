@@ -34,7 +34,9 @@ export default function TutorialPage() {
         <div className="nes-container is-dark with-title mb-4 sm:mb-6">
           <p className="title text-xs sm:text-sm md:text-base">How to Play</p>
           <div className="text-center py-3 sm:py-4">
-            <div className="text-3xl sm:text-4xl mb-2">📖</div>
+            <div className="mb-2 flex justify-center">
+              <i className="nes-icon file is-large"></i>
+            </div>
             <p className="text-white text-xs sm:text-sm">
               Learn how to play the AI vs Human guessing game
             </p>
@@ -169,19 +171,19 @@ export default function TutorialPage() {
           </h2>
           <div className="space-y-2 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
-              <span className="text-green-600 font-bold">✓</span>
+              <i className="nes-icon check is-small"></i>
               <span>Each correct answer earns <strong>1 point</strong></span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-red-600 font-bold">✗</span>
+              <i className="nes-icon times is-small"></i>
               <span>Wrong answers don't lose points, but don't earn any either</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-blue-600 font-bold">🏆</span>
+              <i className="nes-icon trophy is-small"></i>
               <span>Each category has <strong>10 questions</strong>, maximum score of 10</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-purple-600 font-bold">⭐</span>
+              <i className="nes-icon star is-small"></i>
               <span>Complete all 4 categories for a maximum total of 40 points</span>
             </div>
           </div>
@@ -196,19 +198,31 @@ export default function TutorialPage() {
           <div className="space-y-2 text-xs sm:text-sm">
             <div className="flex justify-between items-center">
               <span className="opacity-80">10/10</span>
-              <span className="font-bold text-yellow-600">Perfect 🏆 (Expert)</span>
+              <span className="font-bold text-yellow-600 flex items-center gap-2">
+                <span>Perfect (Expert)</span>
+                <i className="nes-icon trophy is-small"></i>
+              </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="opacity-80">8-9/10</span>
-              <span className="font-bold text-green-600">Excellent ⭐ (Advanced)</span>
+              <span className="font-bold text-green-600 flex items-center gap-2">
+                <span>Excellent (Advanced)</span>
+                <i className="nes-icon star is-small"></i>
+              </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="opacity-80">5-7/10</span>
-              <span className="font-bold text-blue-600">Good 👍 (Intermediate)</span>
+              <span className="font-bold text-blue-600 flex items-center gap-2">
+                <span>Good (Intermediate)</span>
+                <i className="nes-icon thumbs-up is-small"></i>
+              </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="opacity-80">0-4/10</span>
-              <span className="font-bold text-gray-600">Keep Trying 🌱 (Beginner)</span>
+              <span className="font-bold text-gray-600 flex items-center gap-2">
+                <span>Keep Trying (Beginner)</span>
+                <i className="nes-icon heart is-small"></i>
+              </span>
             </div>
           </div>
         </div>

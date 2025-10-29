@@ -6,8 +6,8 @@ export default function LoadingScreen() {
       <div className="nes-container is-dark text-center">
         <div className="flex flex-col items-center gap-4">
           {/* Loading Icon */}
-          <div className="text-4xl sm:text-5xl animate-bounce">
-            🎮
+          <div className="animate-bounce flex justify-center">
+            <i className="nes-icon snes is-large"></i>
           </div>
           
           {/* Loading Text */}

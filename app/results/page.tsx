@@ -146,10 +146,10 @@ export default function ResultsPage() {
 
   const suggestedCategory = getSuggestedCategory();
 
-  const getFishEmoji = () => {
-    if (fishSize === "large") return "🐋";
-    if (fishSize === "medium") return "🐟";
-    return "🐠";
+  const getFishIcon = () => {
+    if (fishSize === "large") return { icon: "trophy", label: "Master Level" };
+    if (fishSize === "medium") return { icon: "star", label: "Intermediate" };
+    return { icon: "heart", label: "Beginner" };
   };
 
   const getPerformanceMessage = () => {
@@ -200,12 +200,12 @@ export default function ResultsPage() {
               <span>{getPerformanceMessage().text}</span>
             </div>
             
-            {/* Fish Display */}
-            <div className="text-5xl sm:text-6xl md:text-7xl mb-2 float-animation">
-              {getFishEmoji()}
+            {/* Performance Icon Display */}
+            <div className="mb-2 float-animation flex justify-center">
+              <i className={`nes-icon ${getFishIcon().icon} size-2x`}></i>
             </div>
             <p className="text-[10px] sm:text-xs opacity-70">
-              {fishSize === "large" ? "Master Level" : fishSize === "medium" ? "Intermediate" : "Beginner"}
+              {getFishIcon().label}
             </p>
           </div>
         </div>

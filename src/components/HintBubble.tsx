@@ -23,13 +23,13 @@ export default function HintBubble({ questionIndex, category }: HintBubbleProps)
       if (!hasSeenHint) {
         // Show different hints based on question number
         if (questionIndex === 0) {
-          setHint("💡 Tip: Carefully compare the details on both sides and choose the one you think was created by a human!");
+          setHint("Tip: Carefully compare the details on both sides and choose the one you think was created by a human!");
           setShow(true);
         } else if (questionIndex === 2) {
-          setHint("📊 Tip: You can return to the category page anytime. Your progress is automatically saved!");
+          setHint("Tip: You can return to the category page anytime. Your progress is automatically saved!");
           setShow(true);
         } else if (questionIndex === 5) {
-          setHint("🎯 Tip: You're halfway there! Keep going!");
+          setHint("Tip: You're halfway there! Keep going!");
           setShow(true);
         }
       }
@@ -53,6 +53,7 @@ export default function HintBubble({ questionIndex, category }: HintBubbleProps)
     <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 w-[90%] max-w-md animate-slide-in-down">
       <div className="nes-balloon from-left shadow-xl border-4 border-[#c846ab]" style={{ backgroundColor: '#ffffff', opacity: 1 }}>
         <div className="flex items-start gap-2 p-3 rounded" style={{ backgroundColor: '#ffffff', opacity: 1 }}>
+          <i className="nes-icon exclamation is-small flex-shrink-0"></i>
           <p className="text-xs sm:text-sm flex-1">{hint}</p>
           <button
             onClick={handleClose}

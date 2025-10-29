@@ -7,29 +7,29 @@ const GUIDE_KEY = "aiHumanGame_guideCompleted";
 interface GuideStep {
   title: string;
   description: string;
-  emoji: string;
+  icon: string;
 }
 
 const steps: GuideStep[] = [
   {
     title: "Welcome to AI vs Human!",
     description: "In this game, you'll test your ability to distinguish between AI-generated and human-created content. Ready?",
-    emoji: "🎮",
+    icon: "play",
   },
   {
     title: "Choose Your Category",
     description: "First, select a category to start: Text, Images, Audio, or Videos. Each category has 10 unique questions.",
-    emoji: "📂",
+    icon: "folder",
   },
   {
     title: "Make Your Choice",
     description: "Carefully compare the content on both sides, then click on the one you think was created by a human. Correct answer = 1 point!",
-    emoji: "🤔",
+    icon: "search",
   },
   {
     title: "Track Your Progress",
     description: "Complete all 4 categories to get the highest rating! Your progress is automatically saved, so you can continue anytime.",
-    emoji: "🏆",
+    icon: "trophy",
   },
 ];
 
@@ -94,7 +94,9 @@ export default function FirstTimeGuide() {
 
           {/* Content */}
           <div className="text-center mb-6">
-            <div className="text-4xl sm:text-5xl mb-4">{step.emoji}</div>
+            <div className="mb-4 flex justify-center">
+              <i className={`nes-icon ${step.icon} is-large`}></i>
+            </div>
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3">
               {step.title}
             </h2>
