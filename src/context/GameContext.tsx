@@ -18,6 +18,13 @@ export interface UserAnswer {
   humanPosition: string;
 }
 
+export interface CategoryScore {
+  category: string;
+  score: number;
+  totalQuestions: number;
+  userAnswers: UserAnswer[];
+}
+
 interface GameState {
   category: string | null;
   currentQuestionIndex: number;
@@ -26,6 +33,8 @@ interface GameState {
   questions: Question[];
   isGameStarted: boolean;
   isGameFinished: boolean;
+  completedCategories: CategoryScore[];
+  totalScore: number;
 }
 
 interface GameContextType extends GameState {
@@ -35,6 +44,8 @@ interface GameContextType extends GameState {
   submitAnswer: (choice: "left" | "right") => boolean;
   nextQuestion: () => void;
   resetGame: () => void;
+  resetAll: () => void;
+  saveCurrentCategory: () => void;
   getCurrentQuestion: () => Question | null;
 }
 
@@ -46,6 +57,8 @@ const initialState: GameState = {
   questions: [],
   isGameStarted: false,
   isGameFinished: false,
+  completedCategories: [],
+  totalScore: 0,
 };
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -116,7 +129,53 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const resetGame = () => {
+    setGameState((prev) => ({
+      ...initialState,
+      completedCategories: prev.completedCategories,
+      totalScore: prev.totalScore,
+    }));
+  };
+
+  const resetAll = () => {
     setGameState(initialState);
+  };
+
+  const saveCurrentCategory = () => {
+    if (!gameState.category) return;
+
+    const categoryScore: CategoryScore = {
+      category: gameState.category,
+      score: gameState.score,
+      totalQuestions: gameState.questions.length,
+      userAnswers: gameState.userAnswers,
+    };
+
+    setGameState((prev) => {
+      // Check if category already exists
+      const existingIndex = prev.completedCategories.findIndex(
+        c => c.category === gameState.category
+      );
+
+      let newCompletedCategories;
+      let scoreDiff = gameState.score;
+
+      if (existingIndex >= 0) {
+        // Update existing category
+        const oldScore = prev.completedCategories[existingIndex].score;
+        scoreDiff = gameState.score - oldScore;
+        newCompletedCategories = [...prev.completedCategories];
+        newCompletedCategories[existingIndex] = categoryScore;
+      } else {
+        // Add new category
+        newCompletedCategories = [...prev.completedCategories, categoryScore];
+      }
+
+      return {
+        ...prev,
+        completedCategories: newCompletedCategories,
+        totalScore: prev.totalScore + scoreDiff,
+      };
+    });
   };
 
   const getCurrentQuestion = (): Question | null => {
@@ -133,6 +192,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         submitAnswer,
         nextQuestion,
         resetGame,
+        resetAll,
+        saveCurrentCategory,
         getCurrentQuestion,
       }}
     >

@@ -6,13 +6,30 @@ import { useGame } from "@/src/context/GameContext";
 
 export default function ResultsPage() {
   const router = useRouter();
-  const { score, userAnswers, questions, category, resetGame } = useGame();
+  const { 
+    score, 
+    userAnswers, 
+    questions, 
+    category, 
+    completedCategories,
+    resetGame, 
+    resetAll,
+    saveCurrentCategory
+  } = useGame();
   const [fishSize, setFishSize] = useState<"small" | "medium" | "large">("small");
+
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     if (questions.length === 0) {
       router.push("/");
       return;
+    }
+
+    // Save current category score (only once)
+    if (!saved && category) {
+      saveCurrentCategory();
+      setSaved(true);
     }
 
     // Determine fish size based on score
@@ -23,14 +40,14 @@ export default function ResultsPage() {
     } else {
       setFishSize("small");
     }
-  }, [score, questions, router]);
+  }, [score, questions, router, category, saveCurrentCategory, saved]);
 
   const playBubbleSound = () => {
     const bubbleAudio = new Audio("/audio/bubble.wav");
     bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
   };
 
-  const handlePlayAgain = () => {
+  const handleContinue = () => {
     playBubbleSound();
     resetGame();
     setTimeout(() => {
@@ -38,13 +55,25 @@ export default function ResultsPage() {
     }, 300);
   };
 
+  const handleViewSummary = () => {
+    playBubbleSound();
+    setTimeout(() => {
+      router.push("/summary");
+    }, 300);
+  };
+
   const handleGoHome = () => {
     playBubbleSound();
-    resetGame();
+    resetAll();
     setTimeout(() => {
       router.push("/");
     }, 300);
   };
+
+  const allCategories = ["text", "images", "audio", "videos"];
+  const completedCategoryNames = completedCategories.map(c => c.category);
+  const remainingCategories = allCategories.filter(c => !completedCategoryNames.includes(c));
+  const hasMoreCategories = remainingCategories.length > 0;
 
   const getFishEmoji = () => {
     if (fishSize === "large") return "🐋";
@@ -138,15 +167,50 @@ export default function ResultsPage() {
           </div>
         </div>
 
+        {/* Progress Info */}
+        <div className="nes-container is-dark mb-3 sm:mb-4 md:mb-6">
+          <div className="text-center text-white">
+            <p className="text-xs sm:text-sm mb-2">
+              <i className="nes-icon trophy is-small"></i> Progress: {completedCategories.length}/4 Categories
+            </p>
+            {hasMoreCategories && (
+              <p className="text-[10px] sm:text-xs opacity-80">
+                Remaining: {remainingCategories.map(c => c.toUpperCase()).join(", ")}
+              </p>
+            )}
+          </div>
+        </div>
+
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 md:gap-4">
-          <button
-            onClick={handlePlayAgain}
-            className="nes-btn is-primary text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
-          >
-            <i className="nes-icon play is-small"></i>
-            <span>Play Again</span>
-          </button>
+          {hasMoreCategories ? (
+            <>
+              <button
+                onClick={handleContinue}
+                className="nes-btn is-primary text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
+              >
+                <i className="nes-icon caret-right is-small"></i>
+                <span>Next Category</span>
+              </button>
+              {completedCategories.length > 0 && (
+                <button
+                  onClick={handleViewSummary}
+                  className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
+                >
+                  <i className="nes-icon star is-small"></i>
+                  <span>View Summary</span>
+                </button>
+              )}
+            </>
+          ) : (
+            <button
+              onClick={handleViewSummary}
+              className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
+            >
+              <i className="nes-icon trophy is-small"></i>
+              <span>View Final Summary</span>
+            </button>
+          )}
           <button
             onClick={handleGoHome}
             className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"
