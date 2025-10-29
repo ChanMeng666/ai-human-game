@@ -38,18 +38,18 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
   if (loading) {
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <div className="text-white font-peaberry text-xl">Loading...</div>
+        <div className="text-white font-peaberry text-base sm:text-lg md:text-xl">Loading...</div>
       </div>
     );
   }
 
   if (error && type === "text") {
     return (
-      <div className="w-full h-full flex items-center justify-center p-4">
+      <div className="w-full h-full flex items-center justify-center p-3 sm:p-4">
         <div className="text-white font-peaberry text-center">
-          <p className="text-lg mb-2">📄</p>
-          <p className="text-sm">{error}</p>
-          <p className="text-xs mt-2 opacity-70">Expected: {contentPath}</p>
+          <p className="text-base sm:text-lg mb-2">📄</p>
+          <p className="text-xs sm:text-sm">{error}</p>
+          <p className="text-[10px] sm:text-xs mt-2 opacity-70 break-all">{contentPath}</p>
         </div>
       </div>
     );
@@ -58,8 +58,8 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
   switch (type) {
     case "text":
       return (
-        <div className="w-full h-full overflow-y-auto scrollable-container p-6 bg-[#c8b78c] bg-opacity-30 rounded">
-          <p className="text-white font-peaberry text-base md:text-lg leading-relaxed whitespace-pre-wrap">
+        <div className="w-full h-full overflow-y-auto scrollable-container p-3 sm:p-4 md:p-5 lg:p-6 bg-[#c8b78c] bg-opacity-30 rounded">
+          <p className="text-white font-peaberry text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed whitespace-pre-wrap break-words">
             {textContent || "Sample text content will appear here."}
           </p>
         </div>
@@ -67,23 +67,27 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
 
     case "images":
       return (
-        <div className="w-full h-full flex items-center justify-center p-4 bg-[#c8b78c] bg-opacity-20 rounded">
+        <div className="w-full h-full flex items-center justify-center p-2 sm:p-3 md:p-4 bg-[#c8b78c] bg-opacity-20 rounded">
           <div className="relative w-full h-full">
             <Image
               src={contentPath}
               alt={`${position} image`}
               fill
               className="object-contain"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.style.display = "none";
-                target.parentElement!.innerHTML = `
-                  <div class="flex flex-col items-center justify-center h-full text-white font-peaberry">
-                    <p class="text-4xl mb-2">🖼️</p>
-                    <p>Image not found</p>
-                    <p class="text-xs mt-2 opacity-70">Expected: ${contentPath}</p>
-                  </div>
-                `;
+                const container = target.parentElement;
+                if (container) {
+                  container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full text-white font-peaberry text-center px-2">
+                      <p class="text-2xl sm:text-3xl md:text-4xl mb-2">🖼️</p>
+                      <p class="text-xs sm:text-sm md:text-base">Image not found</p>
+                      <p class="text-[10px] sm:text-xs mt-2 opacity-70 break-all">${contentPath}</p>
+                    </div>
+                  `;
+                }
               }}
             />
           </div>
@@ -92,12 +96,13 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
 
     case "audio":
       return (
-        <div className="w-full h-full flex items-center justify-center p-6">
-          <div className="flex flex-col items-center space-y-4">
-            <div className="text-6xl">🎵</div>
+        <div className="w-full h-full flex items-center justify-center p-3 sm:p-4 md:p-6">
+          <div className="flex flex-col items-center space-y-3 sm:space-y-4 w-full max-w-md">
+            <div className="text-4xl sm:text-5xl md:text-6xl">🎵</div>
             <audio
               controls
-              className="w-full max-w-md"
+              className="w-full max-w-full"
+              style={{ maxWidth: "100%" }}
               onError={(e) => {
                 console.log("Audio load error:", contentPath);
               }}
@@ -106,7 +111,7 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
               <source src={contentPath} type="audio/wav" />
               Your browser does not support the audio element.
             </audio>
-            <p className="text-white font-peaberry text-sm opacity-70">
+            <p className="text-white font-peaberry text-xs sm:text-sm opacity-70">
               {position === "left" ? "Option A" : "Option B"}
             </p>
           </div>
@@ -115,20 +120,24 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
 
     case "videos":
       return (
-        <div className="w-full h-full flex items-center justify-center p-4 bg-[#c8b78c] bg-opacity-20 rounded">
+        <div className="w-full h-full flex items-center justify-center p-2 sm:p-3 md:p-4 bg-[#c8b78c] bg-opacity-20 rounded">
           <video
             controls
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain max-w-full max-h-full"
+            playsInline
             onError={(e) => {
               const target = e.target as HTMLVideoElement;
               target.style.display = "none";
-              target.parentElement!.innerHTML = `
-                <div class="flex flex-col items-center justify-center h-full text-white font-peaberry">
-                  <p class="text-4xl mb-2">🎬</p>
-                  <p>Video not found</p>
-                  <p class="text-xs mt-2 opacity-70">Expected: ${contentPath}</p>
-                </div>
-              `;
+              const container = target.parentElement;
+              if (container) {
+                container.innerHTML = `
+                  <div class="flex flex-col items-center justify-center h-full text-white font-peaberry text-center px-2">
+                    <p class="text-2xl sm:text-3xl md:text-4xl mb-2">🎬</p>
+                    <p class="text-xs sm:text-sm md:text-base">Video not found</p>
+                    <p class="text-[10px] sm:text-xs mt-2 opacity-70 break-all">${contentPath}</p>
+                  </div>
+                `;
+              }
             }}
           >
             <source src={contentPath} type="video/mp4" />
@@ -141,9 +150,8 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
     default:
       return (
         <div className="w-full h-full flex items-center justify-center">
-          <p className="text-white font-peaberry">Unknown content type</p>
+          <p className="text-white font-peaberry text-sm sm:text-base">Unknown content type</p>
         </div>
       );
   }
 }
-
