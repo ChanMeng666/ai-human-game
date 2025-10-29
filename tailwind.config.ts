@@ -10,6 +10,22 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        // She Sharp Palette Colors
+        'she-sharp': {
+          'gray': '#9b9b9b',
+          'blue': '#1378d1',
+          'periwinkle-dark': '#8982ff',
+          'navy-light': '#eaf2ff',
+          'navy-dark': '#1f1e44',
+          'periwinkle-light': '#f4f4fa',
+          'purple-dark': '#9b2e83',
+          'purple-light': '#f7e5f3',
+          'mint-dark': '#b1f6e9',
+          'mint-light': '#effefb',
+          'purple-mid': '#c846ab',
+          'white': '#ffffff',
+          'error': '#d72f40',
+        },
       },
       fontFamily: {
         // 显示型像素字体 - 用于UI、标题、按钮（使用 Next.js Font 变量）

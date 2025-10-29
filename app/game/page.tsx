@@ -104,7 +104,7 @@ export default function GamePage() {
           <div className="flex flex-wrap justify-between items-center gap-2 text-[10px] sm:text-xs md:text-sm">
             <span>Q {currentQuestionIndex + 1}/10</span>
             <span>Score: {score}</span>
-            <span className="bg-[#6D845A] px-2 py-1 rounded">
+            <span className="bg-[#c846ab] px-2 py-1 rounded">
               {category?.toUpperCase()}
             </span>
           </div>

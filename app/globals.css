@@ -190,43 +190,43 @@ img,
 }
 
 /* ============================================
-   NES.css 主题自定义 - 池塘主题颜色
+   NES.css 主题自定义 - She Sharp 主题颜色
    ============================================ */
 
 .nes-btn.is-primary {
-  background-color: #6D845A !important;
+  background-color: #9b2e83 !important;
 }
 
 .nes-btn.is-primary:hover {
-  background-color: #526443 !important;
+  background-color: #7a2468 !important;
 }
 
 .nes-btn.is-success {
-  background-color: #6D845A !important;
+  background-color: #c846ab !important;
 }
 
 .nes-btn.is-success:hover {
-  background-color: #526443 !important;
+  background-color: #9b2e83 !important;
 }
 
 .nes-container.pond-theme {
-  background-color: rgba(200, 183, 140, 0.3);
-  border-color: #6D845A;
+  background-color: rgba(247, 229, 243, 0.5);
+  border-color: #c846ab;
 }
 
 .nes-container.is-dark {
-  background-color: #3e4224;
+  background-color: #1f1e44;
   color: white;
-  border-color: #6D845A;
+  border-color: #8982ff;
 }
 
 /* 自定义进度条颜色 */
 .nes-progress.is-success::-webkit-progress-value {
-  background-color: #6D845A;
+  background-color: #c846ab;
 }
 
 .nes-progress.is-success::-moz-progress-bar {
-  background-color: #6D845A;
+  background-color: #c846ab;
 }
 
 /* 自定义滚动条 */
@@ -235,27 +235,27 @@ img,
 }
 
 ::-webkit-scrollbar-track {
-  background: #c8b78c;
-  border: 2px solid #6D845A;
+  background: #f4f4fa;
+  border: 2px solid #c846ab;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6D845A;
-  border: 2px solid #3e4224;
+  background: #9b2e83;
+  border: 2px solid #1f1e44;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #526443;
+  background: #c846ab;
 }
 
 .scrollable-container {
   padding-right: 20px;
 }
 
-/* 背景渐变 */
+/* 背景渐变 - She Sharp 主题 */
 .pond-gradient {
-  background: linear-gradient(to bottom, #8FB996, #6D845A);
+  background: linear-gradient(to bottom, #eaf2ff, #f4f4fa);
 }
 
 /* ============================================
