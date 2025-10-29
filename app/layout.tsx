@@ -3,7 +3,6 @@ import { Press_Start_2P, VT323, Pixelify_Sans } from "next/font/google";
 import "nes.css/css/nes.min.css";
 import "./globals.css";
 import { GameProvider } from "../src/context/GameContext";
-import FontLoader from "../src/components/FontLoader";
 
 // 配置像素字体
 const pressStart2P = Press_Start_2P({
@@ -43,7 +42,6 @@ export default function RootLayout({
         <link href="https://unpkg.com/nes.icons@3.0.0-beta.3/css/nes-icons.min.css" rel="stylesheet" />
       </head>
       <body className={pressStart2P.className}>
-        <FontLoader />
         <GameProvider>{children}</GameProvider>
       </body>
     </html>

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import FontDebugger from "@/src/components/FontDebugger";
 
 export default function Home() {
   const playBubbleSound = () => {
@@ -11,9 +10,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen pond-gradient flex items-center justify-center p-4 sm:p-6">
-      {/* Font Debugger */}
-      <FontDebugger />
-      
       <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl">
         {/* Main Container */}
         <div className="nes-container is-dark with-title">
@@ -67,27 +63,6 @@ export default function Home() {
         {/* Footer */}
         <div className="text-center mt-4 sm:mt-6 text-white text-[10px] sm:text-xs opacity-70">
           Built with Next.js & NES.css 🎮
-        </div>
-
-        {/* Font Test Section - 用于视觉调试 */}
-        <div className="mt-6 nes-container is-dark with-title">
-          <p className="title text-xs">Font Test</p>
-          <div className="space-y-3 text-white">
-            <div>
-              <p className="text-xs opacity-70 mb-1">Default (should be Press Start 2P):</p>
-              <p className="text-sm">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
-              <p className="text-sm">abcdefghijklmnopqrstuvwxyz</p>
-              <p className="text-sm">0123456789</p>
-            </div>
-            <div>
-              <p className="text-xs opacity-70 mb-1">font-pixel-display:</p>
-              <p className="text-sm font-pixel-display">Press Start 2P Font</p>
-            </div>
-            <div>
-              <p className="text-xs opacity-70 mb-1">font-pixel-content:</p>
-              <p className="text-base font-pixel-content">VT323 Font for Long Content</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
