@@ -50,9 +50,9 @@ export default function HintBubble({ questionIndex, category }: HintBubbleProps)
   }
 
   return (
-    <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 w-[90%] max-w-md animate-fade-in">
-      <div className="nes-balloon from-left pond-theme">
-        <div className="flex items-start gap-2">
+    <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 w-[90%] max-w-md animate-slide-in-down">
+      <div className="nes-balloon from-left bg-white shadow-xl border-4 border-[#c846ab]">
+        <div className="flex items-start gap-2 bg-gradient-to-r from-[#f7e5f3] to-white p-3 rounded">
           <p className="text-xs sm:text-sm flex-1">{hint}</p>
           <button
             onClick={handleClose}

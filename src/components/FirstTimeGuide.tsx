@@ -73,9 +73,9 @@ export default function FirstTimeGuide() {
   const isLastStep = currentStep === steps.length - 1;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-70 animate-fade-in">
-      <div className="nes-dialog is-rounded pond-theme max-w-lg w-full">
-        <div className="p-4 sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-80 animate-fade-in backdrop-blur-sm">
+      <div className="nes-dialog is-rounded max-w-lg w-full bg-white shadow-2xl">
+        <div className="p-4 sm:p-6 bg-gradient-to-br from-[#f7e5f3] to-white">
           {/* Progress Dots */}
           <div className="flex justify-center gap-2 mb-4">
             {steps.map((_, index) => (

@@ -658,3 +658,50 @@ html {
     padding-right: env(safe-area-inset-right);
   }
 }
+
+/* ============================================
+   模态框和弹窗优化
+   ============================================ */
+
+/* Backdrop blur支持 */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* 增强模态框阴影 */
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* 模态框内容背景优化 */
+.nes-dialog {
+  position: relative;
+  z-index: 10;
+}
+
+/* 确保对话框文本清晰可读 */
+.nes-dialog .nes-container {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 气泡样式优化 */
+.nes-balloon {
+  position: relative;
+  padding: 0;
+}
+
+.nes-balloon::before,
+.nes-balloon::after {
+  background-color: white !important;
+}
+
+/* Toast通知优化 */
+.nes-container.is-success {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+}
+
+/* 提升弹窗层级 */
+.fixed.z-50 {
+  isolation: isolate;
+}

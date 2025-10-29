@@ -16,9 +16,9 @@ export default function ExitConfirmDialog({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-60 animate-fade-in">
-      <div className="nes-dialog is-rounded is-dark max-w-md w-full">
-        <div className="p-4 sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-80 animate-fade-in backdrop-blur-sm">
+      <div className="nes-dialog is-rounded is-dark max-w-md w-full shadow-2xl">
+        <div className="p-4 sm:p-6 bg-[#1f1e44]">
           {/* Icon */}
           <div className="text-center mb-4">
             <div className="text-4xl sm:text-5xl mb-3">⚠️</div>

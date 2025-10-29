@@ -88,16 +88,16 @@ export default function AchievementToast({
         isExiting ? "toast-slide-out" : "toast-slide-in"
       }`}
     >
-      <div className="nes-container is-rounded is-success">
+      <div className="nes-container is-rounded is-success shadow-2xl bg-white border-4 border-green-500">
         <button
           onClick={handleClose}
-          className="absolute top-2 right-2 text-xl leading-none opacity-70 hover:opacity-100"
+          className="absolute top-2 right-2 text-xl leading-none opacity-70 hover:opacity-100 bg-white rounded-full w-6 h-6 flex items-center justify-center"
           aria-label="Close"
         >
           ×
         </button>
         
-        <div className="flex items-start gap-3 pr-6">
+        <div className="flex items-start gap-3 pr-6 bg-gradient-to-r from-green-50 to-white p-3 rounded">
           {/* Icon */}
           <div className="text-3xl sm:text-4xl flex-shrink-0 animate-bounce">
             {achievement.emoji}
