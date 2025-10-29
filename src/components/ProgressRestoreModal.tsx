@@ -65,8 +65,8 @@ export default function ProgressRestoreModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-80 animate-fade-in backdrop-blur-sm">
-      <div className="nes-dialog is-rounded max-w-md w-full bg-white shadow-2xl">
-        <div className="p-4 sm:p-6 bg-gradient-to-br from-[#f7e5f3] to-white">
+      <div className="nes-dialog is-rounded max-w-md w-full shadow-2xl" style={{ backgroundColor: '#ffffff', opacity: 1 }}>
+        <div className="p-4 sm:p-6" style={{ backgroundColor: '#f7e5f3', opacity: 1 }}>
           {/* Title */}
           <div className="text-center mb-4 sm:mb-6">
             <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">💾</div>
