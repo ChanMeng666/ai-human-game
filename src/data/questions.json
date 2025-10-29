@@ -1,0 +1,323 @@
+[
+  {
+    "id": 1,
+    "category": "text",
+    "humanContent": "/content/text/human_1.txt",
+    "aiContent": "/content/text/ai_1.txt",
+    "humanPosition": "left",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 2,
+    "category": "text",
+    "humanContent": "/content/text/human_2.txt",
+    "aiContent": "/content/text/ai_2.txt",
+    "humanPosition": "right",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 3,
+    "category": "text",
+    "humanContent": "/content/text/human_3.txt",
+    "aiContent": "/content/text/ai_3.txt",
+    "humanPosition": "left",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 4,
+    "category": "text",
+    "humanContent": "/content/text/human_4.txt",
+    "aiContent": "/content/text/ai_4.txt",
+    "humanPosition": "right",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 5,
+    "category": "text",
+    "humanContent": "/content/text/human_5.txt",
+    "aiContent": "/content/text/ai_5.txt",
+    "humanPosition": "left",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 6,
+    "category": "text",
+    "humanContent": "/content/text/human_6.txt",
+    "aiContent": "/content/text/ai_6.txt",
+    "humanPosition": "right",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 7,
+    "category": "text",
+    "humanContent": "/content/text/human_7.txt",
+    "aiContent": "/content/text/ai_7.txt",
+    "humanPosition": "left",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 8,
+    "category": "text",
+    "humanContent": "/content/text/human_8.txt",
+    "aiContent": "/content/text/ai_8.txt",
+    "humanPosition": "right",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 9,
+    "category": "text",
+    "humanContent": "/content/text/human_9.txt",
+    "aiContent": "/content/text/ai_9.txt",
+    "humanPosition": "left",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 10,
+    "category": "text",
+    "humanContent": "/content/text/human_10.txt",
+    "aiContent": "/content/text/ai_10.txt",
+    "humanPosition": "right",
+    "description": "Which text was written by a human?"
+  },
+  {
+    "id": 11,
+    "category": "images",
+    "humanContent": "/content/images/human_1.jpg",
+    "aiContent": "/content/images/ai_1.jpg",
+    "humanPosition": "left",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 12,
+    "category": "images",
+    "humanContent": "/content/images/human_2.jpg",
+    "aiContent": "/content/images/ai_2.jpg",
+    "humanPosition": "right",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 13,
+    "category": "images",
+    "humanContent": "/content/images/human_3.jpg",
+    "aiContent": "/content/images/ai_3.jpg",
+    "humanPosition": "left",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 14,
+    "category": "images",
+    "humanContent": "/content/images/human_4.jpg",
+    "aiContent": "/content/images/ai_4.jpg",
+    "humanPosition": "right",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 15,
+    "category": "images",
+    "humanContent": "/content/images/human_5.jpg",
+    "aiContent": "/content/images/ai_5.jpg",
+    "humanPosition": "left",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 16,
+    "category": "images",
+    "humanContent": "/content/images/human_6.jpg",
+    "aiContent": "/content/images/ai_6.jpg",
+    "humanPosition": "right",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 17,
+    "category": "images",
+    "humanContent": "/content/images/human_7.jpg",
+    "aiContent": "/content/images/ai_7.jpg",
+    "humanPosition": "left",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 18,
+    "category": "images",
+    "humanContent": "/content/images/human_8.jpg",
+    "aiContent": "/content/images/ai_8.jpg",
+    "humanPosition": "right",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 19,
+    "category": "images",
+    "humanContent": "/content/images/human_9.jpg",
+    "aiContent": "/content/images/ai_9.jpg",
+    "humanPosition": "left",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 20,
+    "category": "images",
+    "humanContent": "/content/images/human_10.jpg",
+    "aiContent": "/content/images/ai_10.jpg",
+    "humanPosition": "right",
+    "description": "Which image was created by a human?"
+  },
+  {
+    "id": 21,
+    "category": "audio",
+    "humanContent": "/content/audio/human_1.mp3",
+    "aiContent": "/content/audio/ai_1.mp3",
+    "humanPosition": "left",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 22,
+    "category": "audio",
+    "humanContent": "/content/audio/human_2.mp3",
+    "aiContent": "/content/audio/ai_2.mp3",
+    "humanPosition": "right",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 23,
+    "category": "audio",
+    "humanContent": "/content/audio/human_3.mp3",
+    "aiContent": "/content/audio/ai_3.mp3",
+    "humanPosition": "left",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 24,
+    "category": "audio",
+    "humanContent": "/content/audio/human_4.mp3",
+    "aiContent": "/content/audio/ai_4.mp3",
+    "humanPosition": "right",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 25,
+    "category": "audio",
+    "humanContent": "/content/audio/human_5.mp3",
+    "aiContent": "/content/audio/ai_5.mp3",
+    "humanPosition": "left",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 26,
+    "category": "audio",
+    "humanContent": "/content/audio/human_6.mp3",
+    "aiContent": "/content/audio/ai_6.mp3",
+    "humanPosition": "right",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 27,
+    "category": "audio",
+    "humanContent": "/content/audio/human_7.mp3",
+    "aiContent": "/content/audio/ai_7.mp3",
+    "humanPosition": "left",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 28,
+    "category": "audio",
+    "humanContent": "/content/audio/human_8.mp3",
+    "aiContent": "/content/audio/ai_8.mp3",
+    "humanPosition": "right",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 29,
+    "category": "audio",
+    "humanContent": "/content/audio/human_9.mp3",
+    "aiContent": "/content/audio/ai_9.mp3",
+    "humanPosition": "left",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 30,
+    "category": "audio",
+    "humanContent": "/content/audio/human_10.mp3",
+    "aiContent": "/content/audio/ai_10.mp3",
+    "humanPosition": "right",
+    "description": "Which audio was created by a human?"
+  },
+  {
+    "id": 31,
+    "category": "videos",
+    "humanContent": "/content/videos/human_1.mp4",
+    "aiContent": "/content/videos/ai_1.mp4",
+    "humanPosition": "left",
+    "description": "Which video was created by a human?"
+  },
+  {
+    "id": 32,
+    "category": "videos",
+    "humanContent": "/content/videos/human_2.mp4",
+    "aiContent": "/content/videos/ai_2.mp4",
+    "humanPosition": "right",
+    "description": "Which video was created by a human?"
+  },
+  {
+    "id": 33,
+    "category": "videos",
+    "humanContent": "/content/videos/human_3.mp4",
+    "aiContent": "/content/videos/ai_3.mp4",
+    "humanPosition": "left",
+    "description": "Which video was created by a human?"
+  },
+  {
+    "id": 34,
+    "category": "videos",
+    "humanContent": "/content/videos/human_4.mp4",
+    "aiContent": "/content/videos/ai_4.mp4",
+    "humanPosition": "right",
+    "description": "Which video was created by a human?"
+  },
+  {
+    "id": 35,
+    "category": "videos",
+    "humanContent": "/content/videos/human_5.mp4",
+    "aiContent": "/content/videos/ai_5.mp4",
+    "humanPosition": "left",
+    "description": "Which video was created by a human?"
+  },
+  {
+    "id": 36,
+    "category": "videos",
+    "humanContent": "/content/videos/human_6.mp4",
+    "aiContent": "/content/videos/ai_6.mp4",
+    "humanPosition": "right",
+    "description": "Which video was created by a human?"
+  },
+  {
+    "id": 37,
+    "category": "videos",
+    "humanContent": "/content/videos/human_7.mp4",
+    "aiContent": "/content/videos/ai_7.mp4",
+    "humanPosition": "left",
+    "description": "Which video was created by a human?"
+  },
+  {
+    "id": 38,
+    "category": "videos",
+    "humanContent": "/content/videos/human_8.mp4",
+    "aiContent": "/content/videos/ai_8.mp4",
+    "humanPosition": "right",
+    "description": "Which video was created by a human?"
+  },
+  {
+    "id": 39,
+    "category": "videos",
+    "humanContent": "/content/videos/human_9.mp4",
+    "aiContent": "/content/videos/ai_9.mp4",
+    "humanPosition": "left",
+    "description": "Which video was created by a human?"
+  },
+  {
+    "id": 40,
+    "category": "videos",
+    "humanContent": "/content/videos/human_10.mp4",
+    "aiContent": "/content/videos/ai_10.mp4",
+    "humanPosition": "right",
+    "description": "Which video was created by a human?"
+  }
+]
+

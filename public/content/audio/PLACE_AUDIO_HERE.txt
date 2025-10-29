@@ -1,0 +1,13 @@
+Add your audio files here:
+
+Required files:
+- human_1.mp3 to human_10.mp3 (Human-created audio)
+- ai_1.mp3 to ai_10.mp3 (AI-generated audio)
+
+Supported formats: .mp3, .wav
+
+Example:
+  human_1.mp3 - Real music or voice recording
+  ai_1.mp3 - AI-generated music from Suno or Udio
+
+Make sure filenames match exactly!

@@ -1,0 +1,14 @@
+Add your video files here:
+
+Required files:
+- human_1.mp4 to human_10.mp4 (Human-created videos)
+- ai_1.mp4 to ai_10.mp4 (AI-generated videos)
+
+Supported formats: .mp4, .webm
+
+Example:
+  human_1.mp4 - Real footage or animation
+  ai_1.mp4 - AI-generated video from Runway or Pika
+
+Make sure filenames match exactly!
+Keep videos short (10-30 seconds) for better performance.
