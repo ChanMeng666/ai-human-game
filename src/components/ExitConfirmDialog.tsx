@@ -23,10 +23,10 @@ export default function ExitConfirmDialog({
           <div className="text-center mb-4">
             <div className="text-4xl sm:text-5xl mb-3">⚠️</div>
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
-              确定要退出吗？
+              Are you sure you want to exit?
             </h2>
             <p className="text-xs sm:text-sm text-white opacity-80">
-              你的进度已自动保存，下次可以继续游戏
+              Your progress has been automatically saved. You can continue later.
             </p>
           </div>
 
@@ -37,14 +37,14 @@ export default function ExitConfirmDialog({
               className="nes-btn is-primary flex-1 text-xs sm:text-sm flex items-center justify-center gap-2"
             >
               <i className="nes-icon heart is-small"></i>
-              <span>继续游戏</span>
+              <span>Continue</span>
             </button>
             <button
               onClick={onConfirm}
               className="nes-btn is-error flex-1 text-xs sm:text-sm flex items-center justify-center gap-2"
             >
               <i className="nes-icon close is-small"></i>
-              <span>确定退出</span>
+              <span>Exit</span>
             </button>
           </div>
         </div>

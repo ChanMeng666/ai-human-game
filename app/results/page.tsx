@@ -35,22 +35,22 @@ export default function ResultsPage() {
       saveCurrentCategory();
       setSaved(true);
       
-      // 检查成就
+      // Check for achievements
       const newCompletedCount = completedCategories.length + 1;
       
-      // 满分成就
+      // Perfect score achievement
       if (score === 10) {
         setTimeout(() => setAchievement("perfect_score"), 500);
       }
-      // 首次完成成就
+      // First completion achievement
       else if (newCompletedCount === 1) {
         setTimeout(() => setAchievement("first_category"), 500);
       }
-      // 半程成就
+      // Halfway achievement
       else if (newCompletedCount === 2) {
         setTimeout(() => setAchievement("half_way"), 500);
       }
-      // 全部完成成就
+      // All categories completed achievement
       else if (newCompletedCount === 4) {
         setTimeout(() => setAchievement("all_categories"), 500);
       }

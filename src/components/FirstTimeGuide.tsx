@@ -12,23 +12,23 @@ interface GuideStep {
 
 const steps: GuideStep[] = [
   {
-    title: "欢迎来到 AI vs Human!",
-    description: "在这个游戏中，你将挑战自己辨别AI生成内容和人类创作内容的能力。准备好了吗？",
+    title: "Welcome to AI vs Human!",
+    description: "In this game, you'll test your ability to distinguish between AI-generated and human-created content. Ready?",
     emoji: "🎮",
   },
   {
-    title: "选择你的分类",
-    description: "首先选择一个分类开始游戏：文本、图片、音频或视频。每个分类都有10道独特的题目。",
+    title: "Choose Your Category",
+    description: "First, select a category to start: Text, Images, Audio, or Videos. Each category has 10 unique questions.",
     emoji: "📂",
   },
   {
-    title: "做出你的选择",
-    description: "仔细比较左右两侧的内容，然后点击你认为是人类创作的那一侧。答对得1分！",
+    title: "Make Your Choice",
+    description: "Carefully compare the content on both sides, then click on the one you think was created by a human. Correct answer = 1 point!",
     emoji: "🤔",
   },
   {
-    title: "查看你的进度",
-    description: "完成所有4个分类，获得最高评级！游戏会自动保存你的进度，随时可以继续。",
+    title: "Track Your Progress",
+    description: "Complete all 4 categories to get the highest rating! Your progress is automatically saved, so you can continue anytime.",
     emoji: "🏆",
   },
 ];
@@ -105,7 +105,7 @@ export default function FirstTimeGuide() {
 
           {/* Step Counter */}
           <div className="text-center text-xs sm:text-sm opacity-60 mb-4">
-            步骤 {currentStep + 1} / {steps.length}
+            Step {currentStep + 1} / {steps.length}
           </div>
 
           {/* Buttons */}
@@ -115,14 +115,14 @@ export default function FirstTimeGuide() {
                 onClick={handleSkip}
                 className="nes-btn flex-1 text-xs sm:text-sm"
               >
-                跳过引导
+                Skip Guide
               </button>
             )}
             <button
               onClick={handleNext}
               className="nes-btn is-primary flex-1 text-xs sm:text-sm flex items-center justify-center gap-2"
             >
-              <span>{isLastStep ? "开始游戏" : "下一步"}</span>
+              <span>{isLastStep ? "Start Game" : "Next"}</span>
               <i className={`nes-icon ${isLastStep ? "play" : "caret-right"} is-small`}></i>
             </button>
           </div>

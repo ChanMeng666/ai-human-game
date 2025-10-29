@@ -21,15 +21,15 @@ export default function HintBubble({ questionIndex, category }: HintBubbleProps)
       const hasSeenHint = localStorage.getItem(hintKey);
       
       if (!hasSeenHint) {
-        // 根据题号显示不同的提示
+        // Show different hints based on question number
         if (questionIndex === 0) {
-          setHint("💡 提示：仔细比较两侧内容的细节，选择你认为是人类创作的那一侧！");
+          setHint("💡 Tip: Carefully compare the details on both sides and choose the one you think was created by a human!");
           setShow(true);
         } else if (questionIndex === 2) {
-          setHint("📊 提示：你可以随时返回分类页面选择其他分类，进度会自动保存！");
+          setHint("📊 Tip: You can return to the category page anytime. Your progress is automatically saved!");
           setShow(true);
         } else if (questionIndex === 5) {
-          setHint("🎯 提示：已经完成一半了！继续加油！");
+          setHint("🎯 Tip: You're halfway there! Keep going!");
           setShow(true);
         }
       }
@@ -37,7 +37,7 @@ export default function HintBubble({ questionIndex, category }: HintBubbleProps)
   }, [questionIndex, category]);
 
   const handleClose = () => {
-    // 保存已读标记
+    // Save read marker
     const hintKey = `${HINT_KEY_PREFIX}${category}_${questionIndex}`;
     if (typeof window !== "undefined") {
       localStorage.setItem(hintKey, "true");
@@ -57,7 +57,7 @@ export default function HintBubble({ questionIndex, category }: HintBubbleProps)
           <button
             onClick={handleClose}
             className="flex-shrink-0 nes-btn is-small"
-            title="关闭提示"
+            title="Close hint"
           >
             <i className="nes-icon close is-small"></i>
           </button>

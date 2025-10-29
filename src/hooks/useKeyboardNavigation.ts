@@ -26,7 +26,7 @@ export function useKeyboardNavigation({
     if (!enabled) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      // 忽略在输入框中的按键
+      // Ignore keypress in input fields
       const target = event.target as HTMLElement;
       if (
         target.tagName === "INPUT" ||

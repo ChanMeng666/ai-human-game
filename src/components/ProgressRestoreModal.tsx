@@ -56,10 +56,10 @@ export default function ProgressRestoreModal({
     const diffHours = Math.floor(diffMs / 3600000);
     const diffDays = Math.floor(diffMs / 86400000);
 
-    if (diffMins < 1) return "刚刚";
-    if (diffMins < 60) return `${diffMins}分钟前`;
-    if (diffHours < 24) return `${diffHours}小时前`;
-    if (diffDays < 7) return `${diffDays}天前`;
+    if (diffMins < 1) return "just now";
+    if (diffMins < 60) return `${diffMins} minutes ago`;
+    if (diffHours < 24) return `${diffHours} hours ago`;
+    if (diffDays < 7) return `${diffDays} days ago`;
     return date.toLocaleDateString();
   };
 
@@ -67,33 +67,33 @@ export default function ProgressRestoreModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 animate-fade-in">
       <div className="nes-dialog is-rounded pond-theme max-w-md w-full">
         <div className="p-4 sm:p-6">
-          {/* 标题 */}
+          {/* Title */}
           <div className="text-center mb-4 sm:mb-6">
             <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">💾</div>
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2">
-              发现保存的进度！
+              Saved Progress Found!
             </h2>
             <p className="text-xs sm:text-sm opacity-80">
-              上次游戏时间: {formatDate(progress.lastUpdated)}
+              Last played: {formatDate(progress.lastUpdated)}
             </p>
           </div>
 
-          {/* 进度信息 */}
+          {/* Progress Info */}
           <div className="nes-container is-rounded mb-4 sm:mb-6">
             <div className="space-y-2 text-xs sm:text-sm">
               <div className="flex justify-between items-center">
-                <span className="opacity-80">已完成分类:</span>
+                <span className="opacity-80">Completed:</span>
                 <span className="font-bold">
                   {progress.completedCategories.length}/4
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="opacity-80">总分:</span>
+                <span className="opacity-80">Total Score:</span>
                 <span className="font-bold">{progress.totalScore}</span>
               </div>
               {progress.currentCategory && (
                 <div className="flex justify-between items-center">
-                  <span className="opacity-80">当前分类:</span>
+                  <span className="opacity-80">Current Category:</span>
                   <span className="font-bold uppercase">
                     {progress.currentCategory}
                   </span>
@@ -102,27 +102,27 @@ export default function ProgressRestoreModal({
             </div>
           </div>
 
-          {/* 按钮 */}
+          {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <button
               onClick={handleContinue}
               className="nes-btn is-primary flex-1 text-xs sm:text-sm flex items-center justify-center gap-2"
             >
               <i className="nes-icon caret-right is-small"></i>
-              <span>继续游戏</span>
+              <span>Continue</span>
             </button>
             <button
               onClick={handleNewGame}
               className="nes-btn flex-1 text-xs sm:text-sm flex items-center justify-center gap-2"
             >
               <i className="nes-icon redo is-small"></i>
-              <span>新游戏</span>
+              <span>New Game</span>
             </button>
           </div>
 
-          {/* 提示 */}
+          {/* Notice */}
           <p className="text-[10px] sm:text-xs text-center mt-3 sm:mt-4 opacity-60">
-            开始新游戏将清除保存的进度
+            Starting a new game will clear saved progress
           </p>
         </div>
       </div>

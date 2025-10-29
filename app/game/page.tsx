@@ -80,7 +80,7 @@ export default function GamePage() {
     setShowExitDialog(false);
   };
 
-  // 键盘导航
+  // Keyboard navigation
   useKeyboardNavigation({
     onLeft: () => !showFeedback && handleChoice("left"),
     onRight: () => !showFeedback && handleChoice("right"),

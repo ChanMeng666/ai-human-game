@@ -96,10 +96,10 @@ export default function Home() {
               <div className="text-center py-2">
                 <p className="text-xs sm:text-sm mb-2">
                   <i className="nes-icon trophy is-small"></i>{" "}
-                  你有未完成的游戏！
+                  You have unfinished progress!
                 </p>
                 <p className="text-[10px] sm:text-xs opacity-80">
-                  已完成 {completedCategories.length}/4 分类
+                  Completed {completedCategories.length}/4 categories
                 </p>
               </div>
             </div>
@@ -114,14 +114,14 @@ export default function Home() {
                   className="nes-btn is-primary text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 mx-auto w-full sm:w-auto"
                 >
                   <i className="nes-icon caret-right is-small"></i>
-                  <span>继续游戏</span>
+                  <span>Continue Game</span>
                 </button>
                 <button
                   onClick={handleNewGame}
                   className="nes-btn text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 mx-auto w-full sm:w-auto"
                 >
                   <i className="nes-icon redo is-small"></i>
-                  <span>开始新游戏</span>
+                  <span>New Game</span>
                 </button>
               </>
             ) : (
@@ -140,7 +140,7 @@ export default function Home() {
               className="nes-btn text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto w-full sm:w-auto"
             >
               <i className="nes-icon question is-small"></i>
-              <span>如何玩</span>
+              <span>How to Play</span>
             </button>
           </div>
 

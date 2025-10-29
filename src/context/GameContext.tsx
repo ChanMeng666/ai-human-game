@@ -97,7 +97,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const STORAGE_KEY_PROGRESS = "aiHumanGame_progress";
   const STORAGE_KEY_SOUND = "aiHumanGame_soundEnabled";
 
-  // 初始化时从LocalStorage加载音效设置
+  // Load sound settings from LocalStorage on initialization
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedSound = localStorage.getItem(STORAGE_KEY_SOUND);
@@ -107,7 +107,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  // LocalStorage 功能
+  // LocalStorage functions
   const saveToLocalStorage = () => {
     if (typeof window === "undefined") return;
 
@@ -137,7 +137,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
       const progress: SavedProgress = JSON.parse(saved);
       
-      // 验证数据有效性（过期时间：7天）
+      // Validate data (expiration: 7 days)
       const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000;
       if (Date.now() - progress.lastUpdated > sevenDaysInMs) {
         clearSavedProgress();
@@ -176,7 +176,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
-  // 音效控制
+  // Sound control
   const toggleSound = () => {
     setGameState((prev) => {
       const newSoundEnabled = !prev.soundEnabled;
@@ -225,7 +225,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       score: isCorrect ? prev.score + 1 : prev.score,
     }));
 
-    // 自动保存进度
+    // Auto-save progress
     setTimeout(() => saveToLocalStorage(), 100);
 
     return isCorrect;
@@ -293,7 +293,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       };
     });
 
-    // 保存进度到LocalStorage
+    // Save progress to LocalStorage
     setTimeout(() => saveToLocalStorage(), 100);
   };
 

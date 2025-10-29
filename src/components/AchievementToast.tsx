@@ -18,26 +18,26 @@ interface Achievement {
 const achievements: Record<AchievementType, Achievement> = {
   first_category: {
     type: "first_category",
-    title: "首战告捷！",
-    description: "完成了第一个分类",
+    title: "First Victory!",
+    description: "Completed your first category",
     emoji: "🎯",
   },
   perfect_score: {
     type: "perfect_score",
-    title: "完美无瑕！",
-    description: "获得满分10/10",
+    title: "Perfect Score!",
+    description: "Scored 10/10",
     emoji: "🏆",
   },
   all_categories: {
     type: "all_categories",
-    title: "大师级玩家！",
-    description: "完成了所有4个分类",
+    title: "Master Player!",
+    description: "Completed all 4 categories",
     emoji: "👑",
   },
   half_way: {
     type: "half_way",
-    title: "半程英雄！",
-    description: "已完成2个分类",
+    title: "Halfway Hero!",
+    description: "Completed 2 categories",
     emoji: "⭐",
   },
 };
@@ -92,7 +92,7 @@ export default function AchievementToast({
         <button
           onClick={handleClose}
           className="absolute top-2 right-2 text-xl leading-none opacity-70 hover:opacity-100"
-          aria-label="关闭"
+          aria-label="Close"
         >
           ×
         </button>
