@@ -1,6 +1,19 @@
 # AI vs Human - Guessing Game 🤖 vs 👤
 
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+
 A web-based quiz game where players test their ability to distinguish between AI-generated and human-created content across four categories: Text, Images, Audio, and Video.
+
+## 🌟 Live Demo
+
+🎮 **[Play the Game Now!](#)** _(Add your deployed link here)_
+
+## 📸 Screenshots
+
+> Add screenshots of your game here after deployment
 
 ## 🎮 Game Features
 
