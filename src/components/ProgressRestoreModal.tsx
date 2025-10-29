@@ -69,7 +69,9 @@ export default function ProgressRestoreModal({
         <div className="p-4 sm:p-6" style={{ backgroundColor: '#f7e5f3', opacity: 1 }}>
           {/* Title */}
           <div className="text-center mb-4 sm:mb-6">
-            <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">💾</div>
+            <div className="mb-3 sm:mb-4 flex justify-center">
+              <i className="nes-icon database is-large"></i>
+            </div>
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2">
               Saved Progress Found!
             </h2>

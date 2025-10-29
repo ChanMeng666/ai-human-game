@@ -220,6 +220,19 @@ img,
   border-color: #8982ff;
 }
 
+/* 确保 NES 容器文字可见性 */
+.nes-container.is-success {
+  color: #065f46; /* 深绿色文字 */
+}
+
+.nes-container.is-warning {
+  color: #78350f; /* 深黄色/棕色文字 */
+}
+
+.nes-container.is-error {
+  color: #7f1d1d; /* 深红色文字 */
+}
+
 /* 自定义进度条颜色 */
 .nes-progress.is-success::-webkit-progress-value {
   background-color: #c846ab;

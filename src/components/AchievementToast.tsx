@@ -91,7 +91,7 @@ export default function AchievementToast({
       <div className="nes-container is-rounded is-success shadow-2xl border-4 border-green-500" style={{ backgroundColor: '#ffffff', opacity: 1 }}>
         <button
           onClick={handleClose}
-          className="absolute top-2 right-2 text-xl leading-none opacity-70 hover:opacity-100 rounded-full w-6 h-6 flex items-center justify-center"
+          className="absolute top-2 right-2 text-xl leading-none opacity-70 hover:opacity-100 rounded-full w-6 h-6 flex items-center justify-center text-gray-800"
           style={{ backgroundColor: '#ffffff' }}
           aria-label="Close"
         >
@@ -106,10 +106,10 @@ export default function AchievementToast({
 
           {/* Content */}
           <div className="flex-1">
-            <h3 className="text-sm sm:text-base font-bold mb-1">
+            <h3 className="text-sm sm:text-base font-bold mb-1 text-green-800">
               {achievement.title}
             </h3>
-            <p className="text-xs sm:text-sm opacity-90">
+            <p className="text-xs sm:text-sm opacity-90 text-gray-800">
               {achievement.description}
             </p>
           </div>

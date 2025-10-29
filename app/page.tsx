@@ -94,13 +94,13 @@ export default function Home() {
 
           {/* Progress Info (if exists) */}
           {hasSavedProgress && (
-            <div className="nes-container is-rounded is-success mb-4 sm:mb-6">
+            <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6 border-green-500" style={{ borderWidth: '4px' }}>
               <div className="text-center py-2">
-                <p className="text-xs sm:text-sm mb-2">
+                <p className="text-xs sm:text-sm mb-2 text-green-700 font-bold">
                   <i className="nes-icon trophy is-small"></i>{" "}
                   You have unfinished progress!
                 </p>
-                <p className="text-[10px] sm:text-xs opacity-80">
+                <p className="text-[10px] sm:text-xs opacity-80 text-gray-700">
                   Completed {completedCategories.length}/4 categories
                 </p>
               </div>

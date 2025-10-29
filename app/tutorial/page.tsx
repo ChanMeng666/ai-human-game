@@ -228,12 +228,12 @@ export default function TutorialPage() {
         </div>
 
         {/* Tips */}
-        <div className="nes-container is-rounded is-warning mb-4 sm:mb-6">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+        <div className="nes-container is-rounded is-warning mb-4 sm:mb-6 text-gray-800">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-yellow-800">
             <i className="nes-icon exclamation is-small"></i>
             Useful Tips
           </h2>
-          <ul className="space-y-2 text-xs sm:text-sm list-disc list-inside">
+          <ul className="space-y-2 text-xs sm:text-sm list-disc list-inside text-gray-800">
             <li>Pay attention to details - AI-generated content often has telltale signs</li>
             <li>Human creations usually have more emotion and personalized expression</li>
             <li>AI content might be too perfect or have unnatural elements</li>
