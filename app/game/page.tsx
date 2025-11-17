@@ -16,6 +16,10 @@ export default function GamePage() {
     questions,
     currentQuestionIndex,
     score,
+    baseScore,
+    bonusScore,
+    currentCombo,
+    maxCombo,
     startGame,
     submitAnswer,
     nextQuestion,
@@ -29,6 +33,8 @@ export default function GamePage() {
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState(false);
   const [selectedChoice, setSelectedChoice] = useState<"ai" | "human" | null>(null);
   const [showExitDialog, setShowExitDialog] = useState(false);
+  const [showComboAchievement, setShowComboAchievement] = useState<number | null>(null);
+  const [showMilestoneAchievement, setShowMilestoneAchievement] = useState<number | null>(null);
 
   useEffect(() => {
     if (!category || questions.length === 0) {
@@ -92,12 +98,27 @@ export default function GamePage() {
     if (showFeedback || !currentQuestion) return;
 
     setSelectedChoice(choice);
+    const prevCombo = currentCombo;
+    const prevQuestionIndex = currentQuestionIndex;
+
     const isCorrect = submitAnswer(choice);
     setLastAnswerCorrect(isCorrect);
     setShowFeedback(true);
 
     if (isCorrect) {
       playCorrectSound();
+
+      // Check for combo achievements
+      const newCombo = prevCombo + 1;
+      if ([3, 5, 10, 15, 20].includes(newCombo)) {
+        setTimeout(() => setShowComboAchievement(newCombo), 800);
+      }
+
+      // Check for milestone achievements
+      const nextQuestionNum = prevQuestionIndex + 1;
+      if ([5, 10, 15, 20].includes(nextQuestionNum)) {
+        setTimeout(() => setShowMilestoneAchievement(nextQuestionNum), 1200);
+      }
     } else {
       playIncorrectSound();
     }
@@ -105,8 +126,10 @@ export default function GamePage() {
     setTimeout(() => {
       setShowFeedback(false);
       setSelectedChoice(null);
+      setShowComboAchievement(null);
+      setShowMilestoneAchievement(null);
       nextQuestion();
-    }, 2000);
+    }, 2500);
   };
 
   if (!currentQuestion) {
@@ -141,8 +164,25 @@ export default function GamePage() {
       <div className="mb-2 sm:mb-3 md:mb-4">
         <div className="nes-container is-dark">
           <div className="flex flex-wrap justify-between items-center gap-2 text-[10px] sm:text-xs md:text-sm">
-            <span>Q {currentQuestionIndex + 1}/20</span>
-            <span>Score: {score}</span>
+            <div className="flex items-center gap-2">
+              <span>Q {currentQuestionIndex + 1}/20</span>
+              {currentQuestion && (
+                <span className={`px-2 py-1 rounded text-[9px] sm:text-[10px] ${
+                  currentQuestion.difficulty === "easy" ? "bg-green-600" :
+                  currentQuestion.difficulty === "hard" ? "bg-red-600" : "bg-yellow-600"
+                }`}>
+                  {currentQuestion.difficulty.toUpperCase()}
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-2">
+              <span>💯 {score}</span>
+              {currentCombo > 0 && (
+                <span className="bg-orange-500 px-2 py-1 rounded flex items-center gap-1 animate-pulse">
+                  🔥 {currentCombo}x
+                </span>
+              )}
+            </div>
             <span className="bg-[#c846ab] px-2 py-1 rounded">
               {category?.toUpperCase()}
             </span>
@@ -251,12 +291,32 @@ export default function GamePage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none bg-black bg-opacity-30">
           <div className={`${
             lastAnswerCorrect ? "text-green-400" : "text-red-400"
-          } animate-bounce flex flex-col items-center justify-center gap-4`}>
-            <i className={`nes-icon ${lastAnswerCorrect ? "check" : "times"}`} style={{ fontSize: "4rem" }}></i>
+          } flex flex-col items-center justify-center gap-4`}>
+            <div className="animate-bounce">
+              <i className={`nes-icon ${lastAnswerCorrect ? "check" : "times"}`} style={{ fontSize: "4rem" }}></i>
+            </div>
             {!lastAnswerCorrect && currentQuestion && (
               <div className="bg-black bg-opacity-70 px-6 py-3 rounded">
                 <p className="text-white font-pixel-display text-sm sm:text-base text-center">
                   It was {currentQuestion.isAI ? "AI-generated" : "Human-created"}!
+                </p>
+              </div>
+            )}
+            {showComboAchievement && (
+              <div className="bg-orange-500 px-6 py-3 rounded animate-pulse">
+                <p className="text-white font-pixel-display text-sm sm:text-base text-center flex items-center gap-2">
+                  <span>🔥</span>
+                  <span>{showComboAchievement}x COMBO!</span>
+                  <span>+{showComboAchievement === 3 ? 1 : showComboAchievement === 5 ? 3 : showComboAchievement === 10 ? 5 : showComboAchievement === 15 ? 8 : 10} Bonus</span>
+                </p>
+              </div>
+            )}
+            {showMilestoneAchievement && (
+              <div className="bg-purple-600 px-6 py-3 rounded animate-pulse">
+                <p className="text-white font-pixel-display text-sm sm:text-base text-center flex items-center gap-2">
+                  <span>🎯</span>
+                  <span>{showMilestoneAchievement}/20 Milestone!</span>
+                  <span>+{showMilestoneAchievement === 5 ? 2 : showMilestoneAchievement === 10 ? 3 : showMilestoneAchievement === 15 ? 5 : 10} Bonus</span>
                 </p>
               </div>
             )}

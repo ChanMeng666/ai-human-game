@@ -163,28 +163,104 @@ export default function TutorialPage() {
           </div>
         </div>
 
+        {/* Difficulty Levels */}
+        <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+            <i className="nes-icon star is-small"></i>
+            Difficulty Levels
+          </h2>
+          <div className="space-y-2 text-xs sm:text-sm">
+            <div className="flex items-center gap-2">
+              <span className="bg-green-600 px-2 py-1 rounded text-[10px]">EASY</span>
+              <span>Obvious differences: <strong>1 point</strong></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="bg-yellow-600 px-2 py-1 rounded text-[10px]">MEDIUM</span>
+              <span>Requires attention: <strong>2 points</strong></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="bg-red-600 px-2 py-1 rounded text-[10px]">HARD</span>
+              <span>Very challenging: <strong>3 points</strong></span>
+            </div>
+          </div>
+        </div>
+
+        {/* Combo System */}
+        <div className="nes-container is-rounded is-warning mb-4 sm:mb-6 text-gray-800">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-yellow-800">
+            <span>🔥</span>
+            Combo Bonuses
+          </h2>
+          <div className="space-y-2 text-xs sm:text-sm text-gray-800">
+            <p className="mb-2">Get extra points for consecutive correct answers!</p>
+            <div className="flex justify-between items-center">
+              <span>3 in a row:</span>
+              <span className="font-bold">+1 bonus</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span>5 in a row:</span>
+              <span className="font-bold">+3 bonus</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span>10 in a row:</span>
+              <span className="font-bold">+5 bonus</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span>15 in a row:</span>
+              <span className="font-bold">+8 bonus</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span>20 in a row (Perfect!):</span>
+              <span className="font-bold text-yellow-800">+10 bonus</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Milestone Rewards */}
+        <div className="nes-container is-rounded is-success mb-4 sm:mb-6 text-gray-800">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-green-800">
+            <span>🎯</span>
+            Milestone Rewards
+          </h2>
+          <div className="space-y-2 text-xs sm:text-sm text-gray-800">
+            <p className="mb-2">Reach milestones to earn bonus points!</p>
+            <div className="flex justify-between items-center">
+              <span>Complete 5 questions:</span>
+              <span className="font-bold">+2 bonus</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span>Complete 10 questions:</span>
+              <span className="font-bold">+3 bonus</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span>Complete 15 questions:</span>
+              <span className="font-bold">+5 bonus</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span>Complete 20 questions:</span>
+              <span className="font-bold text-green-800">+10 bonus</span>
+            </div>
+          </div>
+        </div>
+
         {/* Scoring */}
         <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6">
           <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
             <i className="nes-icon coin is-small"></i>
-            Scoring System
+            Maximum Scores
           </h2>
           <div className="space-y-2 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
-              <i className="nes-icon check is-small"></i>
-              <span>Each correct answer earns <strong>1 point</strong></span>
-            </div>
-            <div className="flex items-center gap-2">
-              <i className="nes-icon times is-small"></i>
-              <span>Wrong answers don't lose points, but don't earn any either</span>
-            </div>
-            <div className="flex items-center gap-2">
               <i className="nes-icon trophy is-small"></i>
-              <span>Each category has <strong>20 questions</strong>, maximum score of 20</span>
+              <span>Each category: Base <strong>23-43 points</strong> + Bonuses <strong>up to 47 points</strong></span>
             </div>
             <div className="flex items-center gap-2">
               <i className="nes-icon star is-small"></i>
-              <span>Complete all 4 categories for a maximum total of 80 points</span>
+              <span>Perfect run (all correct): <strong>70+ points per category</strong></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <i className="nes-icon heart is-small"></i>
+              <span>Wrong answers don't lose points</span>
             </div>
           </div>
         </div>

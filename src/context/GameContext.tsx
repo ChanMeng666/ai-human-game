@@ -8,6 +8,8 @@ export interface Question {
   content: string;
   isAI: boolean;
   description: string;
+  difficulty: "easy" | "medium" | "hard";
+  basePoints: number;
 }
 
 export interface UserAnswer {
@@ -15,6 +17,8 @@ export interface UserAnswer {
   userChoice: "ai" | "human";
   correct: boolean;
   actualType: "ai" | "human";
+  pointsEarned: number;
+  comboCount: number;
 }
 
 export interface CategoryScore {
@@ -28,6 +32,10 @@ interface GameState {
   category: string | null;
   currentQuestionIndex: number;
   score: number;
+  baseScore: number; // Score from correct answers only
+  bonusScore: number; // Score from combos and milestones
+  currentCombo: number; // Current streak of correct answers
+  maxCombo: number; // Highest combo achieved
   userAnswers: UserAnswer[];
   questions: Question[];
   isGameStarted: boolean;
@@ -43,6 +51,10 @@ interface SavedProgress {
   currentCategory: string | null;
   currentQuestionIndex: number;
   currentScore: number;
+  currentBaseScore: number;
+  currentBonusScore: number;
+  currentCombo: number;
+  maxCombo: number;
   userAnswers: UserAnswer[];
   lastUpdated: number;
 }
@@ -70,6 +82,10 @@ const initialState: GameState = {
   category: null,
   currentQuestionIndex: 0,
   score: 0,
+  baseScore: 0,
+  bonusScore: 0,
+  currentCombo: 0,
+  maxCombo: 0,
   userAnswers: [],
   questions: [],
   isGameStarted: false,
@@ -116,6 +132,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       currentCategory: gameState.category,
       currentQuestionIndex: gameState.currentQuestionIndex,
       currentScore: gameState.score,
+      currentBaseScore: gameState.baseScore,
+      currentBonusScore: gameState.bonusScore,
+      currentCombo: gameState.currentCombo,
+      maxCombo: gameState.maxCombo,
       userAnswers: gameState.userAnswers,
       lastUpdated: Date.now(),
     };
@@ -171,6 +191,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       category: progress.currentCategory,
       currentQuestionIndex: progress.currentQuestionIndex,
       score: progress.currentScore,
+      baseScore: progress.currentBaseScore || 0,
+      bonusScore: progress.currentBonusScore || 0,
+      currentCombo: progress.currentCombo || 0,
+      maxCombo: progress.maxCombo || 0,
       userAnswers: progress.userAnswers,
     }));
   };
@@ -200,6 +224,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       isGameStarted: true,
       currentQuestionIndex: 0,
       score: 0,
+      baseScore: 0,
+      bonusScore: 0,
+      currentCombo: 0,
+      maxCombo: 0,
       userAnswers: [],
       isGameFinished: false,
     }));
@@ -213,17 +241,50 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     const actualType: "ai" | "human" = currentQuestion.isAI ? "ai" : "human";
     const isCorrect = choice === actualType;
 
+    // Calculate points for this answer
+    let pointsEarned = 0;
+    let newCombo = isCorrect ? gameState.currentCombo + 1 : 0;
+    let comboBonus = 0;
+    let milestoneBonus = 0;
+
+    if (isCorrect) {
+      // Base points from question difficulty
+      pointsEarned = currentQuestion.basePoints;
+
+      // Combo bonus (awarded when reaching certain streaks)
+      if (newCombo === 3) comboBonus = 1;
+      else if (newCombo === 5) comboBonus = 3;
+      else if (newCombo === 10) comboBonus = 5;
+      else if (newCombo === 15) comboBonus = 8;
+      else if (newCombo === 20) comboBonus = 10;
+
+      // Milestone bonus (awarded when completing certain numbers of questions)
+      const nextQuestionIndex = gameState.currentQuestionIndex + 1;
+      if (nextQuestionIndex === 5) milestoneBonus = 2;
+      else if (nextQuestionIndex === 10) milestoneBonus = 3;
+      else if (nextQuestionIndex === 15) milestoneBonus = 5;
+      else if (nextQuestionIndex === 20) milestoneBonus = 10;
+    }
+
+    const totalPointsEarned = pointsEarned + comboBonus + milestoneBonus;
+
     const userAnswer: UserAnswer = {
       questionId: currentQuestion.id,
       userChoice: choice,
       correct: isCorrect,
       actualType: actualType,
+      pointsEarned: totalPointsEarned,
+      comboCount: newCombo,
     };
 
     setGameState((prev) => ({
       ...prev,
       userAnswers: [...prev.userAnswers, userAnswer],
-      score: isCorrect ? prev.score + 1 : prev.score,
+      score: prev.score + totalPointsEarned,
+      baseScore: isCorrect ? prev.baseScore + pointsEarned : prev.baseScore,
+      bonusScore: prev.bonusScore + comboBonus + milestoneBonus,
+      currentCombo: newCombo,
+      maxCombo: Math.max(prev.maxCombo, newCombo),
     }));
 
     // Auto-save progress
@@ -250,6 +311,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       ...initialState,
       completedCategories: prev.completedCategories,
       totalScore: prev.totalScore,
+      soundEnabled: prev.soundEnabled,
     }));
   };
 

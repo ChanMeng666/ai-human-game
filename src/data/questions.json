@@ -4,559 +4,719 @@
     "category": "text",
     "content": "/content/text/human_6.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 2,
     "category": "text",
     "content": "/content/text/human_1.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 3,
     "category": "text",
     "content": "/content/text/ai_6.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 4,
     "category": "text",
     "content": "/content/text/ai_8.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 5,
     "category": "text",
     "content": "/content/text/human_8.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 6,
     "category": "text",
     "content": "/content/text/human_9.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 7,
     "category": "text",
     "content": "/content/text/human_7.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 8,
     "category": "text",
     "content": "/content/text/human_10.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 9,
     "category": "text",
     "content": "/content/text/ai_3.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 10,
     "category": "text",
     "content": "/content/text/ai_2.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 11,
     "category": "text",
     "content": "/content/text/ai_9.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 12,
     "category": "text",
     "content": "/content/text/human_2.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 13,
     "category": "text",
     "content": "/content/text/ai_1.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 14,
     "category": "text",
     "content": "/content/text/ai_7.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 15,
     "category": "text",
     "content": "/content/text/human_4.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 16,
     "category": "text",
     "content": "/content/text/human_3.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 17,
     "category": "text",
     "content": "/content/text/human_5.txt",
     "isAI": false,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 18,
     "category": "text",
     "content": "/content/text/ai_10.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 19,
     "category": "text",
     "content": "/content/text/ai_4.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 20,
     "category": "text",
     "content": "/content/text/ai_5.txt",
     "isAI": true,
-    "description": "Is this text AI-generated or human-created?"
+    "description": "Is this text AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 21,
     "category": "images",
     "content": "/content/images/human_1.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 22,
     "category": "images",
     "content": "/content/images/ai_1.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 23,
     "category": "images",
     "content": "/content/images/ai_3.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 24,
     "category": "images",
     "content": "/content/images/human_5.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 25,
     "category": "images",
     "content": "/content/images/human_6.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 26,
     "category": "images",
     "content": "/content/images/ai_10.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 27,
     "category": "images",
     "content": "/content/images/human_3.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 28,
     "category": "images",
     "content": "/content/images/ai_2.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 29,
     "category": "images",
     "content": "/content/images/ai_6.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 30,
     "category": "images",
     "content": "/content/images/human_4.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 31,
     "category": "images",
     "content": "/content/images/ai_4.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 32,
     "category": "images",
     "content": "/content/images/ai_8.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 33,
     "category": "images",
     "content": "/content/images/human_9.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 34,
     "category": "images",
     "content": "/content/images/human_8.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 35,
     "category": "images",
     "content": "/content/images/human_7.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 36,
     "category": "images",
     "content": "/content/images/human_2.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 37,
     "category": "images",
     "content": "/content/images/ai_7.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 38,
     "category": "images",
     "content": "/content/images/human_10.jpg",
     "isAI": false,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 39,
     "category": "images",
     "content": "/content/images/ai_9.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 40,
     "category": "images",
     "content": "/content/images/ai_5.jpg",
     "isAI": true,
-    "description": "Is this image AI-generated or human-created?"
+    "description": "Is this image AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 41,
     "category": "audio",
     "content": "/content/audio/human_1.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 42,
     "category": "audio",
     "content": "/content/audio/human_3.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 43,
     "category": "audio",
     "content": "/content/audio/human_4.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 44,
     "category": "audio",
     "content": "/content/audio/ai_6.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 45,
     "category": "audio",
     "content": "/content/audio/human_10.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 46,
     "category": "audio",
     "content": "/content/audio/ai_3.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 47,
     "category": "audio",
     "content": "/content/audio/human_7.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 48,
     "category": "audio",
     "content": "/content/audio/ai_5.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 49,
     "category": "audio",
     "content": "/content/audio/human_2.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 50,
     "category": "audio",
     "content": "/content/audio/human_5.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 51,
     "category": "audio",
     "content": "/content/audio/human_9.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 52,
     "category": "audio",
     "content": "/content/audio/ai_8.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 53,
     "category": "audio",
     "content": "/content/audio/ai_2.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 54,
     "category": "audio",
     "content": "/content/audio/ai_1.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 55,
     "category": "audio",
     "content": "/content/audio/ai_4.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 56,
     "category": "audio",
     "content": "/content/audio/human_8.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 57,
     "category": "audio",
     "content": "/content/audio/ai_9.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 58,
     "category": "audio",
     "content": "/content/audio/human_6.mp3",
     "isAI": false,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 59,
     "category": "audio",
     "content": "/content/audio/ai_7.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 60,
     "category": "audio",
     "content": "/content/audio/ai_10.mp3",
     "isAI": true,
-    "description": "Is this audio AI-generated or human-created?"
+    "description": "Is this audio AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 61,
     "category": "videos",
     "content": "/content/videos/ai_1.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 62,
     "category": "videos",
     "content": "/content/videos/human_1.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 63,
     "category": "videos",
     "content": "/content/videos/human_7.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 64,
     "category": "videos",
     "content": "/content/videos/human_9.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 65,
     "category": "videos",
     "content": "/content/videos/human_6.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 66,
     "category": "videos",
     "content": "/content/videos/ai_5.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 67,
     "category": "videos",
     "content": "/content/videos/human_8.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 68,
     "category": "videos",
     "content": "/content/videos/human_2.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 69,
     "category": "videos",
     "content": "/content/videos/human_4.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 70,
     "category": "videos",
     "content": "/content/videos/ai_8.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 71,
     "category": "videos",
     "content": "/content/videos/ai_3.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 72,
     "category": "videos",
     "content": "/content/videos/human_5.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 73,
     "category": "videos",
     "content": "/content/videos/ai_7.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 74,
     "category": "videos",
     "content": "/content/videos/ai_10.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "hard",
+    "basePoints": 3
   },
   {
     "id": 75,
     "category": "videos",
     "content": "/content/videos/human_10.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 76,
     "category": "videos",
     "content": "/content/videos/ai_6.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 77,
     "category": "videos",
     "content": "/content/videos/ai_4.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 78,
     "category": "videos",
     "content": "/content/videos/ai_9.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   },
   {
     "id": 79,
     "category": "videos",
     "content": "/content/videos/human_3.mp4",
     "isAI": false,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "easy",
+    "basePoints": 1
   },
   {
     "id": 80,
     "category": "videos",
     "content": "/content/videos/ai_2.mp4",
     "isAI": true,
-    "description": "Is this video AI-generated or human-created?"
+    "description": "Is this video AI-generated or human-created?",
+    "difficulty": "medium",
+    "basePoints": 2
   }
 ]

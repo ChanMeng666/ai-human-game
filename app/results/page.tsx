@@ -5,17 +5,24 @@ import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
 import Navigation from "@/src/components/Navigation";
 import AchievementToast, { AchievementType } from "@/src/components/AchievementToast";
-import questionsData from "@/src/data/questions.json";
+import questionsDataRaw from "@/src/data/questions.json";
+import { Question } from "@/src/context/GameContext";
+
+const questionsData = questionsDataRaw as Question[];
 
 export default function ResultsPage() {
   const router = useRouter();
-  const { 
-    score, 
-    userAnswers, 
-    questions, 
-    category, 
+  const {
+    score,
+    baseScore,
+    bonusScore,
+    currentCombo,
+    maxCombo,
+    userAnswers,
+    questions,
+    category,
     completedCategories,
-    resetGame, 
+    resetGame,
     resetAll,
     saveCurrentCategory,
     setCategory,
@@ -103,9 +110,21 @@ export default function ResultsPage() {
   const handleRetryCurrentCategory = () => {
     playBubbleSound();
     if (category) {
-      const categoryQuestions = questionsData.filter(
+      let categoryQuestions = questionsData.filter(
         (q) => q.category === category
       );
+
+      // Sort by difficulty for progressive challenge
+      const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+      categoryQuestions = categoryQuestions.sort((a, b) => {
+        const diffA = difficultyOrder[a.difficulty];
+        const diffB = difficultyOrder[b.difficulty];
+        if (diffA !== diffB) {
+          return diffA - diffB;
+        }
+        return Math.random() - 0.5;
+      });
+
       setQuestions(categoryQuestions);
       startGame();
       setTimeout(() => {
@@ -117,9 +136,22 @@ export default function ResultsPage() {
   const handleTrySpecificCategory = (categoryName: string) => {
     playBubbleSound();
     setCategory(categoryName);
-    const categoryQuestions = questionsData.filter(
+
+    let categoryQuestions = questionsData.filter(
       (q) => q.category === categoryName
     );
+
+    // Sort by difficulty for progressive challenge
+    const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+    categoryQuestions = categoryQuestions.sort((a, b) => {
+      const diffA = difficultyOrder[a.difficulty];
+      const diffB = difficultyOrder[b.difficulty];
+      if (diffA !== diffB) {
+        return diffA - diffB;
+      }
+      return Math.random() - 0.5;
+    });
+
     setQuestions(categoryQuestions);
     setTimeout(() => {
       router.push("/game");
@@ -185,21 +217,44 @@ export default function ResultsPage() {
         <div className="nes-container pond-theme mb-3 sm:mb-4 md:mb-6">
           <div className="text-center py-4 sm:py-6">
             <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 font-bold">
-              {score}/20
+              {score} Points
             </div>
-            
-            {/* Progress Bar */}
-            <progress 
-              className="nes-progress is-success w-full mb-3 sm:mb-4" 
-              value={percentage} 
-              max="100"
-            ></progress>
-            
+
+            {/* Score Breakdown */}
+            <div className="nes-container is-dark mb-3 sm:mb-4 text-left">
+              <div className="text-xs sm:text-sm space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="opacity-80">Base Score:</span>
+                  <span className="font-bold">{baseScore} pts</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="opacity-80">Bonus (Combos & Milestones):</span>
+                  <span className="font-bold text-yellow-400">+{bonusScore} pts</span>
+                </div>
+                <div className="border-t border-gray-600 pt-2 flex justify-between items-center">
+                  <span className="opacity-80">Total Score:</span>
+                  <span className="font-bold text-lg">{score} pts</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Combo Achievement */}
+            {maxCombo > 0 && (
+              <div className="nes-container is-rounded bg-orange-500 bg-opacity-20 mb-3 sm:mb-4">
+                <p className="text-xs sm:text-sm text-center flex items-center justify-center gap-2">
+                  <span>🔥</span>
+                  <span>Max Combo: <strong>{maxCombo}x</strong></span>
+                  {maxCombo >= 20 && <span className="text-yellow-400">PERFECT!</span>}
+                  {maxCombo >= 10 && maxCombo < 20 && <span className="text-green-400">Amazing!</span>}
+                </p>
+              </div>
+            )}
+
             <div className="text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6 px-2 sm:px-4 leading-relaxed flex items-center justify-center gap-2">
               <i className={`nes-icon ${getPerformanceMessage().icon} is-small`}></i>
               <span>{getPerformanceMessage().text}</span>
             </div>
-            
+
             {/* Performance Icon Display */}
             <div className="mb-2 float-animation flex justify-center">
               <i className={`nes-icon ${getFishIcon().icon} size-2x`}></i>

@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
 import Navigation from "@/src/components/Navigation";
-import questionsData from "@/src/data/questions.json";
+import questionsDataRaw from "@/src/data/questions.json";
+import { Question } from "@/src/context/GameContext";
+
+const questionsData = questionsDataRaw as Question[];
 
 export default function SummaryPage() {
   const router = useRouter();
