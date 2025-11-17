@@ -118,7 +118,7 @@ export default function ContentDisplay({ type, contentPath, position }: ContentD
               Your browser does not support the audio element.
             </audio>
             <p className="text-white font-pixel-display text-xs sm:text-sm opacity-70">
-              {position === "left" ? "Option A" : "Option B"}
+              Listen carefully
             </p>
           </div>
         </div>

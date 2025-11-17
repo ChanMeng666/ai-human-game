@@ -4,7 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
 import Navigation from "@/src/components/Navigation";
-import questionsData from "@/src/data/questions.json";
+import questionsDataRaw from "@/src/data/questions.json";
+import { Question } from "@/src/context/GameContext";
+
+const questionsData = questionsDataRaw as Question[];
 
 export default function CategorySelection() {
   const router = useRouter();
@@ -20,13 +23,27 @@ export default function CategorySelection() {
   const handleCategorySelect = (categoryName: string) => {
     playBubbleSound();
     setCategory(categoryName);
-    
+
     // Filter questions by category
-    const categoryQuestions = questionsData.filter(
+    let categoryQuestions = questionsData.filter(
       (q) => q.category === categoryName
     );
+
+    // Sort questions by difficulty for progressive difficulty
+    // This creates a better learning curve: easy → medium → hard
+    const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+    categoryQuestions = categoryQuestions.sort((a, b) => {
+      const diffA = difficultyOrder[a.difficulty];
+      const diffB = difficultyOrder[b.difficulty];
+      if (diffA !== diffB) {
+        return diffA - diffB;
+      }
+      // Within same difficulty, randomize
+      return Math.random() - 0.5;
+    });
+
     setQuestions(categoryQuestions);
-    
+
     // Navigate to game page after a short delay
     setTimeout(() => {
       router.push("/game");
@@ -74,8 +91,8 @@ export default function CategorySelection() {
     return category ? `${category.score}/${category.totalQuestions}` : null;
   };
 
-  const maxPossibleScore = 40;
-  const overallPercentage = maxPossibleScore > 0 ? (totalScore / maxPossibleScore) * 100 : 0;
+  // Dynamic scoring - max depends on difficulty distribution and bonuses
+  // Show progress based on completed categories instead of fixed max
 
   const getPerformanceBadge = (score: number, totalQuestions: number) => {
     const percent = (score / totalQuestions) * 100;
@@ -119,17 +136,17 @@ export default function CategorySelection() {
                   <span>Your Progress</span>
                 </p>
                 <div className="text-3xl sm:text-4xl font-bold text-white mb-3">
-                  {totalScore}/{maxPossibleScore}
+                  {totalScore} Points
                 </div>
-                <progress 
-                  className="nes-progress is-success w-full mb-3" 
-                  value={overallPercentage} 
-                  max="100"
-                ></progress>
-                <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mb-3">
+                <div className="flex flex-col items-center gap-2 mb-3">
                   <p className="text-white text-xs sm:text-sm">
-                    <i className="nes-icon trophy is-small"></i> {completedCategories.length}/4 Categories • {overallPercentage.toFixed(1)}% Complete
+                    <i className="nes-icon trophy is-small"></i> {completedCategories.length}/4 Categories Completed
                   </p>
+                  {completedCategories.length === 4 && (
+                    <p className="text-yellow-400 text-xs sm:text-sm font-bold animate-pulse">
+                      🎉 All Categories Mastered!
+                    </p>
+                  )}
                 </div>
                 <button
                   onClick={handleViewSummary}

@@ -5,17 +5,24 @@ import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
 import Navigation from "@/src/components/Navigation";
 import AchievementToast, { AchievementType } from "@/src/components/AchievementToast";
-import questionsData from "@/src/data/questions.json";
+import questionsDataRaw from "@/src/data/questions.json";
+import { Question } from "@/src/context/GameContext";
+
+const questionsData = questionsDataRaw as Question[];
 
 export default function ResultsPage() {
   const router = useRouter();
-  const { 
-    score, 
-    userAnswers, 
-    questions, 
-    category, 
+  const {
+    score,
+    baseScore,
+    bonusScore,
+    currentCombo,
+    maxCombo,
+    userAnswers,
+    questions,
+    category,
     completedCategories,
-    resetGame, 
+    resetGame,
     resetAll,
     saveCurrentCategory,
     setCategory,
@@ -43,7 +50,7 @@ export default function ResultsPage() {
       const newCompletedCount = completedCategories.length + 1;
       
       // Perfect score achievement
-      if (score === 10) {
+      if (score === 20) {
         setTimeout(() => setAchievement("perfect_score"), 500);
       }
       // First completion achievement
@@ -60,10 +67,10 @@ export default function ResultsPage() {
       }
     }
 
-    // Determine fish size based on score
-    if (score >= 8) {
+    // Determine fish size based on score (adjusted for 20 questions)
+    if (score >= 16) {
       setFishSize("large");
-    } else if (score >= 5) {
+    } else if (score >= 10) {
       setFishSize("medium");
     } else {
       setFishSize("small");
@@ -103,9 +110,21 @@ export default function ResultsPage() {
   const handleRetryCurrentCategory = () => {
     playBubbleSound();
     if (category) {
-      const categoryQuestions = questionsData.filter(
+      let categoryQuestions = questionsData.filter(
         (q) => q.category === category
       );
+
+      // Sort by difficulty for progressive challenge
+      const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+      categoryQuestions = categoryQuestions.sort((a, b) => {
+        const diffA = difficultyOrder[a.difficulty];
+        const diffB = difficultyOrder[b.difficulty];
+        if (diffA !== diffB) {
+          return diffA - diffB;
+        }
+        return Math.random() - 0.5;
+      });
+
       setQuestions(categoryQuestions);
       startGame();
       setTimeout(() => {
@@ -117,9 +136,22 @@ export default function ResultsPage() {
   const handleTrySpecificCategory = (categoryName: string) => {
     playBubbleSound();
     setCategory(categoryName);
-    const categoryQuestions = questionsData.filter(
+
+    let categoryQuestions = questionsData.filter(
       (q) => q.category === categoryName
     );
+
+    // Sort by difficulty for progressive challenge
+    const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+    categoryQuestions = categoryQuestions.sort((a, b) => {
+      const diffA = difficultyOrder[a.difficulty];
+      const diffB = difficultyOrder[b.difficulty];
+      if (diffA !== diffB) {
+        return diffA - diffB;
+      }
+      return Math.random() - 0.5;
+    });
+
     setQuestions(categoryQuestions);
     setTimeout(() => {
       router.push("/game");
@@ -153,13 +185,13 @@ export default function ResultsPage() {
   };
 
   const getPerformanceMessage = () => {
-    if (score === 10) return { text: "Perfect! You're an AI detection expert!", icon: "trophy" };
-    if (score >= 8) return { text: "Excellent! You have a great eye!", icon: "star" };
-    if (score >= 5) return { text: "Good job! Keep practicing!", icon: "thumbs-up" };
+    if (score === 20) return { text: "Perfect! You're an AI detection expert!", icon: "trophy" };
+    if (score >= 16) return { text: "Excellent! You have a great eye!", icon: "star" };
+    if (score >= 10) return { text: "Good job! Keep practicing!", icon: "thumbs-up" };
     return { text: "Nice try! This is harder than it looks!", icon: "heart" };
   };
 
-  const percentage = (score / 10) * 100;
+  const percentage = (score / 20) * 100;
 
   return (
     <div className="min-h-screen pond-gradient flex flex-col py-3 sm:py-4 md:py-6 px-2 sm:px-3 md:px-4">
@@ -185,21 +217,44 @@ export default function ResultsPage() {
         <div className="nes-container pond-theme mb-3 sm:mb-4 md:mb-6">
           <div className="text-center py-4 sm:py-6">
             <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 font-bold">
-              {score}/10
+              {score} Points
             </div>
-            
-            {/* Progress Bar */}
-            <progress 
-              className="nes-progress is-success w-full mb-3 sm:mb-4" 
-              value={percentage} 
-              max="100"
-            ></progress>
-            
+
+            {/* Score Breakdown */}
+            <div className="nes-container is-dark mb-3 sm:mb-4 text-left">
+              <div className="text-xs sm:text-sm space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="opacity-80">Base Score:</span>
+                  <span className="font-bold">{baseScore} pts</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="opacity-80">Bonus (Combos & Milestones):</span>
+                  <span className="font-bold text-yellow-400">+{bonusScore} pts</span>
+                </div>
+                <div className="border-t border-gray-600 pt-2 flex justify-between items-center">
+                  <span className="opacity-80">Total Score:</span>
+                  <span className="font-bold text-lg">{score} pts</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Combo Achievement */}
+            {maxCombo > 0 && (
+              <div className="nes-container is-rounded bg-orange-500 bg-opacity-20 mb-3 sm:mb-4">
+                <p className="text-xs sm:text-sm text-center flex items-center justify-center gap-2">
+                  <span>🔥</span>
+                  <span>Max Combo: <strong>{maxCombo}x</strong></span>
+                  {maxCombo >= 20 && <span className="text-yellow-400">PERFECT!</span>}
+                  {maxCombo >= 10 && maxCombo < 20 && <span className="text-green-400">Amazing!</span>}
+                </p>
+              </div>
+            )}
+
             <div className="text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6 px-2 sm:px-4 leading-relaxed flex items-center justify-center gap-2">
               <i className={`nes-icon ${getPerformanceMessage().icon} is-small`}></i>
               <span>{getPerformanceMessage().text}</span>
             </div>
-            
+
             {/* Performance Icon Display */}
             <div className="mb-2 float-animation flex justify-center">
               <i className={`nes-icon ${getFishIcon().icon} size-2x`}></i>
@@ -233,7 +288,7 @@ export default function ResultsPage() {
                       <p className="text-[9px] sm:text-[10px] md:text-xs opacity-80">
                         Your choice: <strong>{answer.userChoice.toUpperCase()}</strong>
                         {" | "}
-                        Correct: <strong>{answer.humanPosition.toUpperCase()}</strong>
+                        Correct: <strong>{answer.actualType.toUpperCase()}</strong>
                       </p>
                     </div>
                     <div className="flex-shrink-0 flex items-center">
@@ -261,14 +316,14 @@ export default function ResultsPage() {
         </div>
 
         {/* Contextual Suggestions */}
-        {score < 8 && (
+        {score < 16 && (
           <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6 animate-slide-in-up">
             <p className="text-xs sm:text-sm text-center">
               <i className="nes-icon redo is-small"></i> Want to improve? Try <strong className="uppercase">{category}</strong> again!
             </p>
           </div>
         )}
-        {hasMoreCategories && score >= 8 && suggestedCategory && (
+        {hasMoreCategories && score >= 16 && suggestedCategory && (
           <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6 animate-slide-in-up">
             <p className="text-xs sm:text-sm text-center">
               <i className="nes-icon star is-small"></i> Great job! Ready for <strong className="uppercase">{suggestedCategory}</strong>?
