@@ -5,17 +5,16 @@ import { createContext, useContext, useState, useEffect, ReactNode } from "react
 export interface Question {
   id: number;
   category: string;
-  humanContent: string;
-  aiContent: string;
-  humanPosition: string;
+  content: string;
+  isAI: boolean;
   description: string;
 }
 
 export interface UserAnswer {
   questionId: number;
-  userChoice: string;
+  userChoice: "ai" | "human";
   correct: boolean;
-  humanPosition: string;
+  actualType: "ai" | "human";
 }
 
 export interface CategoryScore {
@@ -52,7 +51,7 @@ interface GameContextType extends GameState {
   setCategory: (category: string) => void;
   setQuestions: (questions: Question[]) => void;
   startGame: () => void;
-  submitAnswer: (choice: "left" | "right") => boolean;
+  submitAnswer: (choice: "ai" | "human") => boolean;
   nextQuestion: () => void;
   resetGame: () => void;
   resetAll: () => void;
@@ -206,17 +205,19 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
-  const submitAnswer = (choice: string): boolean => {
+  const submitAnswer = (choice: "ai" | "human"): boolean => {
     const currentQuestion = gameState.questions[gameState.currentQuestionIndex];
     if (!currentQuestion) return false;
 
-    const isCorrect = choice === currentQuestion.humanPosition;
-    
+    // Check if user's judgment is correct
+    const actualType: "ai" | "human" = currentQuestion.isAI ? "ai" : "human";
+    const isCorrect = choice === actualType;
+
     const userAnswer: UserAnswer = {
       questionId: currentQuestion.id,
       userChoice: choice,
       correct: isCorrect,
-      humanPosition: currentQuestion.humanPosition,
+      actualType: actualType,
     };
 
     setGameState((prev) => ({

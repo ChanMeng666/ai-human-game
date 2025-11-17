@@ -43,7 +43,7 @@ export default function ResultsPage() {
       const newCompletedCount = completedCategories.length + 1;
       
       // Perfect score achievement
-      if (score === 10) {
+      if (score === 20) {
         setTimeout(() => setAchievement("perfect_score"), 500);
       }
       // First completion achievement
@@ -60,10 +60,10 @@ export default function ResultsPage() {
       }
     }
 
-    // Determine fish size based on score
-    if (score >= 8) {
+    // Determine fish size based on score (adjusted for 20 questions)
+    if (score >= 16) {
       setFishSize("large");
-    } else if (score >= 5) {
+    } else if (score >= 10) {
       setFishSize("medium");
     } else {
       setFishSize("small");
@@ -153,13 +153,13 @@ export default function ResultsPage() {
   };
 
   const getPerformanceMessage = () => {
-    if (score === 10) return { text: "Perfect! You're an AI detection expert!", icon: "trophy" };
-    if (score >= 8) return { text: "Excellent! You have a great eye!", icon: "star" };
-    if (score >= 5) return { text: "Good job! Keep practicing!", icon: "thumbs-up" };
+    if (score === 20) return { text: "Perfect! You're an AI detection expert!", icon: "trophy" };
+    if (score >= 16) return { text: "Excellent! You have a great eye!", icon: "star" };
+    if (score >= 10) return { text: "Good job! Keep practicing!", icon: "thumbs-up" };
     return { text: "Nice try! This is harder than it looks!", icon: "heart" };
   };
 
-  const percentage = (score / 10) * 100;
+  const percentage = (score / 20) * 100;
 
   return (
     <div className="min-h-screen pond-gradient flex flex-col py-3 sm:py-4 md:py-6 px-2 sm:px-3 md:px-4">
@@ -185,7 +185,7 @@ export default function ResultsPage() {
         <div className="nes-container pond-theme mb-3 sm:mb-4 md:mb-6">
           <div className="text-center py-4 sm:py-6">
             <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 font-bold">
-              {score}/10
+              {score}/20
             </div>
             
             {/* Progress Bar */}
@@ -233,7 +233,7 @@ export default function ResultsPage() {
                       <p className="text-[9px] sm:text-[10px] md:text-xs opacity-80">
                         Your choice: <strong>{answer.userChoice.toUpperCase()}</strong>
                         {" | "}
-                        Correct: <strong>{answer.humanPosition.toUpperCase()}</strong>
+                        Correct: <strong>{answer.actualType.toUpperCase()}</strong>
                       </p>
                     </div>
                     <div className="flex-shrink-0 flex items-center">
@@ -261,14 +261,14 @@ export default function ResultsPage() {
         </div>
 
         {/* Contextual Suggestions */}
-        {score < 8 && (
+        {score < 16 && (
           <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6 animate-slide-in-up">
             <p className="text-xs sm:text-sm text-center">
               <i className="nes-icon redo is-small"></i> Want to improve? Try <strong className="uppercase">{category}</strong> again!
             </p>
           </div>
         )}
-        {hasMoreCategories && score >= 8 && suggestedCategory && (
+        {hasMoreCategories && score >= 16 && suggestedCategory && (
           <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6 animate-slide-in-up">
             <p className="text-xs sm:text-sm text-center">
               <i className="nes-icon star is-small"></i> Great job! Ready for <strong className="uppercase">{suggestedCategory}</strong>?

@@ -74,7 +74,7 @@ export default function CategorySelection() {
     return category ? `${category.score}/${category.totalQuestions}` : null;
   };
 
-  const maxPossibleScore = 40;
+  const maxPossibleScore = 80; // 20 questions per category × 4 categories
   const overallPercentage = maxPossibleScore > 0 ? (totalScore / maxPossibleScore) * 100 : 0;
 
   const getPerformanceBadge = (score: number, totalQuestions: number) => {
