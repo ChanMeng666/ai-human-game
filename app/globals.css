@@ -541,31 +541,61 @@ img,
   }
 }
 
-/* 移动端间距优化 */
+/* 移动端间距优化 - 增强呼吸感 */
 @media (max-width: 640px) {
   .nes-container {
-    padding: 0.75rem;
+    padding: 1rem;
   }
 
   .nes-container.with-title {
-    padding-top: 2rem;
+    padding-top: 2.5rem;
   }
 
-  /* 减少移动端的间距 */
+  /* 优化移动端的间距 - 保持足够呼吸空间 */
   .space-y-3 > * + * {
-    margin-top: 0.5rem;
-  }
-
-  .space-y-4 > * + * {
     margin-top: 0.75rem;
   }
 
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+
+  .space-y-5 > * + * {
+    margin-top: 1.25rem;
+  }
+
   .gap-3 {
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
   .gap-4 {
-    gap: 0.75rem;
+    gap: 1rem;
+  }
+
+  .gap-5 {
+    gap: 1.25rem;
+  }
+}
+
+/* 平板间距优化 */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .nes-container {
+    padding: 1.5rem;
+  }
+
+  .nes-container.with-title {
+    padding-top: 3rem;
+  }
+}
+
+/* 桌面间距优化 */
+@media (min-width: 1025px) {
+  .nes-container {
+    padding: 2rem;
+  }
+
+  .nes-container.with-title {
+    padding-top: 3.5rem;
   }
 }
 

@@ -119,17 +119,17 @@ export default function CategorySelection() {
         <div className="w-full max-w-[95%] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
           
           {/* Title Section */}
-          <div className="text-center mb-4 sm:mb-6 md:mb-8">
-          <div className="nes-container is-dark with-title mb-4 sm:mb-6">
+          <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+          <div className="nes-container is-dark with-title mb-6 sm:mb-8 md:mb-10">
             <p className="title text-xs sm:text-sm md:text-base">Choose Your Category</p>
-            <p className="text-white text-[10px] sm:text-xs md:text-sm opacity-90 py-3 sm:py-4 px-2 sm:px-4">
+            <p className="text-white text-[10px] sm:text-xs md:text-sm opacity-90 py-4 sm:py-5 md:py-6 px-2 sm:px-4">
               Select what type of content you want to test
             </p>
           </div>
 
           {/* Enhanced Progress Card */}
           {completedCategories.length > 0 && (
-            <div className="nes-container is-dark mb-4 sm:mb-6 animate-fade-in">
+            <div className="nes-container is-dark mb-6 sm:mb-8 md:mb-10 animate-fade-in">
               <div className="text-center">
                 <p className="text-white text-sm sm:text-base md:text-lg mb-2 font-bold flex items-center justify-center gap-2">
                   <i className="nes-icon check-circle is-small"></i>
@@ -161,8 +161,8 @@ export default function CategorySelection() {
 
           {/* Recommended Category (for users with progress) */}
           {completedCategories.length > 0 && completedCategories.length < 4 && (
-            <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6 animate-slide-in-up">
-              <p className="text-xs sm:text-sm text-center">
+            <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10 animate-slide-in-up">
+              <p className="text-xs sm:text-sm text-center py-2 sm:py-3">
                 <i className="nes-icon star is-small"></i> Recommended: Try <strong className="uppercase">{recommendedCategory}</strong> next!
               </p>
             </div>
@@ -170,7 +170,7 @@ export default function CategorySelection() {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-4 sm:mb-6 md:mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-6 sm:mb-8 md:mb-10">
           {categories.map((category) => {
             const isCompleted = isCategoryCompleted(category.name);
             const score = getCategoryScore(category.name);
@@ -186,7 +186,7 @@ export default function CategorySelection() {
                   isCompleted ? 'is-success' : isRecommended ? 'is-warning' : 'pond-theme'
                 } ${isCompleted ? 'animate-pulse-slow' : ''} relative`}
               >
-                <div className="text-center py-4 sm:py-5 md:py-6 relative">
+                <div className="text-center py-6 sm:py-7 md:py-8 lg:py-10 relative">
                   {isRecommended && (
                     <div className="absolute top-2 left-2 right-2 text-center">
                       <span className="text-[8px] sm:text-[10px] font-bold bg-yellow-500 text-black px-2 py-1 rounded flex items-center justify-center gap-1">

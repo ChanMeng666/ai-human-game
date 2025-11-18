@@ -76,16 +76,16 @@ export default function Home() {
           <p className="title text-responsive-base sm:text-responsive-lg">AI vs Human</p>
           
           {/* Game Title */}
-          <div className="text-center py-6 sm:py-8 md:py-10">
-            <div className="text-5xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 float-animation flex items-center justify-center gap-3 sm:gap-4">
+          <div className="text-center py-8 sm:py-10 md:py-12 lg:py-14">
+            <div className="text-5xl sm:text-6xl md:text-7xl mb-6 sm:mb-8 md:mb-10 float-animation flex items-center justify-center gap-3 sm:gap-4">
               <i className="nes-icon cog is-large"></i>
               <span>vs</span>
               <i className="nes-icon user is-large"></i>
             </div>
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 sm:mb-6">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-6 sm:mb-8 md:mb-10">
               Guessing Game
             </h1>
-            <p className="text-xs sm:text-sm md:text-base mb-6 sm:mb-8 opacity-90 leading-relaxed px-2 sm:px-4">
+            <p className="text-xs sm:text-sm md:text-base mb-8 sm:mb-10 md:mb-12 opacity-90 leading-relaxed px-2 sm:px-4">
               Can you tell the difference between<br className="hidden sm:block" />
               <span className="sm:hidden"> </span>
               AI-generated and human-created content?
@@ -94,9 +94,9 @@ export default function Home() {
 
           {/* Progress Info (if exists) */}
           {hasSavedProgress && (
-            <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6 border-green-500" style={{ borderWidth: '4px' }}>
-              <div className="text-center py-2">
-                <p className="text-xs sm:text-sm mb-2 text-green-700 font-bold">
+            <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10 border-green-500" style={{ borderWidth: '4px' }}>
+              <div className="text-center py-3 sm:py-4">
+                <p className="text-xs sm:text-sm mb-3 text-green-700 font-bold">
                   <i className="nes-icon trophy is-small"></i>{" "}
                   You have unfinished progress!
                 </p>
@@ -108,7 +108,7 @@ export default function Home() {
           )}
 
           {/* Action Buttons */}
-          <div className="text-center mb-4 sm:mb-6 space-y-3">
+          <div className="text-center mb-6 sm:mb-8 md:mb-10 space-y-4 sm:space-y-5">
             {hasSavedProgress ? (
               <>
                 <button
@@ -147,15 +147,15 @@ export default function Home() {
           </div>
 
           {/* Info Box */}
-          <div className="nes-container is-rounded pond-theme mt-4 sm:mt-6">
-            <p className="text-[10px] sm:text-xs md:text-sm leading-relaxed flex items-start gap-2">
+          <div className="nes-container is-rounded pond-theme mt-6 sm:mt-8 md:mt-10">
+            <p className="text-[10px] sm:text-xs md:text-sm leading-relaxed flex items-start gap-2 py-2 sm:py-3">
               <i className="nes-icon exclamation is-small flex-shrink-0"></i>
               <span>
                 Test your skills across 4 categories:<br />
-                <span className="block mt-2">
-                  <i className="nes-icon file is-small"></i> Text • 
-                  <i className="nes-icon star is-small"></i> Images • 
-                  <i className="nes-icon heart is-small"></i> Audio • 
+                <span className="block mt-3 sm:mt-4">
+                  <i className="nes-icon file is-small"></i> Text •
+                  <i className="nes-icon star is-small"></i> Images •
+                  <i className="nes-icon heart is-small"></i> Audio •
                   <i className="nes-icon trophy is-small"></i> Videos
                 </span>
               </span>
@@ -164,7 +164,7 @@ export default function Home() {
         </div>
 
         {/* Developer Attribution */}
-        <div className="nes-container is-rounded pond-theme mt-4 sm:mt-6 p-3 sm:p-4">
+        <div className="nes-container is-rounded pond-theme mt-6 sm:mt-8 md:mt-10 p-4 sm:p-5 md:p-6">
           <div className="text-center sm:text-left">
             <p className="text-[10px] sm:text-xs font-bold mb-1">
               Crafted by Chan Meng
