@@ -29,12 +29,12 @@ export default function TutorialPage() {
       
       <div className="flex-1 flex items-center justify-center">
         <div className="w-full max-w-[95%] sm:max-w-2xl md:max-w-3xl">
-        
+
         {/* Header */}
-        <div className="nes-container is-dark with-title mb-4 sm:mb-6">
+        <div className="nes-container is-dark with-title mb-6 sm:mb-8 md:mb-10">
           <p className="title text-xs sm:text-sm md:text-base">How to Play</p>
-          <div className="text-center py-3 sm:py-4">
-            <div className="mb-2 flex justify-center">
+          <div className="text-center py-4 sm:py-5 md:py-6">
+            <div className="mb-3 sm:mb-4 flex justify-center">
               <i className="nes-icon file is-large"></i>
             </div>
             <p className="text-white text-xs sm:text-sm">
@@ -44,7 +44,7 @@ export default function TutorialPage() {
         </div>
 
         {/* Game Rules */}
-        <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6">
+        <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10">
           <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
             <i className="nes-icon trophy is-small"></i>
             Game Objective
@@ -58,12 +58,12 @@ export default function TutorialPage() {
         </div>
 
         {/* How to Play */}
-        <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+        <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2">
             <i className="nes-icon star is-small"></i>
             How to Play
           </h2>
-          <div className="space-y-3 sm:space-y-4">
+          <div className="space-y-4 sm:space-y-5 md:space-y-6">
             <div className="flex gap-3">
               <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#9b2e83] text-white flex items-center justify-center font-bold text-sm sm:text-base">
                 1
@@ -115,12 +115,12 @@ export default function TutorialPage() {
         </div>
 
         {/* Categories */}
-        <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+        <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2">
             <i className="nes-icon file is-small"></i>
             Four Categories
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
             <div className="nes-container is-rounded">
               <div className="flex items-center gap-2 mb-2">
                 <i className="nes-icon file is-small"></i>
@@ -164,12 +164,12 @@ export default function TutorialPage() {
         </div>
 
         {/* Difficulty Levels */}
-        <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+        <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2">
             <i className="nes-icon star is-small"></i>
             Difficulty Levels
           </h2>
-          <div className="space-y-2 text-xs sm:text-sm">
+          <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
               <span className="bg-green-600 px-2 py-1 rounded text-[10px]">EASY</span>
               <span>Obvious differences: <strong>1 point</strong></span>
@@ -186,12 +186,12 @@ export default function TutorialPage() {
         </div>
 
         {/* Combo System */}
-        <div className="nes-container is-rounded is-warning mb-4 sm:mb-6 text-gray-800">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-yellow-800">
+        <div className="nes-container is-rounded is-warning mb-6 sm:mb-8 md:mb-10 text-gray-800">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2 text-yellow-800">
             <span>🔥</span>
             Combo Bonuses
           </h2>
-          <div className="space-y-2 text-xs sm:text-sm text-gray-800">
+          <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-800">
             <p className="mb-2">Get extra points for consecutive correct answers!</p>
             <div className="flex justify-between items-center">
               <span>3 in a row:</span>
@@ -217,12 +217,12 @@ export default function TutorialPage() {
         </div>
 
         {/* Milestone Rewards */}
-        <div className="nes-container is-rounded is-success mb-4 sm:mb-6 text-gray-800">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-green-800">
+        <div className="nes-container is-rounded is-success mb-6 sm:mb-8 md:mb-10 text-gray-800">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2 text-green-800">
             <span>🎯</span>
             Milestone Rewards
           </h2>
-          <div className="space-y-2 text-xs sm:text-sm text-gray-800">
+          <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-800">
             <p className="mb-2">Reach milestones to earn bonus points!</p>
             <div className="flex justify-between items-center">
               <span>Complete 5 questions:</span>
@@ -244,12 +244,12 @@ export default function TutorialPage() {
         </div>
 
         {/* Scoring */}
-        <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+        <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2">
             <i className="nes-icon coin is-small"></i>
             Maximum Scores
           </h2>
-          <div className="space-y-2 text-xs sm:text-sm">
+          <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
               <i className="nes-icon trophy is-small"></i>
               <span>Each category: Base <strong>23-43 points</strong> + Bonuses <strong>up to 47 points</strong></span>
@@ -266,12 +266,12 @@ export default function TutorialPage() {
         </div>
 
         {/* Performance Levels */}
-        <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+        <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2">
             <i className="nes-icon user is-small"></i>
             Rating System
           </h2>
-          <div className="space-y-2 text-xs sm:text-sm">
+          <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
             <div className="flex justify-between items-center">
               <span className="opacity-80">20/20</span>
               <span className="font-bold text-yellow-600 flex items-center gap-2">
@@ -304,12 +304,12 @@ export default function TutorialPage() {
         </div>
 
         {/* Tips */}
-        <div className="nes-container is-rounded is-warning mb-4 sm:mb-6 text-gray-800">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-yellow-800">
+        <div className="nes-container is-rounded is-warning mb-6 sm:mb-8 md:mb-10 text-gray-800">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2 text-yellow-800">
             <i className="nes-icon exclamation is-small"></i>
             Useful Tips
           </h2>
-          <ul className="space-y-2 text-xs sm:text-sm list-disc list-inside text-gray-800">
+          <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm list-disc list-inside text-gray-800">
             <li>Pay attention to details - AI-generated content often has telltale signs</li>
             <li>Human creations usually have more emotion and personalized expression</li>
             <li>AI content might be too perfect or have unnatural elements</li>
@@ -319,7 +319,7 @@ export default function TutorialPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col gap-3 sm:gap-4 justify-center">
+        <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 justify-center">
           <button
             onClick={handleStartGame}
             className="nes-btn is-success text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 py-4 hover:scale-105 transition-transform animate-pulse-slow"

@@ -143,7 +143,7 @@ export default function GamePage() {
   }
 
   return (
-    <div className="min-h-screen pond-gradient flex flex-col p-2 sm:p-3 md:p-4">
+    <div className="min-h-screen pond-gradient flex flex-col p-4 sm:p-6 md:p-8 lg:p-10">
       <Navigation
         showBackButton={false}
         showExitButton={true}
@@ -161,7 +161,7 @@ export default function GamePage() {
       )}
 
       {/* Top Bar */}
-      <div className="mb-2 sm:mb-3 md:mb-4">
+      <div className="mb-4 sm:mb-6 md:mb-8">
         <div className="nes-container is-dark">
           <div className="flex flex-wrap justify-between items-center gap-2 text-[10px] sm:text-xs md:text-sm">
             <div className="flex items-center gap-2">
@@ -191,8 +191,8 @@ export default function GamePage() {
       </div>
 
       {/* Question */}
-      <div className="nes-container is-rounded pond-theme mb-2 sm:mb-3 md:mb-4">
-        <p className="text-center text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2">
+      <div className="nes-container is-rounded pond-theme mb-4 sm:mb-6 md:mb-8">
+        <p className="text-center text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-2 sm:mb-3 md:mb-4">
           {currentQuestion.description}
         </p>
         <p className="text-center text-[10px] sm:text-xs opacity-80">
@@ -201,10 +201,10 @@ export default function GamePage() {
       </div>
 
       {/* Content Display Area - Single centered item */}
-      <div className="flex-1 flex flex-col items-center justify-center mb-2 sm:mb-3 max-w-4xl mx-auto w-full">
+      <div className="flex-1 flex flex-col items-center justify-center mb-4 sm:mb-6 max-w-4xl mx-auto w-full">
 
         {/* Content Panel */}
-        <div className="w-full mb-3 sm:mb-4">
+        <div className="w-full mb-6 sm:mb-8 md:mb-10">
           <div className="nes-container pond-theme overflow-hidden">
             <div className="h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px]">
               <ContentDisplay
@@ -217,7 +217,7 @@ export default function GamePage() {
         </div>
 
         {/* Answer Buttons - Side by side */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-2xl">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6 w-full max-w-2xl">
           {/* Human Button */}
           <button
             onClick={() => handleChoice("human")}

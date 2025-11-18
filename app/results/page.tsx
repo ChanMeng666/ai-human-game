@@ -204,25 +204,25 @@ export default function ResultsPage() {
       
       <div className="flex-1 flex flex-col items-center">
         <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
-        
+
         {/* Title */}
-        <div className="nes-container is-dark with-title mb-3 sm:mb-4 md:mb-6">
+        <div className="nes-container is-dark with-title mb-6 sm:mb-8 md:mb-10">
           <p className="title text-xs sm:text-sm md:text-base">Game Over!</p>
-          <p className="text-center text-white text-xs sm:text-sm md:text-base py-2 sm:py-3">
+          <p className="text-center text-white text-xs sm:text-sm md:text-base py-3 sm:py-4 md:py-5">
             Category: {category?.toUpperCase()}
           </p>
         </div>
 
         {/* Score Display */}
-        <div className="nes-container pond-theme mb-3 sm:mb-4 md:mb-6">
-          <div className="text-center py-4 sm:py-6">
+        <div className="nes-container pond-theme mb-6 sm:mb-8 md:mb-10">
+          <div className="text-center py-6 sm:py-8 md:py-10">
             <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 font-bold">
               {score} Points
             </div>
 
             {/* Score Breakdown */}
-            <div className="nes-container is-dark mb-3 sm:mb-4 text-left">
-              <div className="text-xs sm:text-sm space-y-2">
+            <div className="nes-container is-dark mb-4 sm:mb-5 md:mb-6 text-left">
+              <div className="text-xs sm:text-sm space-y-3 sm:space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="opacity-80">Base Score:</span>
                   <span className="font-bold">{baseScore} pts</span>
@@ -240,8 +240,8 @@ export default function ResultsPage() {
 
             {/* Combo Achievement */}
             {maxCombo > 0 && (
-              <div className="nes-container is-rounded bg-orange-500 bg-opacity-20 mb-3 sm:mb-4">
-                <p className="text-xs sm:text-sm text-center flex items-center justify-center gap-2">
+              <div className="nes-container is-rounded bg-orange-500 bg-opacity-20 mb-4 sm:mb-5 md:mb-6">
+                <p className="text-xs sm:text-sm text-center flex items-center justify-center gap-2 py-2 sm:py-3">
                   <span>🔥</span>
                   <span>Max Combo: <strong>{maxCombo}x</strong></span>
                   {maxCombo >= 20 && <span className="text-yellow-400">PERFECT!</span>}
@@ -250,7 +250,7 @@ export default function ResultsPage() {
               </div>
             )}
 
-            <div className="text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6 px-2 sm:px-4 leading-relaxed flex items-center justify-center gap-2">
+            <div className="text-xs sm:text-sm md:text-base lg:text-lg mb-6 sm:mb-8 md:mb-10 px-2 sm:px-4 leading-relaxed flex items-center justify-center gap-2">
               <i className={`nes-icon ${getPerformanceMessage().icon} is-small`}></i>
               <span>{getPerformanceMessage().text}</span>
             </div>
@@ -266,11 +266,11 @@ export default function ResultsPage() {
         </div>
 
         {/* Answer Review */}
-        <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 text-center">
+        <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 text-center">
             Answer Review
           </h2>
-          <div className="max-h-[250px] sm:max-h-[300px] md:max-h-[350px] overflow-y-auto space-y-2 sm:space-y-3">
+          <div className="max-h-[250px] sm:max-h-[300px] md:max-h-[350px] overflow-y-auto space-y-3 sm:space-y-4 md:space-y-5">
             {userAnswers.map((answer, index) => {
               const question = questions.find((q) => q.id === answer.questionId);
               return (
@@ -302,9 +302,9 @@ export default function ResultsPage() {
         </div>
 
         {/* Progress Info */}
-        <div className="nes-container is-dark mb-3 sm:mb-4 md:mb-6">
-          <div className="text-center text-white">
-            <p className="text-xs sm:text-sm mb-2">
+        <div className="nes-container is-dark mb-6 sm:mb-8 md:mb-10">
+          <div className="text-center text-white py-3 sm:py-4">
+            <p className="text-xs sm:text-sm mb-3">
               <i className="nes-icon trophy is-small"></i> Progress: {completedCategories.length}/4 Categories
             </p>
             {hasMoreCategories && (
@@ -317,24 +317,24 @@ export default function ResultsPage() {
 
         {/* Contextual Suggestions */}
         {score < 16 && (
-          <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6 animate-slide-in-up">
-            <p className="text-xs sm:text-sm text-center">
+          <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10 animate-slide-in-up">
+            <p className="text-xs sm:text-sm text-center py-3 sm:py-4">
               <i className="nes-icon redo is-small"></i> Want to improve? Try <strong className="uppercase">{category}</strong> again!
             </p>
           </div>
         )}
         {hasMoreCategories && score >= 16 && suggestedCategory && (
-          <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6 animate-slide-in-up">
-            <p className="text-xs sm:text-sm text-center">
+          <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10 animate-slide-in-up">
+            <p className="text-xs sm:text-sm text-center py-3 sm:py-4">
               <i className="nes-icon star is-small"></i> Great job! Ready for <strong className="uppercase">{suggestedCategory}</strong>?
             </p>
           </div>
         )}
 
         {/* Action Buttons */}
-        <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
+        <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 mb-4 sm:mb-6">
           {hasMoreCategories ? (
-            <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 md:gap-5">
               <button
                 onClick={handleContinue}
                 className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0 hover:scale-105 transition-transform"
@@ -353,7 +353,7 @@ export default function ResultsPage() {
               )}
             </div>
           ) : (
-            <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 md:gap-5">
               <button
                 onClick={handleViewSummary}
                 className="nes-btn is-success text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0 hover:scale-105 transition-transform"
@@ -370,9 +370,9 @@ export default function ResultsPage() {
               </button>
             </div>
           )}
-          
+
           {/* Secondary Actions */}
-          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 md:gap-5">
             <button
               onClick={handleRetryCurrentCategory}
               className="nes-btn is-warning text-xs sm:text-sm flex items-center justify-center gap-2 mx-auto sm:mx-0"

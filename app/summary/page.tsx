@@ -117,18 +117,18 @@ export default function SummaryPage() {
       
       <div className="flex-1 flex flex-col items-center">
         <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
-        
+
         {/* Title */}
-        <div className="nes-container is-dark with-title mb-3 sm:mb-4 md:mb-6">
+        <div className="nes-container is-dark with-title mb-6 sm:mb-8 md:mb-10">
           <p className="title text-xs sm:text-sm md:text-base">Overall Summary</p>
-          <p className="text-center text-white text-xs sm:text-sm md:text-base py-2 sm:py-3">
+          <p className="text-center text-white text-xs sm:text-sm md:text-base py-3 sm:py-4 md:py-5">
             Your Performance Across All Categories
           </p>
         </div>
 
         {/* Total Score Display */}
-        <div className="nes-container pond-theme mb-3 sm:mb-4 md:mb-6">
-          <div className="text-center py-4 sm:py-6">
+        <div className="nes-container pond-theme mb-6 sm:mb-8 md:mb-10">
+          <div className="text-center py-6 sm:py-8 md:py-10">
             <div className="mb-3 sm:mb-4 flex justify-center">
               <i className={`nes-icon ${getPerformanceIcon()} size-2x`}></i>
             </div>
@@ -159,11 +159,11 @@ export default function SummaryPage() {
         </div>
 
         {/* Categories Breakdown */}
-        <div className="nes-container is-rounded pond-theme mb-3 sm:mb-4 md:mb-6">
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 text-center">
+        <div className="nes-container is-rounded pond-theme mb-6 sm:mb-8 md:mb-10">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-5 md:mb-6 text-center">
             Category Breakdown
           </h2>
-          <div className="space-y-2 sm:space-y-3">
+          <div className="space-y-3 sm:space-y-4 md:space-y-5">
             {completedCategories.map((categoryData) => {
               const categoryPercentage = (categoryData.score / categoryData.totalQuestions) * 100;
               const badgeIcon = categoryPercentage === 100 ? "trophy" : categoryPercentage >= 80 ? "star" : categoryPercentage >= 50 ? "thumbs-up" : "heart";
@@ -215,9 +215,9 @@ export default function SummaryPage() {
 
         {/* Progress Info */}
         {hasMoreCategories && (
-          <div className="nes-container is-dark mb-3 sm:mb-4 md:mb-6">
-            <div className="text-center text-white">
-              <p className="text-xs sm:text-sm mb-2">
+          <div className="nes-container is-dark mb-6 sm:mb-8 md:mb-10">
+            <div className="text-center text-white py-3 sm:py-4">
+              <p className="text-xs sm:text-sm mb-3">
                 <i className="nes-icon trophy is-small"></i> Completed: {completedCategories.length}/4 Categories
               </p>
               <p className="text-[10px] sm:text-xs opacity-80">
@@ -228,7 +228,7 @@ export default function SummaryPage() {
         )}
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 md:gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 md:gap-5">
           {hasMoreCategories ? (
             <>
               <button
@@ -268,8 +268,8 @@ export default function SummaryPage() {
 
         {/* Completion Message */}
         {!hasMoreCategories && (
-          <div className="mt-4 sm:mt-6 nes-container is-rounded is-dark text-center">
-            <p className="text-white text-xs sm:text-sm md:text-base py-2 sm:py-3 flex items-center justify-center gap-2">
+          <div className="mt-6 sm:mt-8 md:mt-10 nes-container is-rounded is-dark text-center">
+            <p className="text-white text-xs sm:text-sm md:text-base py-3 sm:py-4 md:py-5 flex items-center justify-center gap-2">
               <i className="nes-icon star is-small"></i>
               <span>Congratulations! You&apos;ve completed all categories!</span>
               <i className="nes-icon star is-small"></i>
