@@ -29,6 +29,11 @@ const pixelifySans = Pixelify_Sans({
 export const metadata: Metadata = {
   title: "AI vs Human - Guessing Game",
   description: "Can you tell the difference between AI-generated and human-created content?",
+  icons: {
+    icon: "/ai-human-game.svg",
+    shortcut: "/ai-human-game.svg",
+    apple: "/ai-human-game.svg",
+  },
 };
 
 export default function RootLayout({

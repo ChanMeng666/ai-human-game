@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 import { useGame } from "@/src/context/GameContext";
 import Breadcrumb from "./Breadcrumb";
 import QuickStatsModal from "./QuickStatsModal";
@@ -92,8 +93,25 @@ export default function Navigation({
       <div className="w-full mb-3 sm:mb-4">
         <div className="nes-container is-dark">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
-            {/* Left side: Back button and breadcrumb */}
+            {/* Left side: Logo, Back button and breadcrumb */}
             <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+              {/* Logo as Home Link */}
+              <button
+                onClick={() => {
+                  playBubbleSound();
+                  router.push("/");
+                }}
+                className="flex-shrink-0 hover:scale-110 transition-transform"
+                title="Go to Home"
+              >
+                <Image
+                  src="/ai-human-game.svg"
+                  alt="AI vs Human"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 sm:w-10 sm:h-10"
+                />
+              </button>
               {showBackButton && (
                 <button
                   onClick={handleBack}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useGame } from "@/src/context/GameContext";
 import ProgressRestoreModal from "@/src/components/ProgressRestoreModal";
@@ -77,10 +78,16 @@ export default function Home() {
           
           {/* Game Title */}
           <div className="text-center py-8 sm:py-10 md:py-12 lg:py-14">
-            <div className="text-5xl sm:text-6xl md:text-7xl mb-6 sm:mb-8 md:mb-10 float-animation flex items-center justify-center gap-3 sm:gap-4">
-              <i className="nes-icon cog is-large"></i>
-              <span>vs</span>
-              <i className="nes-icon user is-large"></i>
+            {/* Logo */}
+            <div className="mb-6 sm:mb-8 md:mb-10 float-animation flex items-center justify-center">
+              <Image
+                src="/ai-human-game.svg"
+                alt="AI vs Human Game Logo"
+                width={150}
+                height={150}
+                className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48"
+                priority
+              />
             </div>
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-6 sm:mb-8 md:mb-10">
               Guessing Game
