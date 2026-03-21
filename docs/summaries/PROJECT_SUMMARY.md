@@ -72,11 +72,11 @@ All planned features have been successfully implemented.
 - Custom Peaberry font
 
 ### Audio Assets (8 files)
-- bubble.wav - Button clicks
-- click.wav - UI interactions
-- correct.wav - Correct answer
-- incorrect.wav - Wrong answer
-- Plus 4 additional sound effects
+- bubble.mp3 - Button clicks
+- click.mp3 - UI interactions
+- correct.mp3 - Correct answer
+- incorrect.mp3 - Wrong answer
+- Plus 4 additional sound effects (all in MP3 format)
 
 ---
 
@@ -147,7 +147,7 @@ ai-human-game/
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | Language | TypeScript |
 | Styling | TailwindCSS |
 | State | React Context API |
@@ -214,7 +214,7 @@ ai-human-game/
 ## 🎓 Learning Outcomes
 
 This project demonstrates:
-- Next.js 15 App Router
+- Next.js 16 App Router
 - React Context API for state management
 - TypeScript interfaces and types
 - Component composition

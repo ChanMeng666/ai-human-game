@@ -1,0 +1,11 @@
+{
+  "name": "ai-human-game",
+  "account_id": "c87dca24333f7ed5d643f731f6308fec",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-03-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  }
+}

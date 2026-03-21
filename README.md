@@ -6,7 +6,7 @@ An interactive web-based quiz game that challenges players to identify whether c
 Features beautiful pond-themed UI, real-time scoring, and progressive difficulty.<br/>
 One-click **FREE** deployment ready.
 
-[![🎮 Play Live Demo 🎮](https://gradient-svg-generator.vercel.app/api/svg?text=%F0%9F%8E%AEPlay%20Live%20Demo%F0%9F%8E%AE&color=000000&height=60&gradientType=radial&duration=6s&color0=4CAF50&template=pride-rainbow)](https://ai-human-game.vercel.app/)
+[![🎮 Play Live Demo 🎮](https://gradient-svg-generator.vercel.app/api/svg?text=%F0%9F%8E%AEPlay%20Live%20Demo%F0%9F%8E%AE&color=000000&height=60&gradientType=radial&duration=6s&color0=4CAF50&template=pride-rainbow)](https://ai-human-game.chanmeng-dev.workers.dev/)
 
 <br/>
 
@@ -83,7 +83,7 @@ Whether you're a student learning about AI, an educator teaching digital literac
 
 ## 🎮 Live Demo
 
-Experience the game now at **[https://ai-human-game.vercel.app/](https://ai-human-game.vercel.app/)**
+Experience the game now at **[https://ai-human-game.chanmeng-dev.workers.dev/](https://ai-human-game.chanmeng-dev.workers.dev/)**
 
 > [!NOTE]
 > - Node.js >= 18.0 required for local development
@@ -146,7 +146,7 @@ Beyond the core gameplay, this project includes:
 
 - [x] 🎨 **Beautiful UI/UX**: Custom pond-themed design with professional graphics
 - [x] 📱 **Fully Responsive**: Seamless experience across all devices
-- [x] ⚡ **Lightning Fast**: Optimized Next.js 15 with App Router
+- [x] ⚡ **Lightning Fast**: Optimized Next.js 16 with App Router
 - [x] 🔒 **Privacy First**: No data collection, all processing client-side
 - [x] 🎵 **Sound Effects**: Optional audio feedback for interactions
 - [x] 📊 **Detailed Statistics**: Comprehensive performance breakdowns
@@ -166,7 +166,7 @@ Beyond the core gameplay, this project includes:
 <div align="center">
 
 ### Home Screen
-<img src="https://ai-human-game.vercel.app/og-image.png" alt="AI vs Human Guessing Game - Home Screen" width="800"/>
+<img src="https://ai-human-game.chanmeng-dev.workers.dev/og-image.png" alt="AI vs Human Guessing Game - Home Screen" width="800"/>
 
 <p><em>Beautiful pond-themed interface welcoming players to the challenge</em></p>
 
@@ -184,7 +184,7 @@ Beyond the core gameplay, this project includes:
 > - 📊 **Results Page**: Comprehensive performance analysis and statistics
 > - 🎯 **Summary View**: Track your progress across all categories
 
-Visit [the live demo](https://ai-human-game.vercel.app/) to experience the full interface!
+Visit [the live demo](https://ai-human-game.chanmeng-dev.workers.dev/) to experience the full interface!
 
 </details>
 
@@ -195,7 +195,7 @@ Visit [the live demo](https://ai-human-game.vercel.app/) to experience the full 
     <tr>
       <td align="center" width="96">
         <img src="https://cdn.simpleicons.org/nextdotjs" width="48" height="48" alt="Next.js" />
-        <br>Next.js 15
+        <br>Next.js 16
       </td>
       <td align="center" width="96">
         <img src="https://cdn.simpleicons.org/react" width="48" height="48" alt="React" />
@@ -214,7 +214,7 @@ Visit [the live demo](https://ai-human-game.vercel.app/) to experience the full 
 </div>
 
 **Frontend Stack:**
-- **Framework**: Next.js 15 with App Router for optimal performance
+- **Framework**: Next.js 16 with App Router for optimal performance
 - **Language**: TypeScript 5 for complete type safety
 - **Styling**: Tailwind CSS with custom Peaberry font
 - **State Management**: React Context API for game state
@@ -527,8 +527,10 @@ ai-human-game/
 │       └── videos/              # Video content pairs
 ├── package.json                 # Dependencies & scripts
 ├── tsconfig.json                # TypeScript configuration
-├── tailwind.config.js           # Tailwind CSS configuration
-├── next.config.js               # Next.js configuration
+├── tailwind.config.ts           # Tailwind CSS configuration
+├── next.config.ts               # Next.js configuration
+├── wrangler.jsonc               # Cloudflare Workers configuration
+├── open-next.config.ts          # OpenNext adapter configuration
 └── README.md                    # This file
 ```
 
@@ -677,40 +679,33 @@ Vary the `humanPosition` field across questions to prevent pattern-based guessin
 
 ### Cloud Deployment Options
 
-**Vercel (Recommended)**
+**Cloudflare Workers (Recommended)**
 
-The live demo is already deployed at [https://ai-human-game.vercel.app/](https://ai-human-game.vercel.app/)
+The live demo is deployed at [https://ai-human-game.chanmeng-dev.workers.dev/](https://ai-human-game.chanmeng-dev.workers.dev/)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FChanMeng666%2Fai-human-game)
-
-**Manual Vercel Deployment:**
+**Deployment via Wrangler CLI:**
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
+# Login to Cloudflare
+npx wrangler login
 
-# Deploy to production
-vercel --prod
+# Build and deploy
+npm run deploy
 ```
 
 > [!TIP]
-> The project is optimized for Vercel deployment with automatic builds and instant previews for pull requests.
+> The project uses `@opennextjs/cloudflare` adapter for deploying Next.js on Cloudflare Workers with edge performance and global CDN.
 
 **Other Platforms:**
 
 <details>
 <summary><kbd>☁️ Alternative Deployment Options</kbd></summary>
 
-**Netlify:**
+**Vercel:**
 ```bash
-npm run build
-netlify deploy --prod
+npm i -g vercel
+vercel --prod
 ```
-
-**Railway:**
-- Connect your GitHub repository
-- Railway will auto-detect Next.js
-- Deploy with one click
 
 **Self-Hosted:**
 ```bash
@@ -908,7 +903,7 @@ This project is open source and available under the MIT License.
 [back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
 
 <!-- Project Links -->
-[project-link]: https://ai-human-game.vercel.app/
+[project-link]: https://ai-human-game.chanmeng-dev.workers.dev/
 [github-repo]: https://github.com/ChanMeng666/ai-human-game
 
 <!-- Tech Stack Links -->
@@ -918,15 +913,15 @@ This project is open source and available under the MIT License.
 [license-link]: LICENSE
 
 <!-- Shield Badges -->
-[next-shield]: https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js&logoColor=white
+[next-shield]: https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js&logoColor=white
 [typescript-shield]: https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript&logoColor=white
-[tailwind-shield]: https://img.shields.io/badge/TailwindCSS-3-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white
+[tailwind-shield]: https://img.shields.io/badge/TailwindCSS-4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white
 [license-shield]: https://img.shields.io/badge/License-MIT-green?style=flat-square
 
 <!-- Social Share Links -->
-[share-x-link]: https://x.com/intent/tweet?hashtags=AI,GuessingGame,MachineLearning&text=Test%20your%20ability%20to%20distinguish%20AI%20from%20human%20content!%20Play%20now%20at&url=https%3A%2F%2Fai-human-game.vercel.app
-[share-linkedin-link]: https://linkedin.com/sharing/share-offsite/?url=https://ai-human-game.vercel.app
-[share-reddit-link]: https://www.reddit.com/submit?title=AI%20vs%20Human%20Guessing%20Game%20-%20Test%20Your%20Skills&url=https%3A%2F%2Fai-human-game.vercel.app
+[share-x-link]: https://x.com/intent/tweet?hashtags=AI,GuessingGame,MachineLearning&text=Test%20your%20ability%20to%20distinguish%20AI%20from%20human%20content!%20Play%20now%20at&url=https%3A%2F%2Fai-human-game.chanmeng-dev.workers.dev
+[share-linkedin-link]: https://linkedin.com/sharing/share-offsite/?url=https://ai-human-game.chanmeng-dev.workers.dev
+[share-reddit-link]: https://www.reddit.com/submit?title=AI%20vs%20Human%20Guessing%20Game%20-%20Test%20Your%20Skills&url=https%3A%2F%2Fai-human-game.chanmeng-dev.workers.dev
 
 [share-x-shield]: https://img.shields.io/badge/-share%20on%20x-black?labelColor=black&logo=x&logoColor=white&style=flat-square
 [share-linkedin-shield]: https://img.shields.io/badge/-share%20on%20linkedin-black?labelColor=black&logo=linkedin&logoColor=white&style=flat-square

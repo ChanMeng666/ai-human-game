@@ -29,7 +29,7 @@
 ### ✅ Completed Tasks (10/10)
 
 1. ✅ **Next.js Project Initialized**
-   - Framework: Next.js 15 (App Router)
+   - Framework: Next.js 16 (App Router)
    - Language: TypeScript
    - Styling: TailwindCSS
    - Build: Successful
@@ -180,17 +180,17 @@ npm run build
 npm start
 ```
 
-### Deploy to Vercel (Recommended)
+### Deploy to Cloudflare Workers (Recommended)
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
+# Login to Cloudflare
+npx wrangler login
 
-# Deploy
-vercel
+# Build and deploy
+npm run deploy
 ```
 
-Or connect your GitHub repo to Vercel for automatic deployments.
+Deployed at: https://ai-human-game.chanmeng-dev.workers.dev/
 
 ---
 
@@ -314,6 +314,7 @@ Then open: **http://localhost:3000**
 
 *Project Status: ✅ COMPLETE & PRODUCTION-READY*  
 *Build Date: October 29, 2025*  
-*Framework: Next.js 15 | TypeScript | TailwindCSS*  
+*Framework: Next.js 16 | TypeScript | TailwindCSS*
+*Deployed on: Cloudflare Workers via @opennextjs/cloudflare*  
 *Theme: Pond Theme (from OOPTriviaGame)*
 

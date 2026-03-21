@@ -19,7 +19,7 @@ export default function QuickStatsModal({ show, onClose }: QuickStatsModalProps)
 
   const playBubbleSound = () => {
     if (soundEnabled) {
-      const bubbleAudio = new Audio("/audio/bubble.wav");
+      const bubbleAudio = new Audio("/audio/bubble.mp3");
       bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
     }
   };

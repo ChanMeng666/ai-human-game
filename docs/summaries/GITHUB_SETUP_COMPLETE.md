@@ -41,7 +41,7 @@ The repository has been tagged with the following topics for discoverability:
 ### ✅ Core Documentation
 
 1. **README.md** - Complete project documentation with badges
-   - Next.js 15 badge
+   - Next.js 16 badge
    - TypeScript badge
    - TailwindCSS badge
    - MIT License badge
@@ -128,8 +128,8 @@ The repository has been tagged with the following topics for discoverability:
 
 ### 📋 Ready for Setup
 
-- [ ] GitHub Pages / Vercel deployment
-- [ ] Homepage URL (add after deployment)
+- [x] Cloudflare Workers deployment (https://ai-human-game.chanmeng-dev.workers.dev/)
+- [x] Homepage URL configured
 - [ ] Social preview image (1200x630px recommended)
 - [ ] GitHub Actions workflows
 - [ ] Branch protection rules
@@ -142,15 +142,14 @@ The repository has been tagged with the following topics for discoverability:
 
 ### For Deployment
 
-1. **Deploy to Vercel** (Recommended)
+1. **Deployed to Cloudflare Workers**
    ```bash
-   npm i -g vercel
-   vercel
+   npx wrangler login
+   npm run deploy
    ```
-   
+   Live at: https://ai-human-game.chanmeng-dev.workers.dev/
+
 2. **Update Repository Settings**
-   - Add homepage URL after deployment
-   - Update README live demo link
    - Add screenshot images
 
 3. **Create Social Preview**
@@ -208,7 +207,7 @@ distinguish between AI-generated and human-created content across
 four categories: Text, Images, Audio, and Video.
 
 Built with:
-- Next.js 15
+- Next.js 16
 - TypeScript
 - TailwindCSS
 - React Context API
@@ -242,5 +241,5 @@ Your AI vs Human Game is now:
 
 *Setup completed on: October 29, 2025*  
 *Repository created by: ChanMeng666*  
-*Framework: Next.js 15 | TypeScript | TailwindCSS*
+*Framework: Next.js 16 | TypeScript | TailwindCSS | Cloudflare Workers*
 

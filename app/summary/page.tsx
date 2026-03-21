@@ -44,7 +44,7 @@ export default function SummaryPage() {
 
   const playBubbleSound = () => {
     if (soundEnabled) {
-      const bubbleAudio = new Audio("/audio/bubble.wav");
+      const bubbleAudio = new Audio("/audio/bubble.mp3");
       bubbleAudio.play().catch((e) => console.log("Audio play failed:", e));
     }
   };

@@ -1,6 +1,6 @@
 # CLAUDE.md - AI Assistant Guide for AI vs Human Guessing Game
 
-> **Last Updated**: 2025-11-17
+> **Last Updated**: 2026-03-21
 > **Project Version**: 0.1.0
 > **For AI Assistants**: This document provides comprehensive guidance for understanding and working with this codebase.
 
@@ -42,7 +42,7 @@
 
 ### Live Demo
 
-- **Production URL**: https://ai-human-game.vercel.app/
+- **Production URL**: https://ai-human-game.chanmeng-dev.workers.dev/
 - **Repository**: https://github.com/ChanMeng666/ai-human-game
 
 ---
@@ -51,7 +51,7 @@
 
 ```
 ai-human-game/
-├── app/                          # Next.js 15 App Router
+├── app/                          # Next.js 16 App Router
 │   ├── page.tsx                 # Home page (entry point)
 │   ├── category/page.tsx        # Category selection
 │   ├── game/page.tsx            # Main game interface
@@ -86,7 +86,7 @@ ai-human-game/
 │       └── images/              # UI graphics (buttons, fish, windows)
 │
 ├── public/
-│   ├── audio/                   # Sound effects (correct.wav, incorrect.wav, etc.)
+│   ├── audio/                   # Sound effects (correct.mp3, incorrect.mp3, etc.)
 │   └── content/                 # Game content files (user-provided)
 │       ├── text/                # human_1.txt to human_10.txt, ai_1.txt to ai_10.txt
 │       ├── images/              # human_1.jpg to human_10.jpg, ai_1.jpg to ai_10.jpg
@@ -108,6 +108,8 @@ ai-human-game/
 ├── tailwind.config.ts           # Tailwind CSS configuration
 ├── tsconfig.json                # TypeScript configuration
 ├── eslint.config.mjs            # ESLint configuration
+├── wrangler.jsonc               # Cloudflare Workers configuration
+├── open-next.config.ts          # OpenNext adapter configuration
 └── README.md                    # User-facing documentation
 ```
 
@@ -117,7 +119,7 @@ ai-human-game/
 
 ### Core Framework
 
-- **Next.js 16.0.1** - React framework with App Router
+- **Next.js 16.0.11** - React framework with App Router
 - **React 19.2.0** - UI library (latest React 19)
 - **TypeScript 5** - Type safety
 
@@ -144,6 +146,8 @@ ai-human-game/
 3. **No External APIs**: All content is static files
 4. **SSR/SSG**: Leverages Next.js for optimal performance
 5. **Type Safety**: Strict TypeScript configuration
+6. **Cloudflare Workers**: Deployed via `@opennextjs/cloudflare` adapter
+7. **Image Optimization Disabled**: `images.unoptimized: true` (Cloudflare Workers does not support Sharp)
 
 ---
 
@@ -358,8 +362,8 @@ npm run build
 # Test production build locally
 npm start
 
-# Deploy to Vercel (recommended)
-vercel --prod
+# Deploy to Cloudflare Workers (recommended)
+npm run deploy
 ```
 
 ---
@@ -465,13 +469,13 @@ Usage: `bg-she-sharp-blue`, `text-she-sharp-purple-dark`, etc.
 **Location**: `public/audio/`
 
 **Available Sounds**:
-- `correct.wav` - Correct answer feedback
-- `incorrect.wav` (or `buzzer.wav`) - Wrong answer feedback
-- `click.wav` - Button click
-- `bubble.wav` - UI interaction
-- `cronch.wav` - Special interaction
-- `dewwy.wav` - Water-themed sound
-- `its_not_showtime.wav` - Easter egg/special event
+- `correct.mp3` - Correct answer feedback
+- `incorrect.mp3` (or `buzzer.mp3`) - Wrong answer feedback
+- `click.mp3` - Button click
+- `bubble.mp3` - UI interaction
+- `cronch.mp3` - Special interaction
+- `dewwy.mp3` - Water-themed sound
+- `its_not_showtime.mp3` - Easter egg/special event
 
 **Usage Pattern**:
 ```typescript
@@ -484,7 +488,7 @@ const playSound = (soundFile: string) => {
 };
 
 // In handler
-playSound("/audio/correct.wav");
+playSound("/audio/correct.mp3");
 ```
 
 ---
@@ -593,9 +597,9 @@ startGame();
 ```typescript
 const isCorrect = submitAnswer("left"); // or "right"
 if (isCorrect) {
-  playSound("/audio/correct.wav");
+  playSound("/audio/correct.mp3");
 } else {
-  playSound("/audio/incorrect.wav");
+  playSound("/audio/incorrect.mp3");
 }
 ```
 
@@ -629,10 +633,19 @@ useEffect(() => {
 # Start development server
 npm run dev
 
-# Build for production
+# Build for production (standard Next.js)
 npm run build
 
-# Start production server
+# Build for Cloudflare Workers
+npm run build:cloudflare
+
+# Preview Cloudflare build locally
+npm run preview
+
+# Deploy to Cloudflare Workers
+npm run deploy
+
+# Start production server (local)
 npm start
 
 # Lint code
@@ -692,28 +705,30 @@ npx tsc --noEmit
 - [ ] Sound effects work
 - [ ] Error states display correctly (missing content)
 
-### Deployment to Vercel (Recommended)
+### Deployment to Cloudflare Workers (Recommended)
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
+# Login to Cloudflare
+npx wrangler login
 
-# Deploy to production
-vercel --prod
+# Build and deploy
+npm run deploy
 ```
 
-**Or use Vercel GitHub integration**:
-1. Connect repository to Vercel
-2. Push to main branch
-3. Vercel auto-deploys
+**Configuration**:
+- `wrangler.jsonc` - Cloudflare Workers configuration (account_id, assets, compatibility flags)
+- `open-next.config.ts` - OpenNext adapter configuration
+- Uses `@opennextjs/cloudflare` to convert Next.js output to Cloudflare Workers format
 
 **Environment**: No environment variables needed (fully static)
 
 ### Alternative Deployment Options
 
-**Netlify**:
-- Build command: `npm run build`
-- Publish directory: `.next`
+**Vercel**:
+```bash
+npm i -g vercel
+vercel --prod
+```
 
 **Self-Hosted**:
 ```bash
@@ -728,7 +743,7 @@ npm start
 
 ### 1. Critical Context
 
-- **This is a Next.js 15+ App Router application** - Use App Router conventions, not Pages Router
+- **This is a Next.js 16 App Router application** - Use App Router conventions, not Pages Router
 - **Client Components Required** - Most components need `"use client"` directive due to hooks/browser APIs
 - **No Backend/Database** - All state is client-side (Context + LocalStorage)
 - **Content is User-Provided** - Don't assume content files exist; handle missing files gracefully
@@ -796,7 +811,7 @@ Always use mobile-first responsive classes:
 
 ### 6. Performance Considerations
 
-- Images use Next.js `<Image>` component (auto-optimization)
+- Images use Next.js `<Image>` component (unoptimized mode on Cloudflare)
 - Text content fetched on-demand (not bundled)
 - Audio/video use native HTML5 elements (browser-optimized)
 - LocalStorage auto-saves after each answer (debounced)
@@ -843,6 +858,8 @@ Always use mobile-first responsive classes:
 - `next.config.ts` - Can break build
 - `tsconfig.json` - Can break TypeScript
 - `tailwind.config.ts` - Can break styling
+- `wrangler.jsonc` - Can break Cloudflare deployment
+- `open-next.config.ts` - Can break Cloudflare build
 
 ### 10. Git Workflow (for this project)
 
@@ -892,7 +909,7 @@ git push origin feature/your-feature-name
 
 | Package | Version | Purpose |
 |---------|---------|---------|
-| `next` | 16.0.1 | React framework |
+| `next` | 16.0.11 | React framework |
 | `react` | 19.2.0 | UI library |
 | `typescript` | ^5 | Type safety |
 | `tailwindcss` | ^4 | Utility CSS |
@@ -940,7 +957,7 @@ const textQuestions = questions.filter(q => q.category === "text");
 - Tutorial/How to Play page
 
 **Tech Stack**:
-- Next.js 15 → 16.0.1
+- Next.js 15 → 16.0.11
 - React 18 → 19.2.0
 - TypeScript 5
 - Tailwind CSS 3 → 4
@@ -952,7 +969,7 @@ const textQuestions = questions.filter(q => q.category === "text");
 
 ### Official Documentation
 
-- [Next.js 15 Docs](https://nextjs.org/docs)
+- [Next.js 16 Docs](https://nextjs.org/docs)
 - [React 19 Docs](https://react.dev/)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
@@ -967,7 +984,7 @@ const textQuestions = questions.filter(q => q.category === "text");
 
 ### Live Demo
 
-- Production: https://ai-human-game.vercel.app/
+- Production: https://ai-human-game.chanmeng-dev.workers.dev/
 - Repository: https://github.com/ChanMeng666/ai-human-game
 
 ---
@@ -983,7 +1000,7 @@ const textQuestions = questions.filter(q => q.category === "text");
 
 ---
 
-**Last Updated**: 2025-11-17
+**Last Updated**: 2026-03-21
 **Maintained By**: AI Assistant Context (for Claude and other LLMs)
 
 ---

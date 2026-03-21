@@ -389,7 +389,7 @@ import { useState } from "react";
 
 export default function Home() {
   const playSound = () => {
-    const audio = new Audio("/audio/bubble.wav");
+    const audio = new Audio("/audio/bubble.mp3");
     audio.play().catch(() => {});
   };
 

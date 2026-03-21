@@ -3,7 +3,7 @@
 ## ✅ Installation Complete!
 
 Your AI vs Human guessing game has been successfully initialized with:
-- ✓ Next.js 15 + TypeScript + TailwindCSS
+- ✓ Next.js 16 + TypeScript + TailwindCSS
 - ✓ All game pages (Home, Category, Game, Results)
 - ✓ Pond-themed UI with custom assets
 - ✓ Sample text content (3 pairs provided)
@@ -105,7 +105,7 @@ Add new entries to `questions.json` with incremented IDs and matching content fi
 
 ### Audio not playing
 - Click on the page first (browsers block auto-play)
-- Check audio file formats (.wav or .mp3)
+- Check audio file formats (.mp3)
 
 ## 🎨 Design Credits
 

@@ -60,14 +60,14 @@ export default function GamePage() {
 
   const playCorrectSound = () => {
     if (soundEnabled) {
-      const correctAudio = new Audio("/audio/correct.wav");
+      const correctAudio = new Audio("/audio/correct.mp3");
       correctAudio.play().catch((e) => console.log("Audio play failed:", e));
     }
   };
 
   const playIncorrectSound = () => {
     if (soundEnabled) {
-      const incorrectAudio = new Audio("/audio/incorrect.wav");
+      const incorrectAudio = new Audio("/audio/incorrect.mp3");
       incorrectAudio.volume = 0.3;
       incorrectAudio.play().catch((e) => console.log("Audio play failed:", e));
     }
