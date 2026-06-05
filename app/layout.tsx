@@ -48,6 +48,18 @@ export default function RootLayout({
       </head>
       <body className={pressStart2P.className}>
         <GameProvider>{children}</GameProvider>
+        {/* Developer brand credit — Chan Meng */}
+        <footer style={{ borderTop: "2px solid rgba(0,0,0,0.1)", padding: "16px", textAlign: "center", fontSize: "11px", lineHeight: 1.6 }}>
+          <a
+            href="https://github.com/ChanMeng666"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#666", textDecoration: "none" }}
+          >
+            <img src="/chan_logo.svg" alt="Chan Meng" style={{ width: "22px", height: "22px" }} />
+            <span>Built by Chan Meng &middot; custom apps: chanmeng.dev@gmail.com</span>
+          </a>
+        </footer>
       </body>
     </html>
   );
