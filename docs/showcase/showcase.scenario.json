@@ -1,0 +1,60 @@
+{
+  "project": "ai-human-game",
+  "baseUrl": "https://ai-human-game.chanmeng-dev.workers.dev/",
+  "outDir": "docs/showcase",
+  "loginWall": false,
+  "reducedMotion": "no-preference",
+  "viewports": {
+    "desktop": { "width": 1280, "height": 800, "deviceScaleFactor": 2 },
+    "mobile": { "width": 390, "height": 844, "deviceScaleFactor": 3, "isMobile": true }
+  },
+  "setup": [
+    { "action": "click", "selector": "text=Skip Guide", "optional": true }
+  ],
+  "pages": [
+    {
+      "label": "hero",
+      "url": "/",
+      "viewport": "desktop",
+      "before": [
+        { "action": "wait", "ms": 2000 },
+        { "action": "click", "selector": "text=Skip Guide", "optional": true },
+        { "action": "wait", "ms": 800 }
+      ]
+    },
+    {
+      "label": "category",
+      "url": "/category",
+      "viewport": "desktop",
+      "before": [
+        { "action": "wait", "ms": 2000 }
+      ]
+    },
+    {
+      "label": "mobile-hero",
+      "url": "/",
+      "viewport": "mobile",
+      "before": [
+        { "action": "wait", "ms": 2000 },
+        { "action": "click", "selector": "text=Skip Guide", "optional": true },
+        { "action": "wait", "ms": 800 }
+      ]
+    }
+  ],
+  "demo": {
+    "size": { "width": 1280, "height": 800 },
+    "stepPauseMs": 600,
+    "steps": [
+      { "action": "goto", "url": "/" },
+      { "action": "wait", "ms": 1500 },
+      { "action": "click", "selector": "text=Skip Guide", "optional": true },
+      { "action": "wait", "ms": 1500 },
+      { "action": "click", "selector": "text=Start Game" },
+      { "action": "wait", "ms": 2500 },
+      { "action": "click", "selector": "text=Start" },
+      { "action": "wait", "ms": 3000 },
+      { "action": "click", "selector": "text=HUMAN" },
+      { "action": "wait", "ms": 3000 }
+    ]
+  }
+}
