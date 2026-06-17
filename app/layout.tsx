@@ -27,12 +27,33 @@ const pixelifySans = Pixelify_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ai-human-game.chanmeng-dev.workers.dev"),
   title: "AI vs Human - Guessing Game",
   description: "Can you tell the difference between AI-generated and human-created content?",
   icons: {
     icon: "/ai-human-game.svg",
     shortcut: "/ai-human-game.svg",
     apple: "/ai-human-game.svg",
+  },
+  openGraph: {
+    title: "AI vs Human - Guessing Game",
+    description: "Can you tell AI-generated content from human-made?",
+    type: "website",
+    siteName: "AI vs Human",
+    images: [
+      {
+        url: "/og-cover.png",
+        width: 1200,
+        height: 630,
+        alt: "AI vs Human — can you tell AI-generated content from human-made?",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI vs Human - Guessing Game",
+    description: "Can you tell AI-generated content from human-made?",
+    images: ["/og-cover.png"],
   },
 };
 
